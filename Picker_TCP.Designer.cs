@@ -55,17 +55,13 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
             this.textBox21 = new System.Windows.Forms.TextBox();
             this.label40 = new System.Windows.Forms.Label();
             this.textBox20 = new System.Windows.Forms.TextBox();
-            this.label39 = new System.Windows.Forms.Label();
-            this.textBox19 = new System.Windows.Forms.TextBox();
-            this.label38 = new System.Windows.Forms.Label();
-            this.textBox18 = new System.Windows.Forms.TextBox();
-            this.label32 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
-            this.textBox12 = new System.Windows.Forms.TextBox();
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -73,36 +69,56 @@
             this.btnTXT = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label30 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
             this.label29 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
             this.trackBar2 = new System.Windows.Forms.TrackBar();
+            this.label22 = new System.Windows.Forms.Label();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
-            this.textBox43 = new System.Windows.Forms.TextBox();
-            this.textBox42 = new System.Windows.Forms.TextBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.label22 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.textBox45 = new System.Windows.Forms.TextBox();
             this.textBox44 = new System.Windows.Forms.TextBox();
+            this.textBox45 = new System.Windows.Forms.TextBox();
             this.label28 = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
-            this.btnLEFT = new System.Windows.Forms.Button();
-            this.btnRIGHT = new System.Windows.Forms.Button();
             this.btnDWN = new System.Windows.Forms.Button();
             this.btnUP = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label50 = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.trackBar3 = new System.Windows.Forms.TrackBar();
+            this.button6 = new System.Windows.Forms.Button();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.labelGainValue = new System.Windows.Forms.Label();
+            this.labelGain = new System.Windows.Forms.Label();
+            this.labelExposute = new System.Windows.Forms.Label();
+            this.labelWhiteBalance = new System.Windows.Forms.Label();
+            this.labelWidthValue = new System.Windows.Forms.Label();
+            this.labelExposureValue = new System.Windows.Forms.Label();
+            this.labelCameraHeight = new System.Windows.Forms.Label();
+            this.labelExposure = new System.Windows.Forms.Label();
+            this.labelHeight = new System.Windows.Forms.Label();
+            this.labelWidth = new System.Windows.Forms.Label();
+            this.exposureTimeSliderControl = new System.Windows.Forms.TrackBar();
+            this.gainSliderControl = new System.Windows.Forms.TrackBar();
+            this.heightSliderControl = new System.Windows.Forms.TrackBar();
+            this.pixelFormatControl = new System.Windows.Forms.ComboBox();
+            this.WhiteBalanceControl = new System.Windows.Forms.ComboBox();
+            this.widthSliderControl = new System.Windows.Forms.TrackBar();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.textBox28 = new System.Windows.Forms.TextBox();
             this.label45 = new System.Windows.Forms.Label();
             this.textBox26 = new System.Windows.Forms.TextBox();
@@ -118,11 +134,8 @@
             this.label37 = new System.Windows.Forms.Label();
             this.textBox16 = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.textBox14 = new System.Windows.Forms.TextBox();
-            this.label35 = new System.Windows.Forms.Label();
-            this.textBox15 = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.MotorSpeedSliderControl)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -132,9 +145,15 @@
             this.tabPage2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
-            this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.tabPage3.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exposureTimeSliderControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gainSliderControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.heightSliderControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.widthSliderControl)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -308,17 +327,13 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label15);
+            this.tabPage1.Controls.Add(this.label16);
             this.tabPage1.Controls.Add(this.label41);
             this.tabPage1.Controls.Add(this.textBox21);
             this.tabPage1.Controls.Add(this.label40);
             this.tabPage1.Controls.Add(this.textBox20);
-            this.tabPage1.Controls.Add(this.label39);
-            this.tabPage1.Controls.Add(this.textBox19);
-            this.tabPage1.Controls.Add(this.label38);
-            this.tabPage1.Controls.Add(this.textBox18);
-            this.tabPage1.Controls.Add(this.label32);
             this.tabPage1.Controls.Add(this.label33);
-            this.tabPage1.Controls.Add(this.textBox12);
             this.tabPage1.Controls.Add(this.textBox13);
             this.tabPage1.Controls.Add(this.button3);
             this.tabPage1.Controls.Add(this.button2);
@@ -340,6 +355,16 @@
             resources.ApplyResources(this.tabPage1, "tabPage1");
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // label15
+            // 
+            resources.ApplyResources(this.label15, "label15");
+            this.label15.Name = "label15";
+            // 
+            // label16
+            // 
+            resources.ApplyResources(this.label16, "label16");
+            this.label16.Name = "label16";
             // 
             // label41
             // 
@@ -365,47 +390,10 @@
             this.textBox20.Name = "textBox20";
             this.textBox20.ReadOnly = true;
             // 
-            // label39
-            // 
-            resources.ApplyResources(this.label39, "label39");
-            this.label39.Name = "label39";
-            // 
-            // textBox19
-            // 
-            this.textBox19.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            resources.ApplyResources(this.textBox19, "textBox19");
-            this.textBox19.Name = "textBox19";
-            this.textBox19.ReadOnly = true;
-            // 
-            // label38
-            // 
-            resources.ApplyResources(this.label38, "label38");
-            this.label38.Name = "label38";
-            // 
-            // textBox18
-            // 
-            this.textBox18.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            resources.ApplyResources(this.textBox18, "textBox18");
-            this.textBox18.Name = "textBox18";
-            this.textBox18.ReadOnly = true;
-            // 
-            // label32
-            // 
-            resources.ApplyResources(this.label32, "label32");
-            this.label32.Name = "label32";
-            // 
             // label33
             // 
             resources.ApplyResources(this.label33, "label33");
             this.label33.Name = "label33";
-            // 
-            // textBox12
-            // 
-            this.textBox12.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.textBox12.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            resources.ApplyResources(this.textBox12, "textBox12");
-            this.textBox12.Name = "textBox12";
-            this.textBox12.ReadOnly = true;
             // 
             // textBox13
             // 
@@ -421,7 +409,7 @@
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(11)))), ((int)(((byte)(103)))), ((int)(((byte)(210)))));
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(11)))), ((int)(((byte)(103)))), ((int)(((byte)(210)))));
-            this.button3.Image = global::TCP_LISTENER_Delta.Properties.Resources.Group_26;
+            this.button3.Image = global::TCP_LISTENER_Delta.Properties.Resources.Group_32;
             this.button3.Name = "button3";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click_1);
@@ -465,33 +453,58 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.label31);
-            this.tabPage2.Controls.Add(this.label30);
+            this.tabPage2.Controls.Add(this.label14);
+            this.tabPage2.Controls.Add(this.label13);
+            this.tabPage2.Controls.Add(this.label12);
+            this.tabPage2.Controls.Add(this.label11);
+            this.tabPage2.Controls.Add(this.label8);
+            this.tabPage2.Controls.Add(this.button5);
             this.tabPage2.Controls.Add(this.label29);
             this.tabPage2.Controls.Add(this.groupBox4);
-            this.tabPage2.Controls.Add(this.groupBox3);
             this.tabPage2.Controls.Add(this.label28);
-            this.tabPage2.Controls.Add(this.label27);
             this.tabPage2.Controls.Add(this.label26);
-            this.tabPage2.Controls.Add(this.textBox3);
             this.tabPage2.Controls.Add(this.textBox4);
-            this.tabPage2.Controls.Add(this.btnLEFT);
-            this.tabPage2.Controls.Add(this.btnRIGHT);
             this.tabPage2.Controls.Add(this.btnDWN);
             this.tabPage2.Controls.Add(this.btnUP);
             resources.ApplyResources(this.tabPage2, "tabPage2");
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // label31
+            // label14
             // 
-            resources.ApplyResources(this.label31, "label31");
-            this.label31.Name = "label31";
+            resources.ApplyResources(this.label14, "label14");
+            this.label14.Name = "label14";
             // 
-            // label30
+            // label13
             // 
-            resources.ApplyResources(this.label30, "label30");
-            this.label30.Name = "label30";
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.Name = "label13";
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
+            // button5
+            // 
+            resources.ApplyResources(this.button5, "button5");
+            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(11)))), ((int)(((byte)(103)))), ((int)(((byte)(210)))));
+            this.button5.FlatAppearance.BorderSize = 0;
+            this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(11)))), ((int)(((byte)(103)))), ((int)(((byte)(210)))));
+            this.button5.Image = global::TCP_LISTENER_Delta.Properties.Resources.Group_31;
+            this.button5.Name = "button5";
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // label29
             // 
@@ -501,26 +514,16 @@
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.Color.White;
-            this.groupBox4.Controls.Add(this.label23);
-            this.groupBox4.Controls.Add(this.label24);
             this.groupBox4.Controls.Add(this.trackBar2);
+            this.groupBox4.Controls.Add(this.label22);
             this.groupBox4.Controls.Add(this.textBox9);
             this.groupBox4.Controls.Add(this.label25);
-            this.groupBox4.Controls.Add(this.textBox43);
-            this.groupBox4.Controls.Add(this.textBox42);
+            this.groupBox4.Controls.Add(this.label21);
+            this.groupBox4.Controls.Add(this.textBox44);
+            this.groupBox4.Controls.Add(this.textBox45);
             resources.ApplyResources(this.groupBox4, "groupBox4");
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.TabStop = false;
-            // 
-            // label23
-            // 
-            resources.ApplyResources(this.label23, "label23");
-            this.label23.Name = "label23";
-            // 
-            // label24
-            // 
-            resources.ApplyResources(this.label24, "label24");
-            this.label24.Name = "label24";
             // 
             // trackBar2
             // 
@@ -532,6 +535,11 @@
             this.trackBar2.SmallChange = 100;
             this.trackBar2.TickFrequency = 2000;
             this.trackBar2.Scroll += new System.EventHandler(this.trackBar2_Scroll);
+            // 
+            // label22
+            // 
+            resources.ApplyResources(this.label22, "label22");
+            this.label22.Name = "label22";
             // 
             // textBox9
             // 
@@ -546,74 +554,10 @@
             resources.ApplyResources(this.label25, "label25");
             this.label25.Name = "label25";
             // 
-            // textBox43
-            // 
-            resources.ApplyResources(this.textBox43, "textBox43");
-            this.textBox43.Name = "textBox43";
-            this.textBox43.TextChanged += new System.EventHandler(this.textBox43_TextChanged_1);
-            this.textBox43.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckEnter);
-            // 
-            // textBox42
-            // 
-            resources.ApplyResources(this.textBox42, "textBox42");
-            this.textBox42.Name = "textBox42";
-            this.textBox42.TextChanged += new System.EventHandler(this.textBox42_TextChanged_1);
-            this.textBox42.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckEnter);
-            // 
-            // groupBox3
-            // 
-            this.groupBox3.BackColor = System.Drawing.Color.White;
-            this.groupBox3.Controls.Add(this.label22);
-            this.groupBox3.Controls.Add(this.label21);
-            this.groupBox3.Controls.Add(this.trackBar1);
-            this.groupBox3.Controls.Add(this.textBox8);
-            this.groupBox3.Controls.Add(this.label20);
-            this.groupBox3.Controls.Add(this.textBox45);
-            this.groupBox3.Controls.Add(this.textBox44);
-            resources.ApplyResources(this.groupBox3, "groupBox3");
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.TabStop = false;
-            // 
-            // label22
-            // 
-            resources.ApplyResources(this.label22, "label22");
-            this.label22.Name = "label22";
-            // 
             // label21
             // 
             resources.ApplyResources(this.label21, "label21");
             this.label21.Name = "label21";
-            // 
-            // trackBar1
-            // 
-            this.trackBar1.BackColor = System.Drawing.Color.White;
-            resources.ApplyResources(this.trackBar1, "trackBar1");
-            this.trackBar1.LargeChange = 100;
-            this.trackBar1.Maximum = 20000;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.SmallChange = 100;
-            this.trackBar1.TickFrequency = 2000;
-            this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll_1);
-            // 
-            // textBox8
-            // 
-            this.textBox8.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            resources.ApplyResources(this.textBox8, "textBox8");
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            // 
-            // label20
-            // 
-            resources.ApplyResources(this.label20, "label20");
-            this.label20.Name = "label20";
-            // 
-            // textBox45
-            // 
-            resources.ApplyResources(this.textBox45, "textBox45");
-            this.textBox45.Name = "textBox45";
-            this.textBox45.TextChanged += new System.EventHandler(this.textBox45_TextChanged_1);
-            this.textBox45.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckEnter);
             // 
             // textBox44
             // 
@@ -622,28 +566,22 @@
             this.textBox44.TextChanged += new System.EventHandler(this.textBox44_TextChanged_1);
             this.textBox44.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckEnter);
             // 
+            // textBox45
+            // 
+            resources.ApplyResources(this.textBox45, "textBox45");
+            this.textBox45.Name = "textBox45";
+            this.textBox45.TextChanged += new System.EventHandler(this.textBox45_TextChanged_1);
+            this.textBox45.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckEnter);
+            // 
             // label28
             // 
             resources.ApplyResources(this.label28, "label28");
             this.label28.Name = "label28";
             // 
-            // label27
-            // 
-            resources.ApplyResources(this.label27, "label27");
-            this.label27.Name = "label27";
-            // 
             // label26
             // 
             resources.ApplyResources(this.label26, "label26");
             this.label26.Name = "label26";
-            // 
-            // textBox3
-            // 
-            this.textBox3.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            resources.ApplyResources(this.textBox3, "textBox3");
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
             // 
             // textBox4
             // 
@@ -652,26 +590,6 @@
             resources.ApplyResources(this.textBox4, "textBox4");
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
-            // 
-            // btnLEFT
-            // 
-            resources.ApplyResources(this.btnLEFT, "btnLEFT");
-            this.btnLEFT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(11)))), ((int)(((byte)(103)))), ((int)(((byte)(210)))));
-            this.btnLEFT.FlatAppearance.BorderSize = 0;
-            this.btnLEFT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(11)))), ((int)(((byte)(103)))), ((int)(((byte)(210)))));
-            this.btnLEFT.Image = global::TCP_LISTENER_Delta.Properties.Resources.Group_12;
-            this.btnLEFT.Name = "btnLEFT";
-            this.btnLEFT.UseVisualStyleBackColor = false;
-            // 
-            // btnRIGHT
-            // 
-            resources.ApplyResources(this.btnRIGHT, "btnRIGHT");
-            this.btnRIGHT.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(11)))), ((int)(((byte)(103)))), ((int)(((byte)(210)))));
-            this.btnRIGHT.FlatAppearance.BorderSize = 0;
-            this.btnRIGHT.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(11)))), ((int)(((byte)(103)))), ((int)(((byte)(210)))));
-            this.btnRIGHT.Image = global::TCP_LISTENER_Delta.Properties.Resources.Group_11;
-            this.btnRIGHT.Name = "btnRIGHT";
-            this.btnRIGHT.UseVisualStyleBackColor = false;
             // 
             // btnDWN
             // 
@@ -695,15 +613,216 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.groupBox3);
+            this.tabPage3.Controls.Add(this.groupBox2);
             this.tabPage3.Controls.Add(this.groupBox5);
             this.tabPage3.Controls.Add(this.groupBox1);
             resources.ApplyResources(this.tabPage3, "tabPage3");
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // groupBox3
+            // 
+            this.groupBox3.BackColor = System.Drawing.Color.White;
+            this.groupBox3.Controls.Add(this.textBox3);
+            this.groupBox3.Controls.Add(this.label50);
+            this.groupBox3.Controls.Add(this.label49);
+            this.groupBox3.Controls.Add(this.trackBar3);
+            this.groupBox3.Controls.Add(this.button6);
+            this.groupBox3.Controls.Add(this.pictureBox4);
+            this.groupBox3.Controls.Add(this.button4);
+            this.groupBox3.Controls.Add(this.labelGainValue);
+            this.groupBox3.Controls.Add(this.labelGain);
+            this.groupBox3.Controls.Add(this.labelExposute);
+            this.groupBox3.Controls.Add(this.labelWhiteBalance);
+            this.groupBox3.Controls.Add(this.labelWidthValue);
+            this.groupBox3.Controls.Add(this.labelExposureValue);
+            this.groupBox3.Controls.Add(this.labelCameraHeight);
+            this.groupBox3.Controls.Add(this.labelExposure);
+            this.groupBox3.Controls.Add(this.labelHeight);
+            this.groupBox3.Controls.Add(this.labelWidth);
+            this.groupBox3.Controls.Add(this.exposureTimeSliderControl);
+            this.groupBox3.Controls.Add(this.gainSliderControl);
+            this.groupBox3.Controls.Add(this.heightSliderControl);
+            this.groupBox3.Controls.Add(this.pixelFormatControl);
+            this.groupBox3.Controls.Add(this.WhiteBalanceControl);
+            this.groupBox3.Controls.Add(this.widthSliderControl);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.TabStop = false;
+            // 
+            // label50
+            // 
+            resources.ApplyResources(this.label50, "label50");
+            this.label50.Name = "label50";
+            // 
+            // label49
+            // 
+            resources.ApplyResources(this.label49, "label49");
+            this.label49.Name = "label49";
+            // 
+            // trackBar3
+            // 
+            resources.ApplyResources(this.trackBar3, "trackBar3");
+            this.trackBar3.LargeChange = 950;
+            this.trackBar3.Maximum = 95000;
+            this.trackBar3.Minimum = 19;
+            this.trackBar3.Name = "trackBar3";
+            this.trackBar3.SmallChange = 475;
+            this.trackBar3.TickFrequency = 475;
+            this.trackBar3.Value = 19;
+            // 
+            // button6
+            // 
+            resources.ApplyResources(this.button6, "button6");
+            this.button6.Name = "button6";
+            this.button6.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox4
+            // 
+            resources.ApplyResources(this.pictureBox4, "pictureBox4");
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.TabStop = false;
+            // 
+            // button4
+            // 
+            resources.ApplyResources(this.button4, "button4");
+            this.button4.Name = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // labelGainValue
+            // 
+            resources.ApplyResources(this.labelGainValue, "labelGainValue");
+            this.labelGainValue.Name = "labelGainValue";
+            // 
+            // labelGain
+            // 
+            resources.ApplyResources(this.labelGain, "labelGain");
+            this.labelGain.Name = "labelGain";
+            // 
+            // labelExposute
+            // 
+            resources.ApplyResources(this.labelExposute, "labelExposute");
+            this.labelExposute.Name = "labelExposute";
+            // 
+            // labelWhiteBalance
+            // 
+            resources.ApplyResources(this.labelWhiteBalance, "labelWhiteBalance");
+            this.labelWhiteBalance.Name = "labelWhiteBalance";
+            // 
+            // labelWidthValue
+            // 
+            resources.ApplyResources(this.labelWidthValue, "labelWidthValue");
+            this.labelWidthValue.Name = "labelWidthValue";
+            // 
+            // labelExposureValue
+            // 
+            resources.ApplyResources(this.labelExposureValue, "labelExposureValue");
+            this.labelExposureValue.Name = "labelExposureValue";
+            // 
+            // labelCameraHeight
+            // 
+            resources.ApplyResources(this.labelCameraHeight, "labelCameraHeight");
+            this.labelCameraHeight.Name = "labelCameraHeight";
+            // 
+            // labelExposure
+            // 
+            resources.ApplyResources(this.labelExposure, "labelExposure");
+            this.labelExposure.Name = "labelExposure";
+            // 
+            // labelHeight
+            // 
+            resources.ApplyResources(this.labelHeight, "labelHeight");
+            this.labelHeight.Name = "labelHeight";
+            // 
+            // labelWidth
+            // 
+            resources.ApplyResources(this.labelWidth, "labelWidth");
+            this.labelWidth.Name = "labelWidth";
+            // 
+            // exposureTimeSliderControl
+            // 
+            resources.ApplyResources(this.exposureTimeSliderControl, "exposureTimeSliderControl");
+            this.exposureTimeSliderControl.LargeChange = 950;
+            this.exposureTimeSliderControl.Maximum = 95000;
+            this.exposureTimeSliderControl.Minimum = 19;
+            this.exposureTimeSliderControl.Name = "exposureTimeSliderControl";
+            this.exposureTimeSliderControl.SmallChange = 475;
+            this.exposureTimeSliderControl.TickFrequency = 475;
+            this.exposureTimeSliderControl.Value = 19;
+            // 
+            // gainSliderControl
+            // 
+            resources.ApplyResources(this.gainSliderControl, "gainSliderControl");
+            this.gainSliderControl.Maximum = 48;
+            this.gainSliderControl.Name = "gainSliderControl";
+            // 
+            // heightSliderControl
+            // 
+            resources.ApplyResources(this.heightSliderControl, "heightSliderControl");
+            this.heightSliderControl.LargeChange = 100;
+            this.heightSliderControl.Maximum = 1214;
+            this.heightSliderControl.Minimum = 4;
+            this.heightSliderControl.Name = "heightSliderControl";
+            this.heightSliderControl.SmallChange = 20;
+            this.heightSliderControl.TickFrequency = 20;
+            this.heightSliderControl.Value = 4;
+            this.heightSliderControl.Scroll += new System.EventHandler(this.heightSliderControl_Scroll);
+            // 
+            // pixelFormatControl
+            // 
+            this.pixelFormatControl.FormattingEnabled = true;
+            resources.ApplyResources(this.pixelFormatControl, "pixelFormatControl");
+            this.pixelFormatControl.Name = "pixelFormatControl";
+            // 
+            // WhiteBalanceControl
+            // 
+            this.WhiteBalanceControl.FormattingEnabled = true;
+            this.WhiteBalanceControl.Items.AddRange(new object[] {
+            resources.GetString("WhiteBalanceControl.Items"),
+            resources.GetString("WhiteBalanceControl.Items1"),
+            resources.GetString("WhiteBalanceControl.Items2")});
+            resources.ApplyResources(this.WhiteBalanceControl, "WhiteBalanceControl");
+            this.WhiteBalanceControl.Name = "WhiteBalanceControl";
+            // 
+            // widthSliderControl
+            // 
+            resources.ApplyResources(this.widthSliderControl, "widthSliderControl");
+            this.widthSliderControl.LargeChange = 40;
+            this.widthSliderControl.Maximum = 1928;
+            this.widthSliderControl.Minimum = 4;
+            this.widthSliderControl.Name = "widthSliderControl";
+            this.widthSliderControl.SmallChange = 4;
+            this.widthSliderControl.TickFrequency = 4;
+            this.widthSliderControl.Value = 4;
+            this.widthSliderControl.Scroll += new System.EventHandler(this.widthSliderControl_Scroll);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.BackColor = System.Drawing.Color.White;
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.textBox5);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.TabStop = false;
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // textBox5
+            // 
+            resources.ApplyResources(this.textBox5, "textBox5");
+            this.textBox5.Name = "textBox5";
+            this.textBox5.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
+            // 
             // groupBox5
             // 
             this.groupBox5.BackColor = System.Drawing.Color.White;
+            this.groupBox5.Controls.Add(this.textBox2);
+            this.groupBox5.Controls.Add(this.label7);
             this.groupBox5.Controls.Add(this.textBox28);
             this.groupBox5.Controls.Add(this.label45);
             this.groupBox5.Controls.Add(this.textBox26);
@@ -719,14 +838,21 @@
             this.groupBox5.Controls.Add(this.label37);
             this.groupBox5.Controls.Add(this.textBox16);
             this.groupBox5.Controls.Add(this.label36);
-            this.groupBox5.Controls.Add(this.label34);
-            this.groupBox5.Controls.Add(this.textBox14);
-            this.groupBox5.Controls.Add(this.label35);
-            this.groupBox5.Controls.Add(this.textBox15);
             this.groupBox5.Controls.Add(this.label4);
             resources.ApplyResources(this.groupBox5, "groupBox5");
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.TabStop = false;
+            // 
+            // textBox2
+            // 
+            resources.ApplyResources(this.textBox2, "textBox2");
+            this.textBox2.Name = "textBox2";
+            this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
             // 
             // textBox28
             // 
@@ -811,32 +937,16 @@
             resources.ApplyResources(this.label36, "label36");
             this.label36.Name = "label36";
             // 
-            // label34
-            // 
-            resources.ApplyResources(this.label34, "label34");
-            this.label34.Name = "label34";
-            // 
-            // textBox14
-            // 
-            resources.ApplyResources(this.textBox14, "textBox14");
-            this.textBox14.Name = "textBox14";
-            this.textBox14.TextChanged += new System.EventHandler(this.textBox14_TextChanged);
-            // 
-            // label35
-            // 
-            resources.ApplyResources(this.label35, "label35");
-            this.label35.Name = "label35";
-            // 
-            // textBox15
-            // 
-            resources.ApplyResources(this.textBox15, "textBox15");
-            this.textBox15.Name = "textBox15";
-            this.textBox15.TextChanged += new System.EventHandler(this.textBox15_TextChanged);
-            // 
             // label4
             // 
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
+            // 
+            // textBox3
+            // 
+            resources.ApplyResources(this.textBox3, "textBox3");
+            this.textBox3.Name = "textBox3";
+            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // Form_Listener
             // 
@@ -865,10 +975,17 @@
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
+            this.tabPage3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
-            this.tabPage3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exposureTimeSliderControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gainSliderControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.heightSliderControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.widthSliderControl)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
@@ -907,45 +1024,24 @@
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Button btnTXT;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Button btnLEFT;
-        private System.Windows.Forms.Button btnRIGHT;
         private System.Windows.Forms.Button btnDWN;
-        private System.Windows.Forms.Button btnUP;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TrackBar trackBar2;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.TextBox textBox43;
-        private System.Windows.Forms.TextBox textBox42;
-        private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.TrackBar trackBar1;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox textBox45;
         private System.Windows.Forms.TextBox textBox44;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.TextBox textBox12;
         private System.Windows.Forms.TextBox textBox13;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.TextBox textBox14;
-        private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.TextBox textBox15;
         private System.Windows.Forms.TextBox textBox17;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.TextBox textBox16;
@@ -954,22 +1050,56 @@
         private System.Windows.Forms.TextBox textBox21;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.TextBox textBox20;
-        private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.Label label38;
-        private System.Windows.Forms.TextBox textBox18;
-        private System.Windows.Forms.TextBox textBox22;
-        private System.Windows.Forms.Label label42;
-        private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.TextBox textBox23;
-        private System.Windows.Forms.Label label44;
-        private System.Windows.Forms.TextBox textBox24;
         private System.Windows.Forms.TextBox textBox28;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.TextBox textBox26;
         private System.Windows.Forms.TextBox textBox27;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btnUP;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox textBox22;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.TextBox textBox23;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.TextBox textBox24;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.TrackBar trackBar3;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label labelGainValue;
+        private System.Windows.Forms.Label labelGain;
+        private System.Windows.Forms.Label labelExposute;
+        private System.Windows.Forms.Label labelWhiteBalance;
+        private System.Windows.Forms.Label labelWidthValue;
+        private System.Windows.Forms.Label labelExposureValue;
+        private System.Windows.Forms.Label labelCameraHeight;
+        private System.Windows.Forms.Label labelExposure;
+        private System.Windows.Forms.Label labelHeight;
+        private System.Windows.Forms.Label labelWidth;
+        private System.Windows.Forms.TrackBar exposureTimeSliderControl;
+        private System.Windows.Forms.TrackBar gainSliderControl;
+        private System.Windows.Forms.TrackBar heightSliderControl;
+        private System.Windows.Forms.ComboBox pixelFormatControl;
+        private System.Windows.Forms.ComboBox WhiteBalanceControl;
+        private System.Windows.Forms.TrackBar widthSliderControl;
+        private System.Windows.Forms.TextBox textBox3;
     }
 }
 

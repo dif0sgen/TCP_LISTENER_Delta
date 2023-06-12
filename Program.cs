@@ -9,7 +9,6 @@ using System.Net.Sockets;
 using System.Text;
 using System.Drawing;
 using System.Drawing.Imaging;
-
 using Emgu;
 using Emgu.CV;
 using Emgu.CV.Util;
@@ -28,9 +27,18 @@ namespace TCP_LISTENER_Delta
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form_Listener());
+            try
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new Form_Listener());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Standart message:  " + ex.Message );
+
+            }
+
 
         }
 

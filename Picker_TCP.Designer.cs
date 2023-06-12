@@ -91,11 +91,13 @@
             this.btnUP = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button7 = new System.Windows.Forms.Button();
+            this.textBox3 = new System.Windows.Forms.TextBox();
             this.label50 = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
             this.trackBar3 = new System.Windows.Forms.TrackBar();
-            this.button6 = new System.Windows.Forms.Button();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.button6 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.labelGainValue = new System.Windows.Forms.Label();
             this.labelGain = new System.Windows.Forms.Label();
@@ -135,7 +137,7 @@
             this.textBox16 = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.deviceListView = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.MotorSpeedSliderControl)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -613,6 +615,7 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.deviceListView);
             this.tabPage3.Controls.Add(this.groupBox3);
             this.tabPage3.Controls.Add(this.groupBox2);
             this.tabPage3.Controls.Add(this.groupBox5);
@@ -624,12 +627,13 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.Color.White;
+            this.groupBox3.Controls.Add(this.button7);
             this.groupBox3.Controls.Add(this.textBox3);
             this.groupBox3.Controls.Add(this.label50);
             this.groupBox3.Controls.Add(this.label49);
             this.groupBox3.Controls.Add(this.trackBar3);
-            this.groupBox3.Controls.Add(this.button6);
             this.groupBox3.Controls.Add(this.pictureBox4);
+            this.groupBox3.Controls.Add(this.button6);
             this.groupBox3.Controls.Add(this.button4);
             this.groupBox3.Controls.Add(this.labelGainValue);
             this.groupBox3.Controls.Add(this.labelGain);
@@ -650,6 +654,20 @@
             resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
+            // 
+            // button7
+            // 
+            resources.ApplyResources(this.button7, "button7");
+            this.button7.Name = "button7";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // textBox3
+            // 
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            resources.ApplyResources(this.textBox3, "textBox3");
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
             // 
             // label50
             // 
@@ -672,17 +690,17 @@
             this.trackBar3.TickFrequency = 475;
             this.trackBar3.Value = 19;
             // 
-            // button6
-            // 
-            resources.ApplyResources(this.button6, "button6");
-            this.button6.Name = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            // 
             // pictureBox4
             // 
             resources.ApplyResources(this.pictureBox4, "pictureBox4");
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.TabStop = false;
+            // 
+            // button6
+            // 
+            resources.ApplyResources(this.button6, "button6");
+            this.button6.Name = "button6";
+            this.button6.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
@@ -942,11 +960,14 @@
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
             // 
-            // textBox3
+            // deviceListView
             // 
-            resources.ApplyResources(this.textBox3, "textBox3");
-            this.textBox3.Name = "textBox3";
-            this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.deviceListView.HideSelection = false;
+            resources.ApplyResources(this.deviceListView, "deviceListView");
+            this.deviceListView.Name = "deviceListView";
+            this.deviceListView.UseCompatibleStateImageBehavior = false;
+            this.deviceListView.View = System.Windows.Forms.View.List;
+            this.deviceListView.SelectedIndexChanged += new System.EventHandler(this.deviceListView_SelectedIndexChanged);
             // 
             // Form_Listener
             // 
@@ -1100,6 +1121,8 @@
         private System.Windows.Forms.ComboBox WhiteBalanceControl;
         private System.Windows.Forms.TrackBar widthSliderControl;
         private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.ListView deviceListView;
     }
 }
 

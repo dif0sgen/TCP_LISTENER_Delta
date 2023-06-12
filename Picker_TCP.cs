@@ -51,7 +51,8 @@ namespace TCP_LISTENER_Delta
         string out2 = "0";
         string position = "";
 
-        string picture_path;
+        static string picture_path;
+        static string filename;
 
         private PixelDataConverter converter = new PixelDataConverter();
         private Stopwatch stopWatch = new Stopwatch();
@@ -161,6 +162,7 @@ namespace TCP_LISTENER_Delta
         public MyBasler myBasler = new MyBasler();
 
         public Camera camera = new Camera();
+        
 
         public IGrabResult grabResult;
         PixelDataConverter pxConvert = new PixelDataConverter();
@@ -247,7 +249,7 @@ namespace TCP_LISTENER_Delta
             camera.StreamGrabber.GrabStarted += OnGrabStarted;
             camera.StreamGrabber.ImageGrabbed += OnImageGrabbed;
            // camera.StreamGrabber.GrabStopped += OnGrabStopped;
-            camera.Open();
+            //camera.Open();
             //camera.Parameters[PLCamera.PixelFormat].SetValue(PLCamera.PixelFormat.);
             // ** Custom Test Images **
             // Disable standard test images
@@ -522,7 +524,7 @@ namespace TCP_LISTENER_Delta
             // Save Image
             //string filename = "C:\\Users\\Processing1\\Desktop\\HIAS\\Pics\\" + hh +"-" + mm + "-" + ss  + ".jpg";
 
-            string filename = "C:\\Scans\\" + hh +"-" + mm + "-" + ss  + ".jpg";
+            filename = picture_path + hh +"-" + mm + "-" + ss  + ".jpg";
             FileStream fstream = new FileStream(filename, FileMode.Create);
                 image.Save(fstream, System.Drawing.Imaging.ImageFormat.Jpeg);
                 fstream.Close();
@@ -1833,11 +1835,152 @@ namespace TCP_LISTENER_Delta
         }
 
 
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
+        private void button7_Click(object sender, EventArgs e)
         {
-            picture_path = textBox3.Text;
+            using (var opnFLd = new FolderBrowserDialog()) //ANY dialog
+            {
+                //opnDlg.Filter = "Png Files (*.png)|*.png";
+                //opnDlg.Filter = "Excel Files (*.xls, *.xlsx)|*.xls;*.xlsx|CSV Files (*.csv)|*.csv"
+
+                if (opnFLd.ShowDialog() == DialogResult.OK)
+                {
+                    //opnDlg.SelectedPath -- your result
+                    picture_path = Convert.ToString(opnFLd.SelectedPath);
+                    textBox3.Text = Convert.ToString(opnFLd.SelectedPath);
+
+                }
+            }
         }
+
+        private void deviceListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+            //// Destroy the old camera object.
+
+            myBasler.DestroyCamera();
+
+
+            // Open the connection to the selected camera device.
+            //if (deviceListView.SelectedItems.Count > 0)
+            if (deviceListView.Items.Count > 0)
+            {
+
+
+
+
+                try
+                {
+                    if (camera == null)
+                    {
+                        // Get the first selected item.
+                        ListViewItem item = deviceListView.SelectedItems[0];
+                        // Get the attached device data.
+                        ICameraInfo selectedCamera = item.Tag as ICameraInfo;
+
+                        myBasler.CameraInit(selectedCamera);
+                    }
+
+
+
+
+                    //// Create a new camera object.
+                    //camera = new Camera(selectedCamera);
+
+                    //camera.CameraOpened += Configuration.AcquireContinuous;
+
+
+                    //// Register for the events of the image provider needed for proper operation.
+                    ////Register the corresponding event handler function for the camera
+                    //camera.ConnectionLost += myBasler.Camera_ConnectionLost;
+                    //camera.StreamGrabber.GrabStarted += myBasler.StreamGrabber_GrabStarted;
+                    //camera.StreamGrabber.GrabStopped += myBasler.StreamGrabber_GrabStopped;
+                    //camera.StreamGrabber.ImageGrabbed += myBasler.StreamGrabber_ImageGrabbed;
+
+
+
+
+                    //// Open the connection to the camera device.
+                    //camera.Open();
+
+                    //// Set the parameter for the controls.
+                    //IEnumerable<string> BslLightSourcePresetValues = camera.Parameters[PLCamera.BslLightSourcePreset].GetAllValues();
+
+                    //foreach (string BslLightSourcePresetValue in BslLightSourcePresetValues)
+                    //{
+                    //    WhiteBalanceControl.Items.Add(BslLightSourcePresetValue);
+                    //}
+
+                    //IEnumerable<string> PixelCodingValues = camera.Parameters[PLGigECamera.PixelFormat].GetAllValues();
+
+                    //foreach (string PixelCodingValue in PixelCodingValues)
+                    //{
+                    //    pixelFormatControl.Items.Add(PixelCodingValue);
+                    //}
+
+                    //if (labelTemperature.Text == "")
+                    //{
+                    //    labelTemperature.Text = camera.Parameters[PLCamera.DeviceTemperature].GetValue().ToString();
+                    //}
+
+                    //long CameraWidth = camera.Parameters[PLCamera.Width].GetValue();
+                    //widthSliderControl.Value = Convert.ToInt32(CameraWidth);
+
+                    //if (labelWidthValue.Text == "")
+                    //{
+                    //    labelWidthValue.Text = Convert.ToString(widthSliderControl.Value);
+                    //}
+
+                    //long CameraHeight = camera.Parameters[PLCamera.Height].GetValue();
+                    //heightSliderControl.Value = Convert.ToInt32(CameraHeight);
+
+
+                    //if (labelCameraHeight.Text == "")
+                    //{
+                    //    labelCameraHeight.Text = Convert.ToString(heightSliderControl.Value);
+                    //}
+
+                    //if (camera.Parameters.Contains(PLCamera.GainAbs))
+                    //{
+                    //    double GainAbs = camera.Parameters[PLCamera.GainAbs].GetValue();
+                    //    gainSliderControl.Value = Convert.ToInt32(GainAbs);
+                    //    labelGainValue.Text = Convert.ToString(gainSliderControl.Value);
+                    //}
+                    //else
+                    //{
+                    //    double Gain = camera.Parameters[PLCamera.Gain].GetValue();
+                    //    gainSliderControl.Value = Convert.ToInt32(Gain);
+
+                    //    if (labelGainValue.Text == "")
+                    //    {
+                    //        labelGainValue.Text = Convert.ToString(gainSliderControl.Value);
+                    //    }
+
+                    //}
+                    //if (camera.Parameters.Contains(PLCamera.ExposureTimeAbs))
+                    //{
+                    //    double ExposureTimeAbs = camera.Parameters[PLCamera.ExposureTimeAbs].GetValue();
+                    //    exposureTimeSliderControl.Value = Convert.ToInt32(ExposureTimeAbs);
+
+                    //    if (labelExposureValue.Text == "")
+                    //    {
+                    //        labelExposureValue.Text = Convert.ToString(exposureTimeSliderControl.Value);
+                    //    }
+
+                    //}
+                    //else
+                    //{
+                    //    double ExposureTime = camera.Parameters[PLCamera.ExposureTime].GetValue();
+                    //    exposureTimeSliderControl.Value = Convert.ToInt32(ExposureTime);
+                    //    labelExposureValue.Text = Convert.ToString(exposureTimeSliderControl.Value);
+                    //}
+                }
+                catch (Exception exception)
+                {
+                    myBasler.ShowException(exception);
+                }
+            }
+        
+    }
     }
 }
     

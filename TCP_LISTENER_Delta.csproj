@@ -155,7 +155,7 @@
     <Compile Include="IntSliderUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="IntSliderUserControl.Designer.cs">
+    <Compile Include="IntSliderUserControl.designer.cs">
       <DependentUpon>IntSliderUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="MyBasler.cs" />

@@ -99,7 +99,6 @@
             this.btnDWN = new System.Windows.Forms.Button();
             this.btnUP = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.deviceListView = new System.Windows.Forms.ListView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button7 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -711,7 +710,6 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.deviceListView);
             this.tabPage3.Controls.Add(this.groupBox3);
             this.tabPage3.Controls.Add(this.groupBox2);
             this.tabPage3.Controls.Add(this.groupBox5);
@@ -719,15 +717,6 @@
             resources.ApplyResources(this.tabPage3, "tabPage3");
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // deviceListView
-            // 
-            this.deviceListView.HideSelection = false;
-            resources.ApplyResources(this.deviceListView, "deviceListView");
-            this.deviceListView.Name = "deviceListView";
-            this.deviceListView.UseCompatibleStateImageBehavior = false;
-            this.deviceListView.View = System.Windows.Forms.View.List;
-            this.deviceListView.SelectedIndexChanged += new System.EventHandler(this.deviceListView_SelectedIndexChanged);
             // 
             // groupBox3
             // 
@@ -1242,7 +1231,6 @@
         private System.Windows.Forms.TrackBar widthSliderControl;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.ListView deviceListView;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.SplitContainer splitContainerImageView;
         private System.Windows.Forms.SplitContainer splitContainerConfiguration;

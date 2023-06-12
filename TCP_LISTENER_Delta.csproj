@@ -14,6 +14,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,7 +27,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -96,7 +96,9 @@
       <HintPath>packages\EMGU.CV.4.1.1.3497\lib\net35\Emgu.CV.World.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
@@ -134,9 +136,27 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Database1DataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="EnumerationComboBoxUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EnumerationComboBoxUserControl.designer.cs">
+      <DependentUpon>EnumerationComboBoxUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FloatSliderUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="FloatSliderUserControl.Designer.cs">
+      <DependentUpon>FloatSliderUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_Listener - Copy.cs" />
     <Compile Include="Form_Listener - Copy.Designer.cs">
       <DependentUpon>Form_Listener - Copy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IntSliderUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="IntSliderUserControl.Designer.cs">
+      <DependentUpon>IntSliderUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="MyBasler.cs" />
     <Compile Include="Picker_TCP.cs">
@@ -165,9 +185,24 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="UserControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl1.Designer.cs">
+      <DependentUpon>UserControl1.cs</DependentUpon>
+    </Compile>
     <Compile Include="WriteMDBS.cs" />
+    <EmbeddedResource Include="EnumerationComboBoxUserControl.resx">
+      <DependentUpon>EnumerationComboBoxUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FloatSliderUserControl.resx">
+      <DependentUpon>FloatSliderUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_Listener - Copy.resx">
       <DependentUpon>Form_Listener - Copy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IntSliderUserControl.resx">
+      <DependentUpon>IntSliderUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Picker_TCP.aa.resx">
       <DependentUpon>Picker_TCP.cs</DependentUpon>
@@ -182,6 +217,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl1.resx">
+      <DependentUpon>UserControl1.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Database1DataSet.xsc">
       <DependentUpon>Database1DataSet.xsd</DependentUpon>

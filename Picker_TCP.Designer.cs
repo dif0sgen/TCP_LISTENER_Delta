@@ -30,6 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Listener));
+            this.splitContainerImageView = new System.Windows.Forms.SplitContainer();
+            this.splitContainerConfiguration = new System.Windows.Forms.SplitContainer();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.imageListForDeviceList = new System.Windows.Forms.ImageList(this.components);
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonOneShot = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonContinuousShot = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonStop = new System.Windows.Forms.ToolStripButton();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.btnStart = new System.Windows.Forms.Button();
             this.lblPort = new System.Windows.Forms.Label();
             this.txtPort = new System.Windows.Forms.TextBox();
@@ -90,6 +99,7 @@
             this.btnDWN = new System.Windows.Forms.Button();
             this.btnUP = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.deviceListView = new System.Windows.Forms.ListView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.button7 = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
@@ -137,7 +147,17 @@
             this.textBox16 = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.deviceListView = new System.Windows.Forms.ListView();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.updateDeviceListTimer = new System.Windows.Forms.Timer(this.components);
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerImageView)).BeginInit();
+            this.splitContainerImageView.Panel1.SuspendLayout();
+            this.splitContainerImageView.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerConfiguration)).BeginInit();
+            this.splitContainerConfiguration.Panel1.SuspendLayout();
+            this.splitContainerConfiguration.SuspendLayout();
+            this.toolStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MotorSpeedSliderControl)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -157,7 +177,82 @@
             ((System.ComponentModel.ISupportInitialize)(this.widthSliderControl)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // splitContainerImageView
+            // 
+            this.splitContainerImageView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            resources.ApplyResources(this.splitContainerImageView, "splitContainerImageView");
+            this.splitContainerImageView.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
+            this.splitContainerImageView.Name = "splitContainerImageView";
+            // 
+            // splitContainerImageView.Panel1
+            // 
+            this.splitContainerImageView.Panel1.Controls.Add(this.splitContainerConfiguration);
+            this.splitContainerImageView.Panel1.Controls.Add(this.toolStrip);
+            // 
+            // splitContainerConfiguration
+            // 
+            this.splitContainerConfiguration.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            resources.ApplyResources(this.splitContainerConfiguration, "splitContainerConfiguration");
+            this.splitContainerConfiguration.Name = "splitContainerConfiguration";
+            // 
+            // splitContainerConfiguration.Panel1
+            // 
+            this.splitContainerConfiguration.Panel1.Controls.Add(this.listView1);
+            // 
+            // listView1
+            // 
+            resources.ApplyResources(this.listView1, "listView1");
+            this.listView1.HideSelection = false;
+            this.listView1.LargeImageList = this.imageListForDeviceList;
+            this.listView1.MultiSelect = false;
+            this.listView1.Name = "listView1";
+            this.listView1.ShowItemToolTips = true;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.View = System.Windows.Forms.View.Tile;
+            // 
+            // imageListForDeviceList
+            // 
+            this.imageListForDeviceList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
+            resources.ApplyResources(this.imageListForDeviceList, "imageListForDeviceList");
+            this.imageListForDeviceList.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // toolStrip
+            // 
+            this.toolStrip.ImageScalingSize = new System.Drawing.Size(32, 32);
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButtonOneShot,
+            this.toolStripButtonContinuousShot,
+            this.toolStripButtonStop});
+            resources.ApplyResources(this.toolStrip, "toolStrip");
+            this.toolStrip.Name = "toolStrip";
+            // 
+            // toolStripButtonOneShot
+            // 
+            this.toolStripButtonOneShot.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.toolStripButtonOneShot, "toolStripButtonOneShot");
+            this.toolStripButtonOneShot.Name = "toolStripButtonOneShot";
+            // 
+            // toolStripButtonContinuousShot
+            // 
+            this.toolStripButtonContinuousShot.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.toolStripButtonContinuousShot, "toolStripButtonContinuousShot");
+            this.toolStripButtonContinuousShot.Name = "toolStripButtonContinuousShot";
+            // 
+            // toolStripButtonStop
+            // 
+            this.toolStripButtonStop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            resources.ApplyResources(this.toolStripButtonStop, "toolStripButtonStop");
+            this.toolStripButtonStop.Name = "toolStripButtonStop";
+            // 
+            // pictureBox
+            // 
+            resources.ApplyResources(this.pictureBox, "pictureBox");
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.TabStop = false;
             // 
             // btnStart
             // 
@@ -322,6 +417,7 @@
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
+            this.tabControl1.Controls.Add(this.tabPage4);
             resources.ApplyResources(this.tabControl1, "tabControl1");
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
@@ -623,6 +719,15 @@
             resources.ApplyResources(this.tabPage3, "tabPage3");
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // deviceListView
+            // 
+            this.deviceListView.HideSelection = false;
+            resources.ApplyResources(this.deviceListView, "deviceListView");
+            this.deviceListView.Name = "deviceListView";
+            this.deviceListView.UseCompatibleStateImageBehavior = false;
+            this.deviceListView.View = System.Windows.Forms.View.List;
+            this.deviceListView.SelectedIndexChanged += new System.EventHandler(this.deviceListView_SelectedIndexChanged);
             // 
             // groupBox3
             // 
@@ -960,14 +1065,17 @@
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
             // 
-            // deviceListView
+            // tabPage4
             // 
-            this.deviceListView.HideSelection = false;
-            resources.ApplyResources(this.deviceListView, "deviceListView");
-            this.deviceListView.Name = "deviceListView";
-            this.deviceListView.UseCompatibleStateImageBehavior = false;
-            this.deviceListView.View = System.Windows.Forms.View.List;
-            this.deviceListView.SelectedIndexChanged += new System.EventHandler(this.deviceListView_SelectedIndexChanged);
+            this.tabPage4.Controls.Add(this.splitContainerImageView);
+            resources.ApplyResources(this.tabPage4, "tabPage4");
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // updateDeviceListTimer
+            // 
+            this.updateDeviceListTimer.Enabled = true;
+            this.updateDeviceListTimer.Interval = 5000;
             // 
             // Form_Listener
             // 
@@ -983,6 +1091,16 @@
             this.DoubleBuffered = true;
             this.MaximizeBox = false;
             this.Name = "Form_Listener";
+            this.splitContainerImageView.Panel1.ResumeLayout(false);
+            this.splitContainerImageView.Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerImageView)).EndInit();
+            this.splitContainerImageView.ResumeLayout(false);
+            this.splitContainerConfiguration.Panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerConfiguration)).EndInit();
+            this.splitContainerConfiguration.ResumeLayout(false);
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MotorSpeedSliderControl)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -1009,6 +1127,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1123,6 +1243,18 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.ListView deviceListView;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.SplitContainer splitContainerImageView;
+        private System.Windows.Forms.SplitContainer splitContainerConfiguration;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ImageList imageListForDeviceList;
+        private System.Windows.Forms.ToolStrip toolStrip;
+        private System.Windows.Forms.ToolStripButton toolStripButtonOneShot;
+        private System.Windows.Forms.ToolStripButton toolStripButtonContinuousShot;
+        private System.Windows.Forms.ToolStripButton toolStripButtonStop;
+        private System.Windows.Forms.PictureBox pictureBox;
+        private System.Windows.Forms.Timer updateDeviceListTimer;
+        private System.Windows.Forms.BindingSource bindingSource1;
     }
 }
 

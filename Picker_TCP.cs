@@ -243,11 +243,11 @@ namespace TCP_LISTENER_Delta
             /// 
 
             // Register for the events of the image provider needed for proper operation.
-            camera.ConnectionLost += OnConnectionLost;
-            camera.CameraOpened += OnCameraOpened;
-            camera.CameraClosed += OnCameraClosed;
-            camera.StreamGrabber.GrabStarted += OnGrabStarted;
-            camera.StreamGrabber.ImageGrabbed += OnImageGrabbed;
+            //camera.ConnectionLost += OnConnectionLost;
+            //camera.CameraOpened += OnCameraOpened;
+            //camera.CameraClosed += OnCameraClosed;
+            //camera.StreamGrabber.GrabStarted += OnGrabStarted;
+            //camera.StreamGrabber.ImageGrabbed += OnImageGrabbed;
            // camera.StreamGrabber.GrabStopped += OnGrabStopped;
             //camera.Open();
             //camera.Parameters[PLCamera.PixelFormat].SetValue(PLCamera.PixelFormat.);
@@ -1855,132 +1855,110 @@ namespace TCP_LISTENER_Delta
         private void deviceListView_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            //// Destroy the old camera object.
-
-            myBasler.DestroyCamera();
+            // Destroy the old camera object.
+            if (camera != null)
+            {
+                DestroyCamera();
+            }
 
 
             // Open the connection to the selected camera device.
-            //if (deviceListView.SelectedItems.Count > 0)
-            if (deviceListView.Items.Count > 0)
+            if (deviceListView.SelectedItems.Count > 0)
             {
-
-
-
-
+                // Get the first selected item.
+                ListViewItem item = deviceListView.SelectedItems[0];
+                // Get the attached device data.
+                ICameraInfo selectedCamera = item.Tag as ICameraInfo;
                 try
                 {
-                    if (camera == null)
+                    // Create a new camera object.
+                    camera = new Camera(selectedCamera);
+
+                    camera.CameraOpened += Configuration.AcquireContinuous;
+
+                    // Register for the events of the image provider needed for proper operation.
+                    camera.ConnectionLost += OnConnectionLost;
+                    camera.CameraOpened += OnCameraOpened;
+                    camera.CameraClosed += OnCameraClosed;
+                    camera.StreamGrabber.GrabStarted += OnGrabStarted;
+                    camera.StreamGrabber.ImageGrabbed += OnImageGrabbed;
+                    camera.StreamGrabber.GrabStopped += OnGrabStopped;
+
+                    // Open the connection to the camera device.
+                    camera.Open();
+
+                    // Set the parameter for the controls.
+                    if (camera.Parameters[PLCamera.TestImageSelector].IsWritable)
                     {
-                        // Get the first selected item.
-                        ListViewItem item = deviceListView.SelectedItems[0];
-                        // Get the attached device data.
-                        ICameraInfo selectedCamera = item.Tag as ICameraInfo;
-
-                        myBasler.CameraInit(selectedCamera);
+                        testImageControl.Parameter = camera.Parameters[PLCamera.TestImageSelector];
                     }
-
-
-
-
-                    //// Create a new camera object.
-                    //camera = new Camera(selectedCamera);
-
-                    //camera.CameraOpened += Configuration.AcquireContinuous;
-
-
-                    //// Register for the events of the image provider needed for proper operation.
-                    ////Register the corresponding event handler function for the camera
-                    //camera.ConnectionLost += myBasler.Camera_ConnectionLost;
-                    //camera.StreamGrabber.GrabStarted += myBasler.StreamGrabber_GrabStarted;
-                    //camera.StreamGrabber.GrabStopped += myBasler.StreamGrabber_GrabStopped;
-                    //camera.StreamGrabber.ImageGrabbed += myBasler.StreamGrabber_ImageGrabbed;
-
-
-
-
-                    //// Open the connection to the camera device.
-                    //camera.Open();
-
-                    //// Set the parameter for the controls.
-                    //IEnumerable<string> BslLightSourcePresetValues = camera.Parameters[PLCamera.BslLightSourcePreset].GetAllValues();
-
-                    //foreach (string BslLightSourcePresetValue in BslLightSourcePresetValues)
-                    //{
-                    //    WhiteBalanceControl.Items.Add(BslLightSourcePresetValue);
-                    //}
-
-                    //IEnumerable<string> PixelCodingValues = camera.Parameters[PLGigECamera.PixelFormat].GetAllValues();
-
-                    //foreach (string PixelCodingValue in PixelCodingValues)
-                    //{
-                    //    pixelFormatControl.Items.Add(PixelCodingValue);
-                    //}
-
-                    //if (labelTemperature.Text == "")
-                    //{
-                    //    labelTemperature.Text = camera.Parameters[PLCamera.DeviceTemperature].GetValue().ToString();
-                    //}
-
-                    //long CameraWidth = camera.Parameters[PLCamera.Width].GetValue();
-                    //widthSliderControl.Value = Convert.ToInt32(CameraWidth);
-
-                    //if (labelWidthValue.Text == "")
-                    //{
-                    //    labelWidthValue.Text = Convert.ToString(widthSliderControl.Value);
-                    //}
-
-                    //long CameraHeight = camera.Parameters[PLCamera.Height].GetValue();
-                    //heightSliderControl.Value = Convert.ToInt32(CameraHeight);
-
-
-                    //if (labelCameraHeight.Text == "")
-                    //{
-                    //    labelCameraHeight.Text = Convert.ToString(heightSliderControl.Value);
-                    //}
-
-                    //if (camera.Parameters.Contains(PLCamera.GainAbs))
-                    //{
-                    //    double GainAbs = camera.Parameters[PLCamera.GainAbs].GetValue();
-                    //    gainSliderControl.Value = Convert.ToInt32(GainAbs);
-                    //    labelGainValue.Text = Convert.ToString(gainSliderControl.Value);
-                    //}
-                    //else
-                    //{
-                    //    double Gain = camera.Parameters[PLCamera.Gain].GetValue();
-                    //    gainSliderControl.Value = Convert.ToInt32(Gain);
-
-                    //    if (labelGainValue.Text == "")
-                    //    {
-                    //        labelGainValue.Text = Convert.ToString(gainSliderControl.Value);
-                    //    }
-
-                    //}
-                    //if (camera.Parameters.Contains(PLCamera.ExposureTimeAbs))
-                    //{
-                    //    double ExposureTimeAbs = camera.Parameters[PLCamera.ExposureTimeAbs].GetValue();
-                    //    exposureTimeSliderControl.Value = Convert.ToInt32(ExposureTimeAbs);
-
-                    //    if (labelExposureValue.Text == "")
-                    //    {
-                    //        labelExposureValue.Text = Convert.ToString(exposureTimeSliderControl.Value);
-                    //    }
-
-                    //}
-                    //else
-                    //{
-                    //    double ExposureTime = camera.Parameters[PLCamera.ExposureTime].GetValue();
-                    //    exposureTimeSliderControl.Value = Convert.ToInt32(ExposureTime);
-                    //    labelExposureValue.Text = Convert.ToString(exposureTimeSliderControl.Value);
-                    //}
+                    else
+                    {
+                        testImageControl.Parameter = camera.Parameters[PLCamera.TestPattern];
+                    }
+                    pixelFormatControl.Parameter = camera.Parameters[PLCamera.PixelFormat];
+                    widthSliderControl.Parameter = camera.Parameters[PLCamera.Width];
+                    heightSliderControl.Parameter = camera.Parameters[PLCamera.Height];
+                    if (camera.Parameters.Contains(PLCamera.GainAbs))
+                    {
+                        gainSliderControl.Parameter = camera.Parameters[PLCamera.GainAbs];
+                    }
+                    else
+                    {
+                        gainSliderControl.Parameter = camera.Parameters[PLCamera.Gain];
+                    }
+                    if (camera.Parameters.Contains(PLCamera.ExposureTimeAbs))
+                    {
+                        exposureTimeSliderControl.Parameter = camera.Parameters[PLCamera.ExposureTimeAbs];
+                    }
+                    else
+                    {
+                        exposureTimeSliderControl.Parameter = camera.Parameters[PLCamera.ExposureTime];
+                    }
                 }
                 catch (Exception exception)
                 {
-                    myBasler.ShowException(exception);
+                    ShowException(exception);
                 }
             }
-        
-    }
+        }
+            // Closes the camera object and handles exceptions.
+            private void DestroyCamera()
+            {
+                // Disable all parameter controls.
+                try
+                {
+                    if (camera != null)
+                    {
+
+                        testImageControl.Parameter = null;
+                        pixelFormatControl.Parameter = null;
+                        widthSliderControl.Parameter = null;
+                        heightSliderControl.Parameter = null;
+                        gainSliderControl.Parameter = null;
+                        exposureTimeSliderControl.Parameter = null;
+                    }
+                }
+                catch (Exception exception)
+                {
+                    ShowException(exception);
+                }
+
+                // Destroy the camera object.
+                try
+                {
+                    if (camera != null)
+                    {
+                        camera.Close();
+                        camera.Dispose();
+                        camera = null;
+                    }
+                }
+                catch (Exception exception)
+                {
+                    ShowException(exception);
+                }
+            }
     }
 }
     

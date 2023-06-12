@@ -1,4 +1,4 @@
-namespace PylonLiveViewControl
+namespace TCP_LISTENER_Delta
 {
     partial class IntSliderUserControl
     {
@@ -35,72 +35,72 @@ namespace PylonLiveViewControl
             this.slider = new System.Windows.Forms.TrackBar();
             ((System.ComponentModel.ISupportInitialize)(this.slider)).BeginInit();
             this.SuspendLayout();
-            //
+            // 
             // labelName
-            //
+            // 
             this.labelName.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.labelName.Location = new System.Drawing.Point( 0, 30 );
+            this.labelName.Location = new System.Drawing.Point(0, 30);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size( 128, 13 );
+            this.labelName.Size = new System.Drawing.Size(128, 13);
             this.labelName.TabIndex = 1;
             this.labelName.Text = "ValueName:";
             this.labelName.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            //
+            // 
             // labelCurrentValue
-            //
+            // 
             this.labelCurrentValue.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.labelCurrentValue.AutoSize = true;
             this.labelCurrentValue.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.labelCurrentValue.Location = new System.Drawing.Point( 134, 30 );
+            this.labelCurrentValue.Location = new System.Drawing.Point(134, 30);
             this.labelCurrentValue.Name = "labelCurrentValue";
-            this.labelCurrentValue.Size = new System.Drawing.Size( 15, 15 );
+            this.labelCurrentValue.Size = new System.Drawing.Size(15, 15);
             this.labelCurrentValue.TabIndex = 1;
             this.labelCurrentValue.Text = "0";
-            //
+            // 
             // labelMin
-            //
+            // 
             this.labelMin.AutoSize = true;
-            this.labelMin.Location = new System.Drawing.Point( 10, 14 );
+            this.labelMin.Location = new System.Drawing.Point(10, 14);
             this.labelMin.Name = "labelMin";
-            this.labelMin.Size = new System.Drawing.Size( 24, 13 );
+            this.labelMin.Size = new System.Drawing.Size(24, 13);
             this.labelMin.TabIndex = 1;
             this.labelMin.Text = "Min";
             this.labelMin.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            //
+            // 
             // labelMax
-            //
+            // 
             this.labelMax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelMax.AutoSize = true;
-            this.labelMax.Location = new System.Drawing.Point( 185, 14 );
+            this.labelMax.Location = new System.Drawing.Point(185, 14);
             this.labelMax.Name = "labelMax";
-            this.labelMax.Size = new System.Drawing.Size( 27, 13 );
+            this.labelMax.Size = new System.Drawing.Size(27, 13);
             this.labelMax.TabIndex = 1;
             this.labelMax.Text = "Max";
-            //
+            // 
             // slider
-            //
-            this.slider.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            this.slider.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.slider.Location = new System.Drawing.Point( 30, 0 );
+            this.slider.Location = new System.Drawing.Point(30, 0);
             this.slider.Name = "slider";
-            this.slider.Size = new System.Drawing.Size( 155, 45 );
+            this.slider.Size = new System.Drawing.Size(155, 45);
             this.slider.TabIndex = 0;
-            this.slider.Scroll += new System.EventHandler( this.slider_Scroll );
-            //
+            this.slider.Scroll += new System.EventHandler(this.slider_Scroll);
+            // 
             // IntSliderUserControl
-            //
-            this.AutoScaleDimensions = new System.Drawing.SizeF( 6F, 13F );
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add( this.labelName );
-            this.Controls.Add( this.labelCurrentValue );
-            this.Controls.Add( this.labelMax );
-            this.Controls.Add( this.labelMin );
-            this.Controls.Add( this.slider );
-            this.MinimumSize = new System.Drawing.Size( 245, 50 );
+            this.Controls.Add(this.labelName);
+            this.Controls.Add(this.labelCurrentValue);
+            this.Controls.Add(this.labelMax);
+            this.Controls.Add(this.labelMin);
+            this.Controls.Add(this.slider);
+            this.MinimumSize = new System.Drawing.Size(245, 50);
             this.Name = "IntSliderUserControl";
-            this.Size = new System.Drawing.Size( 245, 50 );
+            this.Size = new System.Drawing.Size(245, 50);
             ((System.ComponentModel.ISupportInitialize)(this.slider)).EndInit();
-            this.ResumeLayout( false );
+            this.ResumeLayout(false);
             this.PerformLayout();
 
         }

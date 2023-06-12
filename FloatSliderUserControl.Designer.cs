@@ -1,5 +1,5 @@
-namespace PylonLiveViewControl
-{
+namespace TCP_LISTENER_Delta
+{ 
     partial class FloatSliderUserControl
     {
         /// <summary>

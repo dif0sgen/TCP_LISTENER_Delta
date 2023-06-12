@@ -162,7 +162,7 @@ namespace TCP_LISTENER_Delta
         public MyBasler myBasler = new MyBasler();
 
         public Camera camera = new Camera();
-        
+
 
         public IGrabResult grabResult;
         PixelDataConverter pxConvert = new PixelDataConverter();
@@ -232,11 +232,19 @@ namespace TCP_LISTENER_Delta
             /// 
 
             WhiteBalanceControl.Name = "Test Image Selector";
-            pixelFormatControl.Name = "Pixel Format";
-            widthSliderControl.Name = "Width";
-            heightSliderControl.Name = "Height";
-            gainSliderControl.Name = "Gain";
-            exposureTimeSliderControl.Name = "Exposure Time";
+            // Set the default names for the controls.
+            testImageControl.DefaultName = "Test Image Selector";
+            pixelFormatControl.DefaultName = "Pixel Format";
+            widthSliderControl.DefaultName = "Width";
+            heightSliderControl.DefaultName = "Height";
+            //gainSliderControl.DefaultName = "Gain";
+            //exposureTimeSliderControl.DefaultName = "Exposure Time";
+
+            // Update the list of available camera devices in the upper left area.
+            UpdateDeviceList();
+
+            // Disable all buttons.
+            EnableButtons(false, false);
 
             /// 
             /// Camera emulator
@@ -248,7 +256,7 @@ namespace TCP_LISTENER_Delta
             //camera.CameraClosed += OnCameraClosed;
             //camera.StreamGrabber.GrabStarted += OnGrabStarted;
             //camera.StreamGrabber.ImageGrabbed += OnImageGrabbed;
-           // camera.StreamGrabber.GrabStopped += OnGrabStopped;
+            // camera.StreamGrabber.GrabStopped += OnGrabStopped;
             //camera.Open();
             //camera.Parameters[PLCamera.PixelFormat].SetValue(PLCamera.PixelFormat.);
             // ** Custom Test Images **
@@ -524,12 +532,12 @@ namespace TCP_LISTENER_Delta
             // Save Image
             //string filename = "C:\\Users\\Processing1\\Desktop\\HIAS\\Pics\\" + hh +"-" + mm + "-" + ss  + ".jpg";
 
-            filename = picture_path + hh +"-" + mm + "-" + ss  + ".jpg";
+            filename = picture_path + hh + "-" + mm + "-" + ss + ".jpg";
             FileStream fstream = new FileStream(filename, FileMode.Create);
-                image.Save(fstream, System.Drawing.Imaging.ImageFormat.Jpeg);
-                fstream.Close();
+            image.Save(fstream, System.Drawing.Imaging.ImageFormat.Jpeg);
+            fstream.Close();
 
-           
+
 
         }
 
@@ -610,11 +618,11 @@ namespace TCP_LISTENER_Delta
         {
             try
             {
-               //long a1 = camera.Parameters[PLCamera.Height].GetMinimum();
-               //long b1 = camera.Parameters[PLCamera.Height].GetMaximum();
-               //camera.Parameters[PLCamera.Height].SetValue(heightSliderControl.Value);
-               //labelCameraHeight.Text = Convert.ToString(heightSliderControl.Value);
-               //a = Convert.ToInt32(heightSliderControl.Value);
+                //long a1 = camera.Parameters[PLCamera.Height].GetMinimum();
+                //long b1 = camera.Parameters[PLCamera.Height].GetMaximum();
+                //camera.Parameters[PLCamera.Height].SetValue(heightSliderControl.Value);
+                //labelCameraHeight.Text = Convert.ToString(heightSliderControl.Value);
+                //a = Convert.ToInt32(heightSliderControl.Value);
             }
             catch (Exception exception)
             {
@@ -647,10 +655,10 @@ namespace TCP_LISTENER_Delta
         {
             try
             {
-              //double a = camera.Parameters[PLCamera.ExposureTime].GetMinimum();
-              //double b = camera.Parameters[PLCamera.ExposureTime].GetMaximum();
-              //camera.Parameters[PLCamera.ExposureTime].SetValue(exposureTimeSliderControl.Value);
-              //labelExposureValue.Text = Convert.ToString(exposureTimeSliderControl.Value);
+                //double a = camera.Parameters[PLCamera.ExposureTime].GetMinimum();
+                //double b = camera.Parameters[PLCamera.ExposureTime].GetMaximum();
+                //camera.Parameters[PLCamera.ExposureTime].SetValue(exposureTimeSliderControl.Value);
+                //labelExposureValue.Text = Convert.ToString(exposureTimeSliderControl.Value);
             }
             catch (Exception exception)
             {
@@ -666,10 +674,10 @@ namespace TCP_LISTENER_Delta
         {
             try
             {
-              // double a = camera.Parameters[PLCamera.Gain].GetMinimum();
-              // double b = camera.Parameters[PLCamera.Gain].GetMaximum();
-              // camera.Parameters[PLCamera.Gain].SetValue(gainSliderControl.Value);
-              // labelGainValue.Text = Convert.ToString(gainSliderControl.Value);
+                // double a = camera.Parameters[PLCamera.Gain].GetMinimum();
+                // double b = camera.Parameters[PLCamera.Gain].GetMaximum();
+                // camera.Parameters[PLCamera.Gain].SetValue(gainSliderControl.Value);
+                // labelGainValue.Text = Convert.ToString(gainSliderControl.Value);
             }
             catch (Exception exception)
             {
@@ -715,35 +723,35 @@ namespace TCP_LISTENER_Delta
         /// 
         /// Basler action
         /// 
-       // public void OneShot()
-       // {
-       //     try
-       //     {
-       //         if (camera != null)
-       //         {
-       //             // Configure single frame acquisition on the camera
-       //             camera.Parameters[PLCamera.AcquisitionMode].SetValue(PLCamera.AcquisitionMode.SingleFrame);
-       //             // Switch on image acquisition
-       //             camera.Parameters[PLCamera.AcquisitionStart].Execute();
-       //             // The camera waits for a trigger signal.
-       //             // When a Frame Start trigger signal has been received,
-       //             // the camera executes an Acquisition Stop command internally.
-       //             // Configure continuous image acquisition on the camera
-       //             camera.Parameters[PLCamera.AcquisitionMode].SetValue(PLCamera.AcquisitionMode.Continuous);
-       //             // Switch on image acquisition
-       //             camera.Parameters[PLCamera.AcquisitionStart].Execute();
-       //             // The camera waits for trigger signals.
-       //             // (...)
-       //             // Switch off image acquisition
-       //             camera.Parameters[PLCamera.AcquisitionStop].Execute();
-       //
-       //         }
-       //     }
-       //     catch (Exception exception)
-       //     {
-       //         myBasler.ShowException(exception);
-       //     }
-       // }
+        // public void OneShot()
+        // {
+        //     try
+        //     {
+        //         if (camera != null)
+        //         {
+        //             // Configure single frame acquisition on the camera
+        //             camera.Parameters[PLCamera.AcquisitionMode].SetValue(PLCamera.AcquisitionMode.SingleFrame);
+        //             // Switch on image acquisition
+        //             camera.Parameters[PLCamera.AcquisitionStart].Execute();
+        //             // The camera waits for a trigger signal.
+        //             // When a Frame Start trigger signal has been received,
+        //             // the camera executes an Acquisition Stop command internally.
+        //             // Configure continuous image acquisition on the camera
+        //             camera.Parameters[PLCamera.AcquisitionMode].SetValue(PLCamera.AcquisitionMode.Continuous);
+        //             // Switch on image acquisition
+        //             camera.Parameters[PLCamera.AcquisitionStart].Execute();
+        //             // The camera waits for trigger signals.
+        //             // (...)
+        //             // Switch off image acquisition
+        //             camera.Parameters[PLCamera.AcquisitionStop].Execute();
+        //
+        //         }
+        //     }
+        //     catch (Exception exception)
+        //     {
+        //         myBasler.ShowException(exception);
+        //     }
+        // }
 
 
 
@@ -759,7 +767,7 @@ namespace TCP_LISTENER_Delta
             }
             catch (Exception exception)
             {
-                       myBasler.ShowException(exception);
+                myBasler.ShowException(exception);
             }
         }
         /// 
@@ -890,7 +898,7 @@ namespace TCP_LISTENER_Delta
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Connect Modbus"+ex.Message);
+                    MessageBox.Show("Connect Modbus" + ex.Message);
                 }
                 if (modbus.Connected == true)
                     lblStat.Text = "Status: Connected";
@@ -907,7 +915,7 @@ namespace TCP_LISTENER_Delta
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Disconnect Modbus: "+ex.Message);
+                    MessageBox.Show("Disconnect Modbus: " + ex.Message);
 
                 }
             }
@@ -969,7 +977,7 @@ namespace TCP_LISTENER_Delta
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Next picture: "+ex.Message);
+                    MessageBox.Show("Next picture: " + ex.Message);
                 }
 
             }
@@ -1005,7 +1013,7 @@ namespace TCP_LISTENER_Delta
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Prev picture: "+ex.Message);
+                    MessageBox.Show("Prev picture: " + ex.Message);
                 }
             }
         }
@@ -1048,9 +1056,9 @@ namespace TCP_LISTENER_Delta
                         }
 
                         catch (Exception ex)
-                       {
-                           MessageBox.Show("Write mulriple coils: " + ex.Message);
-                       }
+                        {
+                            MessageBox.Show("Write mulriple coils: " + ex.Message);
+                        }
                         //Thread.Sleep(milliseconds);
 
                         try
@@ -1058,9 +1066,9 @@ namespace TCP_LISTENER_Delta
                             modbus.WriteMultipleRegisters(0, SPDX); ;  // WRITE ALL WORDS
                         }
 
-                       catch (Exception ex)
+                        catch (Exception ex)
                         {
-                           MessageBox.Show("Write mulriple registers: " + ex.Message);
+                            MessageBox.Show("Write mulriple registers: " + ex.Message);
                         }
                         CONTROL[7] = false;// RESET "HOME" AFTER WRITING
                         CONTROL[6] = false;// RESET "STOP" AFTER WRITING
@@ -1209,7 +1217,7 @@ namespace TCP_LISTENER_Delta
                         }
                         else if (check1 == false)
                         {
-                             modbus.Disconnect();
+                            modbus.Disconnect();
                         }
                     }
                     catch (Exception ex) when (ex.Source == "mscorlib")
@@ -1222,7 +1230,7 @@ namespace TCP_LISTENER_Delta
                         MessageBox.Show("Read MDBS: " + ex.Message);
                     }
                 }
-           
+
             }
         }
         /// 
@@ -1281,7 +1289,7 @@ namespace TCP_LISTENER_Delta
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Write trackbar from memory: "+ex.Message);
+                    MessageBox.Show("Write trackbar from memory: " + ex.Message);
                 }
                 if (modbus.Connected == true)
                 {
@@ -1335,7 +1343,7 @@ namespace TCP_LISTENER_Delta
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Positions from modbus: "+ex.Message);
+                        MessageBox.Show("Positions from modbus: " + ex.Message);
                     }
                 }
             }
@@ -1531,7 +1539,7 @@ namespace TCP_LISTENER_Delta
             }
             catch (Exception ex)
             {
-                MessageBox.Show("tesseract"+ex.Message);
+                MessageBox.Show("tesseract" + ex.Message);
             }
         }
         /// 
@@ -1763,13 +1771,13 @@ namespace TCP_LISTENER_Delta
             {
                 //if (Solenoid == false)
                 //{
-                    CONTROL[9] = !CONTROL[9];
+                CONTROL[9] = !CONTROL[9];
                 //}
                 //if (Solenoid == true)
                 //{
                 //    CONTROL[9] = false;
-               // }
-                  
+                // }
+
             }
             else if (modbus.Connected == false)
             {
@@ -1782,19 +1790,19 @@ namespace TCP_LISTENER_Delta
         }
         private void SOL_Down(object sender, EventArgs e)
         {
-          //  if (modbus.Connected == true)
-          //  {
-//
-          //          CONTROL[9] = true;
-          //  }
-          //  else if (modbus.Connected == false)
-          //  {
-          //      MessageBox.Show("PLC disabled");
-          //  }
+            //  if (modbus.Connected == true)
+            //  {
+            //
+            //          CONTROL[9] = true;
+            //  }
+            //  else if (modbus.Connected == false)
+            //  {
+            //      MessageBox.Show("PLC disabled");
+            //  }
         }
         private void SOL_Up(object sender, EventArgs e)
         {
-          //  CONTROL[9] = false;
+            //  CONTROL[9] = false;
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -1825,7 +1833,7 @@ namespace TCP_LISTENER_Delta
             {
                 check1 = false;
                 modbus.Disconnect();
-                thread1.Abort();;
+                thread1.Abort(); ;
                 thread2.Abort();
             }
             catch
@@ -1852,7 +1860,9 @@ namespace TCP_LISTENER_Delta
             }
         }
 
-        private void deviceListView_SelectedIndexChanged(object sender, EventArgs e)
+
+
+        private void deviceListView_SelectedIndexChanged(object sender, EventArgs ev)
         {
 
             // Destroy the old camera object.
@@ -1897,68 +1907,222 @@ namespace TCP_LISTENER_Delta
                         testImageControl.Parameter = camera.Parameters[PLCamera.TestPattern];
                     }
                     pixelFormatControl.Parameter = camera.Parameters[PLCamera.PixelFormat];
-                    widthSliderControl.Parameter = camera.Parameters[PLCamera.Width];
-                    heightSliderControl.Parameter = camera.Parameters[PLCamera.Height];
+                    //widthSliderControl.Parameter = camera.Parameters[PLCamera.Width];
+                    //heightSliderControl.Parameter = camera.Parameters[PLCamera.Height];
                     if (camera.Parameters.Contains(PLCamera.GainAbs))
                     {
-                        gainSliderControl.Parameter = camera.Parameters[PLCamera.GainAbs];
+                        //gainSliderControl.Parameter = camera.Parameters[PLCamera.GainAbs];
                     }
                     else
                     {
-                        gainSliderControl.Parameter = camera.Parameters[PLCamera.Gain];
+                        //gainSliderControl.Parameter = camera.Parameters[PLCamera.Gain];
                     }
                     if (camera.Parameters.Contains(PLCamera.ExposureTimeAbs))
                     {
-                        exposureTimeSliderControl.Parameter = camera.Parameters[PLCamera.ExposureTimeAbs];
+                        //exposureTimeSliderControl.Parameter = camera.Parameters[PLCamera.ExposureTimeAbs];
                     }
                     else
                     {
-                        exposureTimeSliderControl.Parameter = camera.Parameters[PLCamera.ExposureTime];
+                        //exposureTimeSliderControl.Parameter = camera.Parameters[PLCamera.ExposureTime];
                     }
                 }
-                catch (Exception exception)
+                catch (Exception ex)
                 {
-                    ShowException(exception);
+                    MessageBox.Show(ex.Message);
                 }
             }
         }
-            // Closes the camera object and handles exceptions.
-            private void DestroyCamera()
+        // Closes the camera object and handles exceptions.
+        private void DestroyCamera()
+        {
+            // Disable all parameter controls.
+            try
             {
-                // Disable all parameter controls.
-                try
+                if (camera != null)
                 {
-                    if (camera != null)
-                    {
 
-                        testImageControl.Parameter = null;
-                        pixelFormatControl.Parameter = null;
-                        widthSliderControl.Parameter = null;
-                        heightSliderControl.Parameter = null;
-                        gainSliderControl.Parameter = null;
-                        exposureTimeSliderControl.Parameter = null;
-                    }
-                }
-                catch (Exception exception)
-                {
-                    ShowException(exception);
-                }
-
-                // Destroy the camera object.
-                try
-                {
-                    if (camera != null)
-                    {
-                        camera.Close();
-                        camera.Dispose();
-                        camera = null;
-                    }
-                }
-                catch (Exception exception)
-                {
-                    ShowException(exception);
+                    testImageControl.Parameter = null;
+                    pixelFormatControl.Parameter = null;
+                    widthSliderControl.Parameter = null;
+                    heightSliderControl.Parameter = null;
+                    //gainSliderControl.Parameter = null;
+                    //exposureTimeSliderControl.Parameter = null;
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            // Destroy the camera object.
+            try
+            {
+                if (camera != null)
+                {
+                    camera.Close();
+                    camera.Dispose();
+                    camera = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        // Updates the list of available camera devices.
+        private void UpdateDeviceList()
+        {
+            try
+            {
+                // Ask the camera finder for a list of camera devices.
+                List<ICameraInfo> allCameras = CameraFinder.Enumerate();
+
+                ListView.ListViewItemCollection items = deviceListView.Items;
+
+                // Loop over all cameras found.
+                foreach (ICameraInfo cameraInfo in allCameras)
+                {
+                    // Loop over all cameras in the list of cameras.
+                    bool newitem = true;
+                    foreach (ListViewItem item in items)
+                    {
+                        ICameraInfo tag = item.Tag as ICameraInfo;
+
+                        // Is the camera found already in the list of cameras?
+                        if (tag[CameraInfoKey.FullName] == cameraInfo[CameraInfoKey.FullName])
+                        {
+                            tag = cameraInfo;
+                            newitem = false;
+                            break;
+                        }
+                    }
+
+                    // If the camera is not in the list, add it to the list.
+                    if (newitem)
+                    {
+                        // Create the item to display.
+                        ListViewItem item = new ListViewItem(cameraInfo[CameraInfoKey.FriendlyName]);
+
+                        // Create the tool tip text.
+                        string toolTipText = "";
+                        foreach (KeyValuePair<string, string> kvp in cameraInfo)
+                        {
+                            toolTipText += kvp.Key + ": " + kvp.Value + "\n";
+                        }
+                        item.ToolTipText = toolTipText;
+
+                        // Store the camera info in the displayed item.
+                        item.Tag = cameraInfo;
+
+                        // Attach the device data.
+                        deviceListView.Items.Add(item);
+                    }
+                }
+
+
+
+                // Remove old camera devices that have been disconnected.
+                foreach (ListViewItem item in items)
+                {
+                    bool exists = false;
+
+                    // For each camera in the list, check whether it can be found by enumeration.
+                    foreach (ICameraInfo cameraInfo in allCameras)
+                    {
+                        if (((ICameraInfo)item.Tag)[CameraInfoKey.FullName] == cameraInfo[CameraInfoKey.FullName])
+                        {
+                            exists = true;
+                            break;
+                        }
+                    }
+                    // If the camera has not been found, remove it from the list view.
+                    if (!exists)
+                    {
+                        deviceListView.Items.Remove(item);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        // If the F5 key has been pressed, update the list of devices.
+        private void deviceListView_KeyDown(object sender, KeyEventArgs ev)
+        {
+            if (ev.KeyCode == Keys.F5)
+            {
+                ev.Handled = true;
+                // Update the list of available camera devices.
+                UpdateDeviceList();
+            }
+        }
+
+
+        // Timer callback used to periodically check whether displayed camera devices are still attached to the PC.
+        private void updateDeviceListTimer_Tick(object sender, EventArgs e)
+        {
+            UpdateDeviceList();
+        }
+        // Helps to set the states of all buttons.
+        private void EnableButtons(bool canGrab, bool canStop)
+        {
+            toolStripButtonContinuousShot.Enabled = canGrab;
+            toolStripButtonOneShot.Enabled = canGrab && IsSingleShotSupported();
+            toolStripButtonStop.Enabled = canStop;
+        }
+        // Checks if single shot is supported by the camera.
+        public bool IsSingleShotSupported()
+        {
+            // Camera can be null if not yet opened
+            if (camera == null)
+            {
+                return false;
+            }
+
+            // Camera can be closed
+            if (!camera.IsOpen)
+            {
+                return false;
+            }
+
+            bool canSet = camera.Parameters[PLCamera.AcquisitionMode].CanSetValue("SingleFrame");
+            return canSet;
+        }
+        // Occurs when the single frame acquisition button is clicked.
+        private void toolStripButtonOneShot_Click(object sender, EventArgs e)
+        {
+            OneShot(); // Start the grabbing of one image.
+        }
+
+
+        // Occurs when the continuous frame acquisition button is clicked.
+        private void toolStripButtonContinuousShot_Click(object sender, EventArgs e)
+        {
+            ContinuousShot(); // Start the grabbing of images until grabbing is stopped.
+        }
+
+
+        // Occurs when the stop frame acquisition button is clicked.
+        private void toolStripButtonStop_Click(object sender, EventArgs e)
+        {
+            Stop(); // Stop the grabbing of images.
+        }
+        // Stops the grabbing of images and handles exceptions.
+        private void Stop()
+        {
+            // Stop the grabbing.
+            try
+            {
+                camera.StreamGrabber.Stop();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
-}
+
+    }
+//}
     

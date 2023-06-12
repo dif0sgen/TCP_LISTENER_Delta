@@ -32,8 +32,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Listener));
             this.splitContainerImageView = new System.Windows.Forms.SplitContainer();
             this.splitContainerConfiguration = new System.Windows.Forms.SplitContainer();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.deviceListView = new System.Windows.Forms.ListView();
             this.imageListForDeviceList = new System.Windows.Forms.ImageList(this.components);
+            this.widthSliderControl = new TCP_LISTENER_Delta.FloatSliderUserControl();
+            this.pixelFormatControl = new TCP_LISTENER_Delta.EnumerationComboBoxUserControl();
+            this.testImageControl = new TCP_LISTENER_Delta.EnumerationComboBoxUserControl();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonOneShot = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonContinuousShot = new System.Windows.Forms.ToolStripButton();
@@ -104,26 +107,12 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label50 = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
-            this.trackBar3 = new System.Windows.Forms.TrackBar();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.button6 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.labelGainValue = new System.Windows.Forms.Label();
-            this.labelGain = new System.Windows.Forms.Label();
             this.labelExposute = new System.Windows.Forms.Label();
             this.labelWhiteBalance = new System.Windows.Forms.Label();
-            this.labelWidthValue = new System.Windows.Forms.Label();
-            this.labelExposureValue = new System.Windows.Forms.Label();
-            this.labelCameraHeight = new System.Windows.Forms.Label();
-            this.labelExposure = new System.Windows.Forms.Label();
-            this.labelHeight = new System.Windows.Forms.Label();
-            this.labelWidth = new System.Windows.Forms.Label();
-            this.exposureTimeSliderControl = new System.Windows.Forms.TrackBar();
-            this.gainSliderControl = new System.Windows.Forms.TrackBar();
-            this.heightSliderControl = new System.Windows.Forms.TrackBar();
-            this.pixelFormatControl = new System.Windows.Forms.ComboBox();
             this.WhiteBalanceControl = new System.Windows.Forms.ComboBox();
-            this.widthSliderControl = new System.Windows.Forms.TrackBar();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
@@ -149,11 +138,14 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.updateDeviceListTimer = new System.Windows.Forms.Timer(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.trackBar3 = new System.Windows.Forms.TrackBar();
+            this.heightSliderControl = new TCP_LISTENER_Delta.FloatSliderUserControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerImageView)).BeginInit();
             this.splitContainerImageView.Panel1.SuspendLayout();
             this.splitContainerImageView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerConfiguration)).BeginInit();
             this.splitContainerConfiguration.Panel1.SuspendLayout();
+            this.splitContainerConfiguration.Panel2.SuspendLayout();
             this.splitContainerConfiguration.SuspendLayout();
             this.toolStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
@@ -168,16 +160,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.exposureTimeSliderControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gainSliderControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.heightSliderControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.widthSliderControl)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainerImageView
@@ -200,24 +188,49 @@
             // 
             // splitContainerConfiguration.Panel1
             // 
-            this.splitContainerConfiguration.Panel1.Controls.Add(this.listView1);
+            this.splitContainerConfiguration.Panel1.Controls.Add(this.deviceListView);
             // 
-            // listView1
+            // splitContainerConfiguration.Panel2
             // 
-            resources.ApplyResources(this.listView1, "listView1");
-            this.listView1.HideSelection = false;
-            this.listView1.LargeImageList = this.imageListForDeviceList;
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.ShowItemToolTips = true;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Tile;
+            this.splitContainerConfiguration.Panel2.Controls.Add(this.heightSliderControl);
+            this.splitContainerConfiguration.Panel2.Controls.Add(this.widthSliderControl);
+            this.splitContainerConfiguration.Panel2.Controls.Add(this.pixelFormatControl);
+            this.splitContainerConfiguration.Panel2.Controls.Add(this.testImageControl);
+            // 
+            // deviceListView
+            // 
+            resources.ApplyResources(this.deviceListView, "deviceListView");
+            this.deviceListView.HideSelection = false;
+            this.deviceListView.LargeImageList = this.imageListForDeviceList;
+            this.deviceListView.MultiSelect = false;
+            this.deviceListView.Name = "deviceListView";
+            this.deviceListView.ShowItemToolTips = true;
+            this.deviceListView.UseCompatibleStateImageBehavior = false;
+            this.deviceListView.View = System.Windows.Forms.View.Tile;
             // 
             // imageListForDeviceList
             // 
             this.imageListForDeviceList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             resources.ApplyResources(this.imageListForDeviceList, "imageListForDeviceList");
             this.imageListForDeviceList.TransparentColor = System.Drawing.Color.Transparent;
+            // 
+            // widthSliderControl
+            // 
+            this.widthSliderControl.DefaultName = "N/A";
+            resources.ApplyResources(this.widthSliderControl, "widthSliderControl");
+            this.widthSliderControl.Name = "widthSliderControl";
+            // 
+            // pixelFormatControl
+            // 
+            this.pixelFormatControl.DefaultName = "N/A";
+            resources.ApplyResources(this.pixelFormatControl, "pixelFormatControl");
+            this.pixelFormatControl.Name = "pixelFormatControl";
+            // 
+            // testImageControl
+            // 
+            this.testImageControl.DefaultName = "N/A";
+            resources.ApplyResources(this.testImageControl, "testImageControl");
+            this.testImageControl.Name = "testImageControl";
             // 
             // toolStrip
             // 
@@ -299,8 +312,8 @@
             // MotorSpeedSliderControl
             // 
             this.MotorSpeedSliderControl.BackColor = System.Drawing.Color.White;
-            this.MotorSpeedSliderControl.LargeChange = 10;
             resources.ApplyResources(this.MotorSpeedSliderControl, "MotorSpeedSliderControl");
+            this.MotorSpeedSliderControl.LargeChange = 10;
             this.MotorSpeedSliderControl.Maximum = 100;
             this.MotorSpeedSliderControl.Name = "MotorSpeedSliderControl";
             this.MotorSpeedSliderControl.SmallChange = 10;
@@ -729,22 +742,9 @@
             this.groupBox3.Controls.Add(this.pictureBox4);
             this.groupBox3.Controls.Add(this.button6);
             this.groupBox3.Controls.Add(this.button4);
-            this.groupBox3.Controls.Add(this.labelGainValue);
-            this.groupBox3.Controls.Add(this.labelGain);
             this.groupBox3.Controls.Add(this.labelExposute);
             this.groupBox3.Controls.Add(this.labelWhiteBalance);
-            this.groupBox3.Controls.Add(this.labelWidthValue);
-            this.groupBox3.Controls.Add(this.labelExposureValue);
-            this.groupBox3.Controls.Add(this.labelCameraHeight);
-            this.groupBox3.Controls.Add(this.labelExposure);
-            this.groupBox3.Controls.Add(this.labelHeight);
-            this.groupBox3.Controls.Add(this.labelWidth);
-            this.groupBox3.Controls.Add(this.exposureTimeSliderControl);
-            this.groupBox3.Controls.Add(this.gainSliderControl);
-            this.groupBox3.Controls.Add(this.heightSliderControl);
-            this.groupBox3.Controls.Add(this.pixelFormatControl);
             this.groupBox3.Controls.Add(this.WhiteBalanceControl);
-            this.groupBox3.Controls.Add(this.widthSliderControl);
             resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
@@ -773,17 +773,6 @@
             resources.ApplyResources(this.label49, "label49");
             this.label49.Name = "label49";
             // 
-            // trackBar3
-            // 
-            resources.ApplyResources(this.trackBar3, "trackBar3");
-            this.trackBar3.LargeChange = 950;
-            this.trackBar3.Maximum = 95000;
-            this.trackBar3.Minimum = 19;
-            this.trackBar3.Name = "trackBar3";
-            this.trackBar3.SmallChange = 475;
-            this.trackBar3.TickFrequency = 475;
-            this.trackBar3.Value = 19;
-            // 
             // pictureBox4
             // 
             resources.ApplyResources(this.pictureBox4, "pictureBox4");
@@ -803,16 +792,6 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
-            // labelGainValue
-            // 
-            resources.ApplyResources(this.labelGainValue, "labelGainValue");
-            this.labelGainValue.Name = "labelGainValue";
-            // 
-            // labelGain
-            // 
-            resources.ApplyResources(this.labelGain, "labelGain");
-            this.labelGain.Name = "labelGain";
-            // 
             // labelExposute
             // 
             resources.ApplyResources(this.labelExposute, "labelExposute");
@@ -823,71 +802,6 @@
             resources.ApplyResources(this.labelWhiteBalance, "labelWhiteBalance");
             this.labelWhiteBalance.Name = "labelWhiteBalance";
             // 
-            // labelWidthValue
-            // 
-            resources.ApplyResources(this.labelWidthValue, "labelWidthValue");
-            this.labelWidthValue.Name = "labelWidthValue";
-            // 
-            // labelExposureValue
-            // 
-            resources.ApplyResources(this.labelExposureValue, "labelExposureValue");
-            this.labelExposureValue.Name = "labelExposureValue";
-            // 
-            // labelCameraHeight
-            // 
-            resources.ApplyResources(this.labelCameraHeight, "labelCameraHeight");
-            this.labelCameraHeight.Name = "labelCameraHeight";
-            // 
-            // labelExposure
-            // 
-            resources.ApplyResources(this.labelExposure, "labelExposure");
-            this.labelExposure.Name = "labelExposure";
-            // 
-            // labelHeight
-            // 
-            resources.ApplyResources(this.labelHeight, "labelHeight");
-            this.labelHeight.Name = "labelHeight";
-            // 
-            // labelWidth
-            // 
-            resources.ApplyResources(this.labelWidth, "labelWidth");
-            this.labelWidth.Name = "labelWidth";
-            // 
-            // exposureTimeSliderControl
-            // 
-            resources.ApplyResources(this.exposureTimeSliderControl, "exposureTimeSliderControl");
-            this.exposureTimeSliderControl.LargeChange = 950;
-            this.exposureTimeSliderControl.Maximum = 95000;
-            this.exposureTimeSliderControl.Minimum = 19;
-            this.exposureTimeSliderControl.Name = "exposureTimeSliderControl";
-            this.exposureTimeSliderControl.SmallChange = 475;
-            this.exposureTimeSliderControl.TickFrequency = 475;
-            this.exposureTimeSliderControl.Value = 19;
-            // 
-            // gainSliderControl
-            // 
-            resources.ApplyResources(this.gainSliderControl, "gainSliderControl");
-            this.gainSliderControl.Maximum = 48;
-            this.gainSliderControl.Name = "gainSliderControl";
-            // 
-            // heightSliderControl
-            // 
-            resources.ApplyResources(this.heightSliderControl, "heightSliderControl");
-            this.heightSliderControl.LargeChange = 100;
-            this.heightSliderControl.Maximum = 1214;
-            this.heightSliderControl.Minimum = 4;
-            this.heightSliderControl.Name = "heightSliderControl";
-            this.heightSliderControl.SmallChange = 20;
-            this.heightSliderControl.TickFrequency = 20;
-            this.heightSliderControl.Value = 4;
-            this.heightSliderControl.Scroll += new System.EventHandler(this.heightSliderControl_Scroll);
-            // 
-            // pixelFormatControl
-            // 
-            this.pixelFormatControl.FormattingEnabled = true;
-            resources.ApplyResources(this.pixelFormatControl, "pixelFormatControl");
-            this.pixelFormatControl.Name = "pixelFormatControl";
-            // 
             // WhiteBalanceControl
             // 
             this.WhiteBalanceControl.FormattingEnabled = true;
@@ -897,18 +811,6 @@
             resources.GetString("WhiteBalanceControl.Items2")});
             resources.ApplyResources(this.WhiteBalanceControl, "WhiteBalanceControl");
             this.WhiteBalanceControl.Name = "WhiteBalanceControl";
-            // 
-            // widthSliderControl
-            // 
-            resources.ApplyResources(this.widthSliderControl, "widthSliderControl");
-            this.widthSliderControl.LargeChange = 40;
-            this.widthSliderControl.Maximum = 1928;
-            this.widthSliderControl.Minimum = 4;
-            this.widthSliderControl.Name = "widthSliderControl";
-            this.widthSliderControl.SmallChange = 4;
-            this.widthSliderControl.TickFrequency = 4;
-            this.widthSliderControl.Value = 4;
-            this.widthSliderControl.Scroll += new System.EventHandler(this.widthSliderControl_Scroll);
             // 
             // groupBox2
             // 
@@ -1066,6 +968,23 @@
             this.updateDeviceListTimer.Enabled = true;
             this.updateDeviceListTimer.Interval = 5000;
             // 
+            // trackBar3
+            // 
+            resources.ApplyResources(this.trackBar3, "trackBar3");
+            this.trackBar3.LargeChange = 950;
+            this.trackBar3.Maximum = 95000;
+            this.trackBar3.Minimum = 19;
+            this.trackBar3.Name = "trackBar3";
+            this.trackBar3.SmallChange = 475;
+            this.trackBar3.TickFrequency = 475;
+            this.trackBar3.Value = 19;
+            // 
+            // heightSliderControl
+            // 
+            this.heightSliderControl.DefaultName = "N/A";
+            resources.ApplyResources(this.heightSliderControl, "heightSliderControl");
+            this.heightSliderControl.Name = "heightSliderControl";
+            // 
             // Form_Listener
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1085,6 +1004,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerImageView)).EndInit();
             this.splitContainerImageView.ResumeLayout(false);
             this.splitContainerConfiguration.Panel1.ResumeLayout(false);
+            this.splitContainerConfiguration.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerConfiguration)).EndInit();
             this.splitContainerConfiguration.ResumeLayout(false);
             this.toolStrip.ResumeLayout(false);
@@ -1106,18 +1026,14 @@
             this.tabPage3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.exposureTimeSliderControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gainSliderControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.heightSliderControl)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.widthSliderControl)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1209,32 +1125,18 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label50;
         private System.Windows.Forms.Label label49;
-        private System.Windows.Forms.TrackBar trackBar3;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Label labelGainValue;
-        private System.Windows.Forms.Label labelGain;
         private System.Windows.Forms.Label labelExposute;
         private System.Windows.Forms.Label labelWhiteBalance;
-        private System.Windows.Forms.Label labelWidthValue;
-        private System.Windows.Forms.Label labelExposureValue;
-        private System.Windows.Forms.Label labelCameraHeight;
-        private System.Windows.Forms.Label labelExposure;
-        private System.Windows.Forms.Label labelHeight;
-        private System.Windows.Forms.Label labelWidth;
-        private System.Windows.Forms.TrackBar exposureTimeSliderControl;
-        private System.Windows.Forms.TrackBar gainSliderControl;
-        private System.Windows.Forms.TrackBar heightSliderControl;
-        private System.Windows.Forms.ComboBox pixelFormatControl;
         private System.Windows.Forms.ComboBox WhiteBalanceControl;
-        private System.Windows.Forms.TrackBar widthSliderControl;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Button button7;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.SplitContainer splitContainerImageView;
         private System.Windows.Forms.SplitContainer splitContainerConfiguration;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView deviceListView;
         private System.Windows.Forms.ImageList imageListForDeviceList;
         private System.Windows.Forms.ToolStrip toolStrip;
         private System.Windows.Forms.ToolStripButton toolStripButtonOneShot;
@@ -1243,6 +1145,11 @@
         private System.Windows.Forms.PictureBox pictureBox;
         private System.Windows.Forms.Timer updateDeviceListTimer;
         private System.Windows.Forms.BindingSource bindingSource1;
+        private EnumerationComboBoxUserControl pixelFormatControl;
+        private EnumerationComboBoxUserControl testImageControl;
+        private FloatSliderUserControl widthSliderControl;
+        private System.Windows.Forms.TrackBar trackBar3;
+        private FloatSliderUserControl heightSliderControl;
     }
 }
 

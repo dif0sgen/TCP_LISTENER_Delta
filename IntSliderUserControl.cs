@@ -7,7 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using Basler.Pylon;
 
-namespace PylonLiveViewControl
+namespace TCP_LISTENER_Delta
 {
     // Displays a slider bar, the name of the node, minimum, maximum, and current value.
     public partial class IntSliderUserControl : UserControl

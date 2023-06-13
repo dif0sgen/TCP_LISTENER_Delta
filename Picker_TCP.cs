@@ -704,22 +704,6 @@ namespace TCP_LISTENER_Delta
         /// Basler action
         /// 
         // Starts the continuous grabbing of images and handles exceptions.
-        public void ContinuousShot()
-        {
-            try
-            {
-                // Start the grabbing of images until grabbing is stopped.
-                camera.Parameters[PLCamera.AcquisitionMode].SetValue(PLCamera.AcquisitionMode.Continuous);
-                camera.StreamGrabber.Start(GrabStrategy.OneByOne, GrabLoop.ProvidedByStreamGrabber);
-
-                // Switch off image acquisition
-                camera.Parameters[PLCamera.AcquisitionStop].Execute();
-            }
-            catch (Exception exception)
-            {
-                myBasler.ShowException(exception);
-            }
-        }
         /// 
         /// Basler action
         /// 
@@ -1860,78 +1844,6 @@ namespace TCP_LISTENER_Delta
             }
         }
 
-
-
-        private void deviceListView_SelectedIndexChanged(object sender, EventArgs ev)
-        {
-
-            // Destroy the old camera object.
-            if (camera != null)
-            {
-                DestroyCamera();
-            }
-
-
-            // Open the connection to the selected camera device.
-            if (deviceListView.SelectedItems.Count > 0)
-            {
-                // Get the first selected item.
-                ListViewItem item = deviceListView.SelectedItems[0];
-                // Get the attached device data.
-                ICameraInfo selectedCamera = item.Tag as ICameraInfo;
-                try
-                {
-                    // Create a new camera object.
-                    camera = new Camera(selectedCamera);
-
-                    camera.CameraOpened += Configuration.AcquireContinuous;
-
-                    // Register for the events of the image provider needed for proper operation.
-                    camera.ConnectionLost += OnConnectionLost;
-                    camera.CameraOpened += OnCameraOpened;
-                    camera.CameraClosed += OnCameraClosed;
-                    camera.StreamGrabber.GrabStarted += OnGrabStarted;
-                    camera.StreamGrabber.ImageGrabbed += OnImageGrabbed;
-                    camera.StreamGrabber.GrabStopped += OnGrabStopped;
-
-                    // Open the connection to the camera device.
-                    camera.Open();
-
-                    // Set the parameter for the controls.
-                    if (camera.Parameters[PLCamera.TestImageSelector].IsWritable)
-                    {
-                        testImageControl.Parameter = camera.Parameters[PLCamera.TestImageSelector];
-                    }
-                    else
-                    {
-                        testImageControl.Parameter = camera.Parameters[PLCamera.TestPattern];
-                    }
-                    pixelFormatControl.Parameter = camera.Parameters[PLCamera.PixelFormat];
-                    //widthSliderControl.Parameter = camera.Parameters[PLCamera.Width];
-                    //heightSliderControl.Parameter = camera.Parameters[PLCamera.Height];
-                    if (camera.Parameters.Contains(PLCamera.GainAbs))
-                    {
-                        //gainSliderControl.Parameter = camera.Parameters[PLCamera.GainAbs];
-                    }
-                    else
-                    {
-                        //gainSliderControl.Parameter = camera.Parameters[PLCamera.Gain];
-                    }
-                    if (camera.Parameters.Contains(PLCamera.ExposureTimeAbs))
-                    {
-                        //exposureTimeSliderControl.Parameter = camera.Parameters[PLCamera.ExposureTimeAbs];
-                    }
-                    else
-                    {
-                        //exposureTimeSliderControl.Parameter = camera.Parameters[PLCamera.ExposureTime];
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-        }
         // Closes the camera object and handles exceptions.
         private void DestroyCamera()
         {
@@ -2096,13 +2008,6 @@ namespace TCP_LISTENER_Delta
         }
 
 
-        // Occurs when the continuous frame acquisition button is clicked.
-        private void toolStripButtonContinuousShot_Click(object sender, EventArgs e)
-        {
-            ContinuousShot(); // Start the grabbing of images until grabbing is stopped.
-        }
-
-
         // Occurs when the stop frame acquisition button is clicked.
         private void toolStripButtonStop_Click(object sender, EventArgs e)
         {
@@ -2174,7 +2079,23 @@ namespace TCP_LISTENER_Delta
                     // Set the parameter for the controls.
                     if (camera.Parameters[PLCamera.TestImageSelector].IsWritable)
                     {
-                        testImageControl.Parameter = camera.Parameters[PLCamera.TestImageSelector];
+                        if (checkBox1.Checked == false)
+                        {
+                            testImageControl.Parameter = camera.Parameters[PLCamera.TestImageSelector];
+                            // Enable custom test images
+                            camera.Parameters[PLCamera.ImageFileMode].SetValue(PLCamera.ImageFileMode.Off);
+                        }
+                        if (checkBox1.Checked == true)
+                        {
+                            // ** Custom Test Images **
+                            // Disable standard test images
+                            camera.Parameters[PLCamera.TestImageSelector].SetValue(PLCamera.TestImageSelector.Off);
+                            // Enable custom test images
+                            camera.Parameters[PLCamera.ImageFileMode].SetValue(PLCamera.ImageFileMode.On);
+                            // Load custom test image from disk
+                            camera.Parameters[PLCamera.ImageFilename].SetValue("D:\\Serhii\\Cherry_Samples");
+                        }
+
                     }
                     else
                     {
@@ -2205,6 +2126,32 @@ namespace TCP_LISTENER_Delta
                     MessageBox.Show(ex.Message);
                 }
             }
+            
+        }
+
+        // Starts the continuous grabbing of images and handles exceptions.
+        private void ContinuousShot()
+        {
+            try
+            {
+                // Start the grabbing of images until grabbing is stopped.
+                Configuration.AcquireContinuous(camera, null);
+                camera.StreamGrabber.Start(GrabStrategy.OneByOne, GrabLoop.ProvidedByStreamGrabber);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        // Occurs when the continuous frame acquisition button is clicked.
+        private void toolStripButtonContinuousShot_Click_1(object sender, EventArgs e)
+        {
+            ContinuousShot(); // Start the grabbing of images until grabbing is stopped.
+        }
+        // Occurs when the stop frame acquisition button is clicked.
+        private void toolStripButtonStop_Click_1(object sender, EventArgs e)
+        {
+            Stop(); // Stop the grabbing of images.
         }
     }
 

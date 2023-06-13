@@ -177,17 +177,47 @@
   <data name="&gt;&gt;splitContainerConfiguration.Panel1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="checkBox1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="checkBox1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="checkBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>60, 99</value>
+  </data>
+  <data name="checkBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>93, 21</value>
+  </data>
+  <data name="checkBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="checkBox1.Text" xml:space="preserve">
+    <value>checkBox1</value>
+  </data>
+  <data name="&gt;&gt;checkBox1.Name" xml:space="preserve">
+    <value>checkBox1</value>
+  </data>
+  <data name="&gt;&gt;checkBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;checkBox1.Parent" xml:space="preserve">
+    <value>splitContainerConfiguration.Panel2</value>
+  </data>
+  <data name="&gt;&gt;checkBox1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="heightSliderControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-4, 421</value>
+    <value>-16, 1612</value>
   </data>
   <data name="heightSliderControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>9, 9, 9, 9</value>
+    <value>37, 35, 37, 35</value>
   </data>
   <data name="heightSliderControl.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>267, 145</value>
+    <value>1125, 554</value>
   </data>
   <data name="heightSliderControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>516, 145</value>
+    <value>2175, 554</value>
   </data>
   <data name="heightSliderControl.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -202,19 +232,19 @@
     <value>splitContainerConfiguration.Panel2</value>
   </data>
   <data name="&gt;&gt;heightSliderControl.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="widthSliderControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-4, 294</value>
+    <value>-16, 1122</value>
   </data>
   <data name="widthSliderControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>7, 7, 7, 7</value>
+    <value>28, 27, 28, 27</value>
   </data>
   <data name="widthSliderControl.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>267, 111</value>
+    <value>1125, 424</value>
   </data>
   <data name="widthSliderControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>469, 111</value>
+    <value>1975, 424</value>
   </data>
   <data name="widthSliderControl.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -229,16 +259,16 @@
     <value>splitContainerConfiguration.Panel2</value>
   </data>
   <data name="&gt;&gt;widthSliderControl.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="pixelFormatControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>28, 112</value>
+    <value>12, 110</value>
   </data>
   <data name="pixelFormatControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>12, 12, 12, 12</value>
+    <value>49, 46, 49, 46</value>
   </data>
   <data name="pixelFormatControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>656, 167</value>
+    <value>2767, 638</value>
   </data>
   <data name="pixelFormatControl.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -253,16 +283,16 @@
     <value>splitContainerConfiguration.Panel2</value>
   </data>
   <data name="&gt;&gt;pixelFormatControl.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="testImageControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>28, 9</value>
+    <value>12, 8</value>
   </data>
   <data name="testImageControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>9, 9, 9, 9</value>
+    <value>37, 35, 37, 35</value>
   </data>
   <data name="testImageControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>484, 128</value>
+    <value>2039, 488</value>
   </data>
   <data name="testImageControl.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -277,7 +307,7 @@
     <value>splitContainerConfiguration.Panel2</value>
   </data>
   <data name="&gt;&gt;testImageControl.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;splitContainerConfiguration.Panel2.Name" xml:space="preserve">
     <value>splitContainerConfiguration.Panel2</value>
@@ -8404,6 +8434,9 @@
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
         AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=
 </value>
+  </data>
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>4, 4, 4, 4</value>

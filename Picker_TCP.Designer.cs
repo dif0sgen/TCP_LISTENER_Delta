@@ -38,6 +38,7 @@
             this.toolStripButtonOneShot = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonContinuousShot = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonStop = new System.Windows.Forms.ToolStripButton();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.btnStart = new System.Windows.Forms.Button();
             this.lblPort = new System.Windows.Forms.Label();
@@ -135,11 +136,11 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.updateDeviceListTimer = new System.Windows.Forms.Timer(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.heightSliderControl = new TCP_LISTENER_Delta.FloatSliderUserControl();
             this.widthSliderControl = new TCP_LISTENER_Delta.FloatSliderUserControl();
             this.pixelFormatControl = new TCP_LISTENER_Delta.EnumerationComboBoxUserControl();
             this.testImageControl = new TCP_LISTENER_Delta.EnumerationComboBoxUserControl();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerImageView)).BeginInit();
             this.splitContainerImageView.Panel1.SuspendLayout();
             this.splitContainerImageView.Panel2.SuspendLayout();
@@ -149,6 +150,7 @@
             this.splitContainerConfiguration.Panel2.SuspendLayout();
             this.splitContainerConfiguration.SuspendLayout();
             this.toolStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.MotorSpeedSliderControl)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -166,7 +168,6 @@
             this.groupBox5.SuspendLayout();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainerImageView
@@ -197,6 +198,7 @@
             // 
             // splitContainerConfiguration.Panel2
             // 
+            this.splitContainerConfiguration.Panel2.Controls.Add(this.checkBox1);
             this.splitContainerConfiguration.Panel2.Controls.Add(this.heightSliderControl);
             this.splitContainerConfiguration.Panel2.Controls.Add(this.widthSliderControl);
             this.splitContainerConfiguration.Panel2.Controls.Add(this.pixelFormatControl);
@@ -242,12 +244,20 @@
             this.toolStripButtonContinuousShot.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             resources.ApplyResources(this.toolStripButtonContinuousShot, "toolStripButtonContinuousShot");
             this.toolStripButtonContinuousShot.Name = "toolStripButtonContinuousShot";
+            this.toolStripButtonContinuousShot.Click += new System.EventHandler(this.toolStripButtonContinuousShot_Click_1);
             // 
             // toolStripButtonStop
             // 
             this.toolStripButtonStop.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             resources.ApplyResources(this.toolStripButtonStop, "toolStripButtonStop");
             this.toolStripButtonStop.Name = "toolStripButtonStop";
+            this.toolStripButtonStop.Click += new System.EventHandler(this.toolStripButtonStop_Click_1);
+            // 
+            // pictureBox4
+            // 
+            resources.ApplyResources(this.pictureBox4, "pictureBox4");
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.TabStop = false;
             // 
             // pictureBox
             // 
@@ -961,6 +971,12 @@
             this.updateDeviceListTimer.Enabled = true;
             this.updateDeviceListTimer.Interval = 5000;
             // 
+            // checkBox1
+            // 
+            resources.ApplyResources(this.checkBox1, "checkBox1");
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
             // heightSliderControl
             // 
             this.heightSliderControl.DefaultName = "N/A";
@@ -985,12 +1001,6 @@
             resources.ApplyResources(this.testImageControl, "testImageControl");
             this.testImageControl.Name = "testImageControl";
             // 
-            // pictureBox4
-            // 
-            resources.ApplyResources(this.pictureBox4, "pictureBox4");
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.TabStop = false;
-            // 
             // Form_Listener
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1012,10 +1022,12 @@
             this.splitContainerImageView.ResumeLayout(false);
             this.splitContainerConfiguration.Panel1.ResumeLayout(false);
             this.splitContainerConfiguration.Panel2.ResumeLayout(false);
+            this.splitContainerConfiguration.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerConfiguration)).EndInit();
             this.splitContainerConfiguration.ResumeLayout(false);
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.MotorSpeedSliderControl)).EndInit();
             this.groupBox1.ResumeLayout(false);
@@ -1040,7 +1052,6 @@
             this.groupBox5.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1157,6 +1168,7 @@
         private System.Windows.Forms.TrackBar trackBar3;
         private FloatSliderUserControl heightSliderControl;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

@@ -244,7 +244,7 @@ namespace TCP_LISTENER_Delta
             UpdateDeviceList();
 
             // Disable all buttons.
-            EnableButtons(false, false);
+            //EnableButtons(false, false);
 
             /// 
             /// Camera emulator
@@ -2119,6 +2119,91 @@ namespace TCP_LISTENER_Delta
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void toolStripButtonOneShot_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                OneShot(); // Start the grabbing of one image.
+
+                //myBasler.GrabStart();
+
+            }
+            catch (Exception exception)
+            {
+                myBasler.ShowException(exception);
+            }
+        }
+
+        private void deviceListView_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            // Destroy the old camera object.
+            if (camera != null)
+            {
+                DestroyCamera();
+            }
+
+
+            // Open the connection to the selected camera device.
+            if (deviceListView.SelectedItems.Count > 0)
+            {
+                // Get the first selected item.
+                ListViewItem item = deviceListView.SelectedItems[0];
+                // Get the attached device data.
+                ICameraInfo selectedCamera = item.Tag as ICameraInfo;
+                try
+                {
+                    // Create a new camera object.
+                    camera = new Camera(selectedCamera);
+
+                    camera.CameraOpened += Configuration.AcquireContinuous;
+
+                    // Register for the events of the image provider needed for proper operation.
+                    camera.ConnectionLost += OnConnectionLost;
+                    camera.CameraOpened += OnCameraOpened;
+                    camera.CameraClosed += OnCameraClosed;
+                    camera.StreamGrabber.GrabStarted += OnGrabStarted;
+                    camera.StreamGrabber.ImageGrabbed += OnImageGrabbed;
+                    camera.StreamGrabber.GrabStopped += OnGrabStopped;
+
+                    // Open the connection to the camera device.
+                    camera.Open();
+
+                    // Set the parameter for the controls.
+                    if (camera.Parameters[PLCamera.TestImageSelector].IsWritable)
+                    {
+                        testImageControl.Parameter = camera.Parameters[PLCamera.TestImageSelector];
+                    }
+                    else
+                    {
+                        testImageControl.Parameter = camera.Parameters[PLCamera.TestPattern];
+                    }
+                    pixelFormatControl.Parameter = camera.Parameters[PLCamera.PixelFormat];
+                    //widthSliderControl.Parameter = camera.Parameters[PLCamera.Width];
+                    //heightSliderControl.Parameter = camera.Parameters[PLCamera.Height];
+                    if (camera.Parameters.Contains(PLCamera.GainAbs))
+                    {
+                        //gainSliderControl.Parameter = camera.Parameters[PLCamera.GainAbs];
+                    }
+                    else
+                    {
+                        //gainSliderControl.Parameter = camera.Parameters[PLCamera.Gain];
+                    }
+                    if (camera.Parameters.Contains(PLCamera.ExposureTimeAbs))
+                    {
+                        //exposureTimeSliderControl.Parameter = camera.Parameters[PLCamera.ExposureTimeAbs];
+                    }
+                    else
+                    {
+                        //exposureTimeSliderControl.Parameter = camera.Parameters[PLCamera.ExposureTime];
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
     }

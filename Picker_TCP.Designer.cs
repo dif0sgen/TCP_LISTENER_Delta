@@ -34,9 +34,6 @@
             this.splitContainerConfiguration = new System.Windows.Forms.SplitContainer();
             this.deviceListView = new System.Windows.Forms.ListView();
             this.imageListForDeviceList = new System.Windows.Forms.ImageList(this.components);
-            this.widthSliderControl = new TCP_LISTENER_Delta.FloatSliderUserControl();
-            this.pixelFormatControl = new TCP_LISTENER_Delta.EnumerationComboBoxUserControl();
-            this.testImageControl = new TCP_LISTENER_Delta.EnumerationComboBoxUserControl();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonOneShot = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonContinuousShot = new System.Windows.Forms.ToolStripButton();
@@ -107,7 +104,7 @@
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label50 = new System.Windows.Forms.Label();
             this.label49 = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.trackBar3 = new System.Windows.Forms.TrackBar();
             this.button6 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.labelExposute = new System.Windows.Forms.Label();
@@ -138,10 +135,14 @@
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.updateDeviceListTimer = new System.Windows.Forms.Timer(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.trackBar3 = new System.Windows.Forms.TrackBar();
             this.heightSliderControl = new TCP_LISTENER_Delta.FloatSliderUserControl();
+            this.widthSliderControl = new TCP_LISTENER_Delta.FloatSliderUserControl();
+            this.pixelFormatControl = new TCP_LISTENER_Delta.EnumerationComboBoxUserControl();
+            this.testImageControl = new TCP_LISTENER_Delta.EnumerationComboBoxUserControl();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerImageView)).BeginInit();
             this.splitContainerImageView.Panel1.SuspendLayout();
+            this.splitContainerImageView.Panel2.SuspendLayout();
             this.splitContainerImageView.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerConfiguration)).BeginInit();
             this.splitContainerConfiguration.Panel1.SuspendLayout();
@@ -160,12 +161,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
             this.tabPage3.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainerImageView
@@ -179,6 +180,10 @@
             // 
             this.splitContainerImageView.Panel1.Controls.Add(this.splitContainerConfiguration);
             this.splitContainerImageView.Panel1.Controls.Add(this.toolStrip);
+            // 
+            // splitContainerImageView.Panel2
+            // 
+            this.splitContainerImageView.Panel2.Controls.Add(this.pictureBox4);
             // 
             // splitContainerConfiguration
             // 
@@ -207,30 +212,13 @@
             this.deviceListView.ShowItemToolTips = true;
             this.deviceListView.UseCompatibleStateImageBehavior = false;
             this.deviceListView.View = System.Windows.Forms.View.Tile;
+            this.deviceListView.SelectedIndexChanged += new System.EventHandler(this.deviceListView_SelectedIndexChanged_1);
             // 
             // imageListForDeviceList
             // 
             this.imageListForDeviceList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             resources.ApplyResources(this.imageListForDeviceList, "imageListForDeviceList");
             this.imageListForDeviceList.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // widthSliderControl
-            // 
-            this.widthSliderControl.DefaultName = "N/A";
-            resources.ApplyResources(this.widthSliderControl, "widthSliderControl");
-            this.widthSliderControl.Name = "widthSliderControl";
-            // 
-            // pixelFormatControl
-            // 
-            this.pixelFormatControl.DefaultName = "N/A";
-            resources.ApplyResources(this.pixelFormatControl, "pixelFormatControl");
-            this.pixelFormatControl.Name = "pixelFormatControl";
-            // 
-            // testImageControl
-            // 
-            this.testImageControl.DefaultName = "N/A";
-            resources.ApplyResources(this.testImageControl, "testImageControl");
-            this.testImageControl.Name = "testImageControl";
             // 
             // toolStrip
             // 
@@ -247,6 +235,7 @@
             this.toolStripButtonOneShot.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             resources.ApplyResources(this.toolStripButtonOneShot, "toolStripButtonOneShot");
             this.toolStripButtonOneShot.Name = "toolStripButtonOneShot";
+            this.toolStripButtonOneShot.Click += new System.EventHandler(this.toolStripButtonOneShot_Click_1);
             // 
             // toolStripButtonContinuousShot
             // 
@@ -739,7 +728,6 @@
             this.groupBox3.Controls.Add(this.label50);
             this.groupBox3.Controls.Add(this.label49);
             this.groupBox3.Controls.Add(this.trackBar3);
-            this.groupBox3.Controls.Add(this.pictureBox4);
             this.groupBox3.Controls.Add(this.button6);
             this.groupBox3.Controls.Add(this.button4);
             this.groupBox3.Controls.Add(this.labelExposute);
@@ -773,11 +761,16 @@
             resources.ApplyResources(this.label49, "label49");
             this.label49.Name = "label49";
             // 
-            // pictureBox4
+            // trackBar3
             // 
-            resources.ApplyResources(this.pictureBox4, "pictureBox4");
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.TabStop = false;
+            resources.ApplyResources(this.trackBar3, "trackBar3");
+            this.trackBar3.LargeChange = 950;
+            this.trackBar3.Maximum = 95000;
+            this.trackBar3.Minimum = 19;
+            this.trackBar3.Name = "trackBar3";
+            this.trackBar3.SmallChange = 475;
+            this.trackBar3.TickFrequency = 475;
+            this.trackBar3.Value = 19;
             // 
             // button6
             // 
@@ -968,22 +961,35 @@
             this.updateDeviceListTimer.Enabled = true;
             this.updateDeviceListTimer.Interval = 5000;
             // 
-            // trackBar3
-            // 
-            resources.ApplyResources(this.trackBar3, "trackBar3");
-            this.trackBar3.LargeChange = 950;
-            this.trackBar3.Maximum = 95000;
-            this.trackBar3.Minimum = 19;
-            this.trackBar3.Name = "trackBar3";
-            this.trackBar3.SmallChange = 475;
-            this.trackBar3.TickFrequency = 475;
-            this.trackBar3.Value = 19;
-            // 
             // heightSliderControl
             // 
             this.heightSliderControl.DefaultName = "N/A";
             resources.ApplyResources(this.heightSliderControl, "heightSliderControl");
             this.heightSliderControl.Name = "heightSliderControl";
+            // 
+            // widthSliderControl
+            // 
+            this.widthSliderControl.DefaultName = "N/A";
+            resources.ApplyResources(this.widthSliderControl, "widthSliderControl");
+            this.widthSliderControl.Name = "widthSliderControl";
+            // 
+            // pixelFormatControl
+            // 
+            this.pixelFormatControl.DefaultName = "N/A";
+            resources.ApplyResources(this.pixelFormatControl, "pixelFormatControl");
+            this.pixelFormatControl.Name = "pixelFormatControl";
+            // 
+            // testImageControl
+            // 
+            this.testImageControl.DefaultName = "N/A";
+            resources.ApplyResources(this.testImageControl, "testImageControl");
+            this.testImageControl.Name = "testImageControl";
+            // 
+            // pictureBox4
+            // 
+            resources.ApplyResources(this.pictureBox4, "pictureBox4");
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.TabStop = false;
             // 
             // Form_Listener
             // 
@@ -1001,6 +1007,7 @@
             this.Name = "Form_Listener";
             this.splitContainerImageView.Panel1.ResumeLayout(false);
             this.splitContainerImageView.Panel1.PerformLayout();
+            this.splitContainerImageView.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerImageView)).EndInit();
             this.splitContainerImageView.ResumeLayout(false);
             this.splitContainerConfiguration.Panel1.ResumeLayout(false);
@@ -1026,14 +1033,14 @@
             this.tabPage3.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1126,7 +1133,6 @@
         private System.Windows.Forms.Label label50;
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label labelExposute;
         private System.Windows.Forms.Label labelWhiteBalance;
@@ -1150,6 +1156,7 @@
         private FloatSliderUserControl widthSliderControl;
         private System.Windows.Forms.TrackBar trackBar3;
         private FloatSliderUserControl heightSliderControl;
+        private System.Windows.Forms.PictureBox pictureBox4;
     }
 }
 

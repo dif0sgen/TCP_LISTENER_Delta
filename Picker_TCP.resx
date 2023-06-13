@@ -178,16 +178,16 @@
     <value>0</value>
   </data>
   <data name="heightSliderControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-2, 246</value>
+    <value>-4, 421</value>
   </data>
   <data name="heightSliderControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
+    <value>9, 9, 9, 9</value>
   </data>
   <data name="heightSliderControl.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>150, 85</value>
+    <value>267, 145</value>
   </data>
   <data name="heightSliderControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>290, 85</value>
+    <value>516, 145</value>
   </data>
   <data name="heightSliderControl.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -205,16 +205,16 @@
     <value>0</value>
   </data>
   <data name="widthSliderControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-2, 172</value>
+    <value>-4, 294</value>
   </data>
   <data name="widthSliderControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>7, 7, 7, 7</value>
   </data>
   <data name="widthSliderControl.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>150, 65</value>
+    <value>267, 111</value>
   </data>
   <data name="widthSliderControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>264, 65</value>
+    <value>469, 111</value>
   </data>
   <data name="widthSliderControl.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -232,13 +232,13 @@
     <value>1</value>
   </data>
   <data name="pixelFormatControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 66</value>
+    <value>28, 112</value>
   </data>
   <data name="pixelFormatControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>7, 7, 7, 7</value>
+    <value>12, 12, 12, 12</value>
   </data>
   <data name="pixelFormatControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>369, 98</value>
+    <value>656, 167</value>
   </data>
   <data name="pixelFormatControl.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -256,13 +256,13 @@
     <value>2</value>
   </data>
   <data name="testImageControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>16, 5</value>
+    <value>28, 9</value>
   </data>
   <data name="testImageControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 5, 5, 5</value>
+    <value>9, 9, 9, 9</value>
   </data>
   <data name="testImageControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>272, 75</value>
+    <value>484, 128</value>
   </data>
   <data name="testImageControl.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -410,6 +410,33 @@
     <value>splitContainerImageView</value>
   </data>
   <data name="&gt;&gt;splitContainerImageView.Panel1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="pictureBox4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="pictureBox4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 3</value>
+  </data>
+  <data name="pictureBox4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1341, 754</value>
+  </data>
+  <data name="pictureBox4.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
+    <value>Zoom</value>
+  </data>
+  <data name="pictureBox4.TabIndex" type="System.Int32, mscorlib">
+    <value>166</value>
+  </data>
+  <data name="&gt;&gt;pictureBox4.Name" xml:space="preserve">
+    <value>pictureBox4</value>
+  </data>
+  <data name="&gt;&gt;pictureBox4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;pictureBox4.Parent" xml:space="preserve">
+    <value>splitContainerImageView.Panel2</value>
+  </data>
+  <data name="&gt;&gt;pictureBox4.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <data name="&gt;&gt;splitContainerImageView.Panel2.Name" xml:space="preserve">
@@ -2731,33 +2758,6 @@
   <data name="&gt;&gt;trackBar3.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="pictureBox4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="pictureBox4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>230, 64</value>
-  </data>
-  <data name="pictureBox4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>607, 656</value>
-  </data>
-  <data name="pictureBox4.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
-    <value>Zoom</value>
-  </data>
-  <data name="pictureBox4.TabIndex" type="System.Int32, mscorlib">
-    <value>165</value>
-  </data>
-  <data name="&gt;&gt;pictureBox4.Name" xml:space="preserve">
-    <value>pictureBox4</value>
-  </data>
-  <data name="&gt;&gt;pictureBox4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;pictureBox4.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;pictureBox4.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
   <data name="button6.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
@@ -2783,7 +2783,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;button6.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="button4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -2810,7 +2810,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;button4.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
   </data>
   <data name="labelExposute.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2840,7 +2840,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;labelExposute.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
   </data>
   <data name="labelWhiteBalance.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -2870,7 +2870,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;labelWhiteBalance.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>8</value>
   </data>
   <data name="WhiteBalanceControl.Items" xml:space="preserve">
     <value>1</value>
@@ -2900,7 +2900,7 @@
     <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;WhiteBalanceControl.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>9</value>
   </data>
   <data name="groupBox3.Font" type="System.Drawing.Font, System.Drawing">
     <value>Bahnschrift Condensed, 12pt</value>

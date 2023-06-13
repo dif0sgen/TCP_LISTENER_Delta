@@ -208,16 +208,16 @@
     <value>0</value>
   </data>
   <data name="heightSliderControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-28, 2757</value>
+    <value>-49, 4714</value>
   </data>
   <data name="heightSliderControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>65, 60, 65, 60</value>
+    <value>116, 102, 116, 102</value>
   </data>
   <data name="heightSliderControl.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>2000, 947</value>
+    <value>3556, 1619</value>
   </data>
   <data name="heightSliderControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>3867, 947</value>
+    <value>6875, 1619</value>
   </data>
   <data name="heightSliderControl.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -235,16 +235,16 @@
     <value>1</value>
   </data>
   <data name="widthSliderControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-28, 1918</value>
+    <value>-49, 3280</value>
   </data>
   <data name="widthSliderControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>49, 46, 49, 46</value>
+    <value>87, 78, 87, 78</value>
   </data>
   <data name="widthSliderControl.MinimumSize" type="System.Drawing.Size, System.Drawing">
-    <value>2000, 724</value>
+    <value>3556, 1238</value>
   </data>
   <data name="widthSliderControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>3511, 724</value>
+    <value>6241, 1238</value>
   </data>
   <data name="widthSliderControl.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -262,13 +262,13 @@
     <value>2</value>
   </data>
   <data name="pixelFormatControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 188</value>
+    <value>37, 322</value>
   </data>
   <data name="pixelFormatControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>87, 78, 87, 78</value>
+    <value>155, 133, 155, 133</value>
   </data>
   <data name="pixelFormatControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>4919, 1091</value>
+    <value>8745, 1866</value>
   </data>
   <data name="pixelFormatControl.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -286,13 +286,13 @@
     <value>3</value>
   </data>
   <data name="testImageControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 13</value>
+    <value>37, 22</value>
   </data>
   <data name="testImageControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>65, 60, 65, 60</value>
+    <value>116, 102, 116, 102</value>
   </data>
   <data name="testImageControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>3625, 834</value>
+    <value>6444, 1427</value>
   </data>
   <data name="testImageControl.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -3748,21 +3748,6 @@
   <data name="dataGridViewTextBoxColumn3.HeaderText" xml:space="preserve">
     <value>Time</value>
   </data>
-  <data name="dataGridViewCheckBoxColumn1.HeaderText" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="dataGridViewCheckBoxColumn2.HeaderText" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="dataGridViewCheckBoxColumn3.HeaderText" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="dataGridViewCheckBoxColumn4.HeaderText" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="dataGridViewCheckBoxColumn5.HeaderText" xml:space="preserve">
-    <value>5</value>
-  </data>
   <metadata name="tableBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1159, 17</value>
   </metadata>
@@ -3770,10 +3755,10 @@
     <value>1050, 17</value>
   </metadata>
   <data name="tableDataGridView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 3</value>
+    <value>36, 41</value>
   </data>
   <data name="tableDataGridView.Size" type="System.Drawing.Size, System.Drawing">
-    <value>843, 759</value>
+    <value>350, 220</value>
   </data>
   <data name="tableDataGridView.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -8558,6 +8543,42 @@
   <data name="&gt;&gt;directorySearcher1.Type" xml:space="preserve">
     <value>System.DirectoryServices.DirectorySearcher, System.DirectoryServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="&gt;&gt;updateDeviceListTimer.Name" xml:space="preserve">
+    <value>updateDeviceListTimer</value>
+  </data>
+  <data name="&gt;&gt;updateDeviceListTimer.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;bindingSource1.Name" xml:space="preserve">
+    <value>bindingSource1</value>
+  </data>
+  <data name="&gt;&gt;bindingSource1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tableBindingSource.Name" xml:space="preserve">
+    <value>tableBindingSource</value>
+  </data>
+  <data name="&gt;&gt;tableBindingSource.Type" xml:space="preserve">
+    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dataSetDB.Name" xml:space="preserve">
+    <value>dataSetDB</value>
+  </data>
+  <data name="&gt;&gt;dataSetDB.Type" xml:space="preserve">
+    <value>TCP_LISTENER_Delta.DataSetDB, DataSetDB.Designer.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;tableTableAdapter.Name" xml:space="preserve">
+    <value>tableTableAdapter</value>
+  </data>
+  <data name="&gt;&gt;tableTableAdapter.Type" xml:space="preserve">
+    <value>TCP_LISTENER_Delta.DataSetDBTableAdapters.TableTableAdapter, DataSetDB.Designer.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;tableAdapterManager.Name" xml:space="preserve">
+    <value>tableAdapterManager</value>
+  </data>
+  <data name="&gt;&gt;tableAdapterManager.Type" xml:space="preserve">
+    <value>TCP_LISTENER_Delta.DataSetDBTableAdapters.TableAdapterManager, DataSetDB.Designer.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
   <data name="&gt;&gt;dataGridViewTextBoxColumn1.Name" xml:space="preserve">
     <value>dataGridViewTextBoxColumn1</value>
   </data>
@@ -8575,72 +8596,6 @@
   </data>
   <data name="&gt;&gt;dataGridViewTextBoxColumn3.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewCheckBoxColumn1.Name" xml:space="preserve">
-    <value>dataGridViewCheckBoxColumn1</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewCheckBoxColumn1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewCheckBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewCheckBoxColumn2.Name" xml:space="preserve">
-    <value>dataGridViewCheckBoxColumn2</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewCheckBoxColumn2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewCheckBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewCheckBoxColumn3.Name" xml:space="preserve">
-    <value>dataGridViewCheckBoxColumn3</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewCheckBoxColumn3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewCheckBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewCheckBoxColumn4.Name" xml:space="preserve">
-    <value>dataGridViewCheckBoxColumn4</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewCheckBoxColumn4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewCheckBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewCheckBoxColumn5.Name" xml:space="preserve">
-    <value>dataGridViewCheckBoxColumn5</value>
-  </data>
-  <data name="&gt;&gt;dataGridViewCheckBoxColumn5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewCheckBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tableBindingSource.Name" xml:space="preserve">
-    <value>tableBindingSource</value>
-  </data>
-  <data name="&gt;&gt;tableBindingSource.Type" xml:space="preserve">
-    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;dataSetDB.Name" xml:space="preserve">
-    <value>dataSetDB</value>
-  </data>
-  <data name="&gt;&gt;dataSetDB.Type" xml:space="preserve">
-    <value>TCP_LISTENER_Delta.DataSetDB, DataSetDB.Designer.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;updateDeviceListTimer.Name" xml:space="preserve">
-    <value>updateDeviceListTimer</value>
-  </data>
-  <data name="&gt;&gt;updateDeviceListTimer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;bindingSource1.Name" xml:space="preserve">
-    <value>bindingSource1</value>
-  </data>
-  <data name="&gt;&gt;bindingSource1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tableTableAdapter.Name" xml:space="preserve">
-    <value>tableTableAdapter</value>
-  </data>
-  <data name="&gt;&gt;tableTableAdapter.Type" xml:space="preserve">
-    <value>TCP_LISTENER_Delta.DataSetDBTableAdapters.TableTableAdapter, DataSetDB.Designer.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;tableAdapterManager.Name" xml:space="preserve">
-    <value>tableAdapterManager</value>
-  </data>
-  <data name="&gt;&gt;tableAdapterManager.Type" xml:space="preserve">
-    <value>TCP_LISTENER_Delta.DataSetDBTableAdapters.TableAdapterManager, DataSetDB.Designer.cs.dll, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>Form_Listener</value>

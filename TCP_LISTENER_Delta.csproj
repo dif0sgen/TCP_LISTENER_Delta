@@ -171,6 +171,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSetDB.cs">
+      <DependentUpon>DataSetDB.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DataSetDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -311,12 +314,12 @@
     <None Include="Resources\Group 12.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DB.mdf">
+    <Content Include="Database1.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="DB_log.ldf">
+    <Content Include="Database1_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>DB.mdf</DependentUpon>
+      <DependentUpon>Database1.mdf</DependentUpon>
     </Content>
     <Content Include="License-LGPL.txt" />
     <None Include="Resources\Group 33.png" />

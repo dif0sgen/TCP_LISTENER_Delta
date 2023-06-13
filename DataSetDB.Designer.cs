@@ -285,16 +285,6 @@ namespace TCP_LISTENER_Delta {
             
             private global::System.Data.DataColumn columnTime;
             
-            private global::System.Data.DataColumn column1;
-            
-            private global::System.Data.DataColumn column2;
-            
-            private global::System.Data.DataColumn column3;
-            
-            private global::System.Data.DataColumn column4;
-            
-            private global::System.Data.DataColumn column5;
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public TableDataTable() {
@@ -354,46 +344,6 @@ namespace TCP_LISTENER_Delta {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn _1Column {
-                get {
-                    return this.column1;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn _2Column {
-                get {
-                    return this.column2;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn _3Column {
-                get {
-                    return this.column3;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn _4Column {
-                get {
-                    return this.column4;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn _5Column {
-                get {
-                    return this.column5;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -429,17 +379,12 @@ namespace TCP_LISTENER_Delta {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public TableRow AddTableRow(int Id, string Camera, System.TimeSpan Time, bool _1, bool _2, bool _3, bool _4, bool _5) {
+            public TableRow AddTableRow(int Id, string Camera, System.TimeSpan Time) {
                 TableRow rowTableRow = ((TableRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
                         Camera,
-                        Time,
-                        _1,
-                        _2,
-                        _3,
-                        _4,
-                        _5};
+                        Time};
                 rowTableRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTableRow);
                 return rowTableRow;
@@ -472,11 +417,6 @@ namespace TCP_LISTENER_Delta {
                 this.columnId = base.Columns["Id"];
                 this.columnCamera = base.Columns["Camera"];
                 this.columnTime = base.Columns["Time"];
-                this.column1 = base.Columns["1"];
-                this.column2 = base.Columns["2"];
-                this.column3 = base.Columns["3"];
-                this.column4 = base.Columns["4"];
-                this.column5 = base.Columns["5"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -488,38 +428,11 @@ namespace TCP_LISTENER_Delta {
                 base.Columns.Add(this.columnCamera);
                 this.columnTime = new global::System.Data.DataColumn("Time", typeof(global::System.TimeSpan), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTime);
-                this.column1 = new global::System.Data.DataColumn("1", typeof(bool), null, global::System.Data.MappingType.Element);
-                this.column1.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column1");
-                this.column1.ExtendedProperties.Add("Generator_UserColumnName", "1");
-                base.Columns.Add(this.column1);
-                this.column2 = new global::System.Data.DataColumn("2", typeof(bool), null, global::System.Data.MappingType.Element);
-                this.column2.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column2");
-                this.column2.ExtendedProperties.Add("Generator_UserColumnName", "2");
-                base.Columns.Add(this.column2);
-                this.column3 = new global::System.Data.DataColumn("3", typeof(bool), null, global::System.Data.MappingType.Element);
-                this.column3.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column3");
-                this.column3.ExtendedProperties.Add("Generator_UserColumnName", "3");
-                base.Columns.Add(this.column3);
-                this.column4 = new global::System.Data.DataColumn("4", typeof(bool), null, global::System.Data.MappingType.Element);
-                this.column4.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column4");
-                this.column4.ExtendedProperties.Add("Generator_UserColumnName", "4");
-                base.Columns.Add(this.column4);
-                this.column5 = new global::System.Data.DataColumn("5", typeof(bool), null, global::System.Data.MappingType.Element);
-                this.column5.ExtendedProperties.Add("Generator_ColumnVarNameInTable", "column5");
-                this.column5.ExtendedProperties.Add("Generator_UserColumnName", "5");
-                base.Columns.Add(this.column5);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AllowDBNull = false;
                 this.columnId.Unique = true;
-                this.columnCamera.AllowDBNull = false;
                 this.columnCamera.MaxLength = 2147483647;
-                this.columnTime.AllowDBNull = false;
-                this.column1.AllowDBNull = false;
-                this.column2.AllowDBNull = false;
-                this.column3.AllowDBNull = false;
-                this.column4.AllowDBNull = false;
-                this.column5.AllowDBNull = false;
                 this.ExtendedProperties.Add("Generator_RowClassName", "TableRow");
                 this.ExtendedProperties.Add("Generator_RowEvArgName", "TableRowChangeEvent");
                 this.ExtendedProperties.Add("Generator_RowEvHandlerName", "TableRowChangeEventHandler");
@@ -682,7 +595,12 @@ namespace TCP_LISTENER_Delta {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string Camera {
                 get {
-                    return ((string)(this[this.tableTable.CameraColumn]));
+                    try {
+                        return ((string)(this[this.tableTable.CameraColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Camera\' in table \'Table\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableTable.CameraColumn] = value;
@@ -693,7 +611,12 @@ namespace TCP_LISTENER_Delta {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public System.TimeSpan Time {
                 get {
-                    return ((global::System.TimeSpan)(this[this.tableTable.TimeColumn]));
+                    try {
+                        return ((global::System.TimeSpan)(this[this.tableTable.TimeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Time\' in table \'Table\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableTable.TimeColumn] = value;
@@ -702,57 +625,26 @@ namespace TCP_LISTENER_Delta {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool _1 {
-                get {
-                    return ((bool)(this[this.tableTable._1Column]));
-                }
-                set {
-                    this[this.tableTable._1Column] = value;
-                }
+            public bool IsCameraNull() {
+                return this.IsNull(this.tableTable.CameraColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool _2 {
-                get {
-                    return ((bool)(this[this.tableTable._2Column]));
-                }
-                set {
-                    this[this.tableTable._2Column] = value;
-                }
+            public void SetCameraNull() {
+                this[this.tableTable.CameraColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool _3 {
-                get {
-                    return ((bool)(this[this.tableTable._3Column]));
-                }
-                set {
-                    this[this.tableTable._3Column] = value;
-                }
+            public bool IsTimeNull() {
+                return this.IsNull(this.tableTable.TimeColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool _4 {
-                get {
-                    return ((bool)(this[this.tableTable._4Column]));
-                }
-                set {
-                    this[this.tableTable._4Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool _5 {
-                get {
-                    return ((bool)(this[this.tableTable._5Column]));
-                }
-                set {
-                    this[this.tableTable._5Column] = value;
-                }
+            public void SetTimeNull() {
+                this[this.tableTable.TimeColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -918,66 +810,42 @@ namespace TCP_LISTENER_Delta.DataSetDBTableAdapters {
             tableMapping.ColumnMappings.Add("Id", "Id");
             tableMapping.ColumnMappings.Add("Camera", "Camera");
             tableMapping.ColumnMappings.Add("Time", "Time");
-            tableMapping.ColumnMappings.Add("1", "1");
-            tableMapping.ColumnMappings.Add("2", "2");
-            tableMapping.ColumnMappings.Add("3", "3");
-            tableMapping.ColumnMappings.Add("4", "4");
-            tableMapping.ColumnMappings.Add("5", "5");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Table] WHERE (([Id] = @Original_Id) AND ([Time] = @Original_Ti" +
-                "me) AND ([1] = @p2) AND ([2] = @p4) AND ([3] = @p6) AND ([4] = @p8) AND ([5] = @" +
-                "p10))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Table] WHERE (([Id] = @Original_Id) AND ((@IsNull_Time = 1 AND" +
+                " [Time] IS NULL) OR ([Time] = @Original_Time)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Time", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Time", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Time", global::System.Data.SqlDbType.Time, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Time", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p2", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p4", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "2", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p6", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "3", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p8", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "4", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p10", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "5", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Table] ([Id], [Camera], [Time], [1], [2], [3], [4], [5]) VALUE" +
-                "S (@Id, @Camera, @Time, @p1, @p3, @p5, @p7, @p9);\r\nSELECT Id, Camera, Time, [1]," +
-                " [2], [3], [4], [5] FROM [Table] WHERE (Id = @Id)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Table] ([Id], [Camera], [Time]) VALUES (@Id, @Camera, @Time);\r" +
+                "\nSELECT Id, Camera, Time FROM [Table] WHERE (Id = @Id)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Camera", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Camera", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Time", global::System.Data.SqlDbType.Time, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Time", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p1", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p3", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p5", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "3", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p7", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "4", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p9", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "5", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Table] SET [Id] = @Id, [Camera] = @Camera, [Time] = @Time, [1] = @p1, [2] = @p3, [3] = @p5, [4] = @p7, [5] = @p9 WHERE (([Id] = @Original_Id) AND ([Time] = @Original_Time) AND ([1] = @p2) AND ([2] = @p4) AND ([3] = @p6) AND ([4] = @p8) AND ([5] = @p10));
-SELECT Id, Camera, Time, [1], [2], [3], [4], [5] FROM [Table] WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Table] SET [Id] = @Id, [Camera] = @Camera, [Time] = @Time WHERE (([" +
+                "Id] = @Original_Id) AND ((@IsNull_Time = 1 AND [Time] IS NULL) OR ([Time] = @Ori" +
+                "ginal_Time)));\r\nSELECT Id, Camera, Time FROM [Table] WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Camera", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Camera", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Time", global::System.Data.SqlDbType.Time, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Time", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p1", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "1", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p3", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "2", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p5", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "3", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p7", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "4", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p9", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "5", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Time", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Time", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Time", global::System.Data.SqlDbType.Time, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Time", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p2", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "1", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p4", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "2", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p6", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "3", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p8", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "4", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p10", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "5", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::TCP_LISTENER_Delta.Properties.Settings.Default.DBConnectionString;
+            this._connection.ConnectionString = global::TCP_LISTENER_Delta.Properties.Settings.Default.Database1ConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -986,7 +854,7 @@ SELECT Id, Camera, Time, [1], [2], [3], [4], [5] FROM [Table] WHERE (Id = @Id)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Id, Camera, Time, [1], [2], [3], [4], [5] FROM dbo.[Table]";
+            this._commandCollection[0].CommandText = "SELECT Id, Camera, Time FROM dbo.[Table]";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1047,14 +915,16 @@ SELECT Id, Camera, Time, [1], [2], [3], [4], [5] FROM [Table] WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Id, System.TimeSpan Original_Time, bool p2, bool p4, bool p6, bool p8, bool p10) {
+        public virtual int Delete(int Original_Id, global::System.Nullable<global::System.TimeSpan> Original_Time) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((System.TimeSpan)(Original_Time));
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((bool)(p2));
-            this.Adapter.DeleteCommand.Parameters[3].Value = ((bool)(p4));
-            this.Adapter.DeleteCommand.Parameters[4].Value = ((bool)(p6));
-            this.Adapter.DeleteCommand.Parameters[5].Value = ((bool)(p8));
-            this.Adapter.DeleteCommand.Parameters[6].Value = ((bool)(p10));
+            if ((Original_Time.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((System.TimeSpan)(Original_Time.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1075,20 +945,20 @@ SELECT Id, Camera, Time, [1], [2], [3], [4], [5] FROM [Table] WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int Id, string Camera, System.TimeSpan Time, bool p1, bool p3, bool p5, bool p7, bool p9) {
+        public virtual int Insert(int Id, string Camera, global::System.Nullable<global::System.TimeSpan> Time) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(Id));
             if ((Camera == null)) {
-                throw new global::System.ArgumentNullException("Camera");
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Camera));
             }
-            this.Adapter.InsertCommand.Parameters[2].Value = ((System.TimeSpan)(Time));
-            this.Adapter.InsertCommand.Parameters[3].Value = ((bool)(p1));
-            this.Adapter.InsertCommand.Parameters[4].Value = ((bool)(p3));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((bool)(p5));
-            this.Adapter.InsertCommand.Parameters[6].Value = ((bool)(p7));
-            this.Adapter.InsertCommand.Parameters[7].Value = ((bool)(p9));
+            if ((Time.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((System.TimeSpan)(Time.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1109,27 +979,29 @@ SELECT Id, Camera, Time, [1], [2], [3], [4], [5] FROM [Table] WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(int Id, string Camera, System.TimeSpan Time, bool p1, bool p3, bool p5, bool p7, bool p9, int Original_Id, System.TimeSpan Original_Time, bool p2, bool p4, bool p6, bool p8, bool p10) {
+        public virtual int Update(int Id, string Camera, global::System.Nullable<global::System.TimeSpan> Time, int Original_Id, global::System.Nullable<global::System.TimeSpan> Original_Time) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(Id));
             if ((Camera == null)) {
-                throw new global::System.ArgumentNullException("Camera");
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Camera));
             }
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((System.TimeSpan)(Time));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((bool)(p1));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((bool)(p3));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((bool)(p5));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(p7));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((bool)(p9));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_Id));
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((System.TimeSpan)(Original_Time));
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((bool)(p2));
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((bool)(p4));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((bool)(p6));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((bool)(p8));
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((bool)(p10));
+            if ((Time.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((System.TimeSpan)(Time.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Original_Id));
+            if ((Original_Time.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((System.TimeSpan)(Original_Time.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1150,8 +1022,8 @@ SELECT Id, Camera, Time, [1], [2], [3], [4], [5] FROM [Table] WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Camera, System.TimeSpan Time, bool p1, bool p3, bool p5, bool p7, bool p9, int Original_Id, System.TimeSpan Original_Time, bool p2, bool p4, bool p6, bool p8, bool p10) {
-            return this.Update(Original_Id, Camera, Time, p1, p3, p5, p7, p9, Original_Id, Original_Time, p2, p4, p6, p8, p10);
+        public virtual int Update(string Camera, global::System.Nullable<global::System.TimeSpan> Time, int Original_Id, global::System.Nullable<global::System.TimeSpan> Original_Time) {
+            return this.Update(Original_Id, Camera, Time, Original_Id, Original_Time);
         }
     }
     

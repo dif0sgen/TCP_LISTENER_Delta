@@ -35,10 +35,6 @@
             this.deviceListView = new System.Windows.Forms.ListView();
             this.imageListForDeviceList = new System.Windows.Forms.ImageList(this.components);
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.heightSliderControl = new TCP_LISTENER_Delta.FloatSliderUserControl();
-            this.widthSliderControl = new TCP_LISTENER_Delta.FloatSliderUserControl();
-            this.pixelFormatControl = new TCP_LISTENER_Delta.EnumerationComboBoxUserControl();
-            this.testImageControl = new TCP_LISTENER_Delta.EnumerationComboBoxUserControl();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonOneShot = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonContinuousShot = new System.Windows.Forms.ToolStripButton();
@@ -140,21 +136,20 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.updateDeviceListTimer = new System.Windows.Forms.Timer(this.components);
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.tableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSetDB = new TCP_LISTENER_Delta.DataSetDB();
+            this.tableTableAdapter = new TCP_LISTENER_Delta.DataSetDBTableAdapters.TableTableAdapter();
+            this.tableAdapterManager = new TCP_LISTENER_Delta.DataSetDBTableAdapters.TableAdapterManager();
+            this.heightSliderControl = new TCP_LISTENER_Delta.FloatSliderUserControl();
+            this.widthSliderControl = new TCP_LISTENER_Delta.FloatSliderUserControl();
+            this.pixelFormatControl = new TCP_LISTENER_Delta.EnumerationComboBoxUserControl();
+            this.testImageControl = new TCP_LISTENER_Delta.EnumerationComboBoxUserControl();
             this.tableDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn3 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn4 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewCheckBoxColumn5 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.tableBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSetDB = new TCP_LISTENER_Delta.DataSetDB();
-            this.updateDeviceListTimer = new System.Windows.Forms.Timer(this.components);
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.tableTableAdapter = new TCP_LISTENER_Delta.DataSetDBTableAdapters.TableTableAdapter();
-            this.tableAdapterManager = new TCP_LISTENER_Delta.DataSetDBTableAdapters.TableAdapterManager();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerImageView)).BeginInit();
             this.splitContainerImageView.Panel1.SuspendLayout();
             this.splitContainerImageView.Panel2.SuspendLayout();
@@ -182,10 +177,10 @@
             this.groupBox5.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tableDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetDB)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainerImageView
@@ -245,30 +240,6 @@
             resources.ApplyResources(this.checkBox1, "checkBox1");
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.UseVisualStyleBackColor = true;
-            // 
-            // heightSliderControl
-            // 
-            this.heightSliderControl.DefaultName = "N/A";
-            resources.ApplyResources(this.heightSliderControl, "heightSliderControl");
-            this.heightSliderControl.Name = "heightSliderControl";
-            // 
-            // widthSliderControl
-            // 
-            this.widthSliderControl.DefaultName = "N/A";
-            resources.ApplyResources(this.widthSliderControl, "widthSliderControl");
-            this.widthSliderControl.Name = "widthSliderControl";
-            // 
-            // pixelFormatControl
-            // 
-            this.pixelFormatControl.DefaultName = "N/A";
-            resources.ApplyResources(this.pixelFormatControl, "pixelFormatControl");
-            this.pixelFormatControl.Name = "pixelFormatControl";
-            // 
-            // testImageControl
-            // 
-            this.testImageControl.DefaultName = "N/A";
-            resources.ApplyResources(this.testImageControl, "testImageControl");
-            this.testImageControl.Name = "testImageControl";
             // 
             // toolStrip
             // 
@@ -1022,6 +993,55 @@
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
+            // updateDeviceListTimer
+            // 
+            this.updateDeviceListTimer.Enabled = true;
+            this.updateDeviceListTimer.Interval = 5000;
+            // 
+            // tableBindingSource
+            // 
+            this.tableBindingSource.DataMember = "Table";
+            this.tableBindingSource.DataSource = this.dataSetDB;
+            // 
+            // dataSetDB
+            // 
+            this.dataSetDB.DataSetName = "DataSetDB";
+            this.dataSetDB.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // tableTableAdapter
+            // 
+            this.tableTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.TableTableAdapter = this.tableTableAdapter;
+            this.tableAdapterManager.UpdateOrder = TCP_LISTENER_Delta.DataSetDBTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // heightSliderControl
+            // 
+            this.heightSliderControl.DefaultName = "N/A";
+            resources.ApplyResources(this.heightSliderControl, "heightSliderControl");
+            this.heightSliderControl.Name = "heightSliderControl";
+            // 
+            // widthSliderControl
+            // 
+            this.widthSliderControl.DefaultName = "N/A";
+            resources.ApplyResources(this.widthSliderControl, "widthSliderControl");
+            this.widthSliderControl.Name = "widthSliderControl";
+            // 
+            // pixelFormatControl
+            // 
+            this.pixelFormatControl.DefaultName = "N/A";
+            resources.ApplyResources(this.pixelFormatControl, "pixelFormatControl");
+            this.pixelFormatControl.Name = "pixelFormatControl";
+            // 
+            // testImageControl
+            // 
+            this.testImageControl.DefaultName = "N/A";
+            resources.ApplyResources(this.testImageControl, "testImageControl");
+            this.testImageControl.Name = "testImageControl";
+            // 
             // tableDataGridView
             // 
             this.tableDataGridView.AutoGenerateColumns = false;
@@ -1031,17 +1051,10 @@
             this.tableDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewCheckBoxColumn1,
-            this.dataGridViewCheckBoxColumn2,
-            this.dataGridViewCheckBoxColumn3,
-            this.dataGridViewCheckBoxColumn4,
-            this.dataGridViewCheckBoxColumn5});
+            this.dataGridViewTextBoxColumn3});
             this.tableDataGridView.DataSource = this.tableBindingSource;
             resources.ApplyResources(this.tableDataGridView, "tableDataGridView");
             this.tableDataGridView.Name = "tableDataGridView";
-            this.tableDataGridView.ShowCellErrors = false;
-            this.tableDataGridView.ShowRowErrors = false;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -1060,61 +1073,6 @@
             this.dataGridViewTextBoxColumn3.DataPropertyName = "Time";
             resources.ApplyResources(this.dataGridViewTextBoxColumn3, "dataGridViewTextBoxColumn3");
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewCheckBoxColumn1
-            // 
-            this.dataGridViewCheckBoxColumn1.DataPropertyName = "1";
-            resources.ApplyResources(this.dataGridViewCheckBoxColumn1, "dataGridViewCheckBoxColumn1");
-            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
-            // 
-            // dataGridViewCheckBoxColumn2
-            // 
-            this.dataGridViewCheckBoxColumn2.DataPropertyName = "2";
-            resources.ApplyResources(this.dataGridViewCheckBoxColumn2, "dataGridViewCheckBoxColumn2");
-            this.dataGridViewCheckBoxColumn2.Name = "dataGridViewCheckBoxColumn2";
-            // 
-            // dataGridViewCheckBoxColumn3
-            // 
-            this.dataGridViewCheckBoxColumn3.DataPropertyName = "3";
-            resources.ApplyResources(this.dataGridViewCheckBoxColumn3, "dataGridViewCheckBoxColumn3");
-            this.dataGridViewCheckBoxColumn3.Name = "dataGridViewCheckBoxColumn3";
-            // 
-            // dataGridViewCheckBoxColumn4
-            // 
-            this.dataGridViewCheckBoxColumn4.DataPropertyName = "4";
-            resources.ApplyResources(this.dataGridViewCheckBoxColumn4, "dataGridViewCheckBoxColumn4");
-            this.dataGridViewCheckBoxColumn4.Name = "dataGridViewCheckBoxColumn4";
-            // 
-            // dataGridViewCheckBoxColumn5
-            // 
-            this.dataGridViewCheckBoxColumn5.DataPropertyName = "5";
-            resources.ApplyResources(this.dataGridViewCheckBoxColumn5, "dataGridViewCheckBoxColumn5");
-            this.dataGridViewCheckBoxColumn5.Name = "dataGridViewCheckBoxColumn5";
-            // 
-            // tableBindingSource
-            // 
-            this.tableBindingSource.DataMember = "Table";
-            this.tableBindingSource.DataSource = this.dataSetDB;
-            // 
-            // dataSetDB
-            // 
-            this.dataSetDB.DataSetName = "DataSetDB";
-            this.dataSetDB.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // updateDeviceListTimer
-            // 
-            this.updateDeviceListTimer.Enabled = true;
-            this.updateDeviceListTimer.Interval = 5000;
-            // 
-            // tableTableAdapter
-            // 
-            this.tableTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.TableTableAdapter = this.tableTableAdapter;
-            this.tableAdapterManager.UpdateOrder = TCP_LISTENER_Delta.DataSetDBTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
             // Form_Listener
             // 
@@ -1168,10 +1126,10 @@
             this.groupBox5.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.tableDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetDB)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1298,11 +1256,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn2;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn3;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn4;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn5;
     }
 }
 

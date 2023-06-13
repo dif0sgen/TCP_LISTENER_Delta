@@ -177,6 +177,7 @@ namespace TCP_LISTENER_Delta
         int b;
         int c;
         int d;
+        int ina;
 
         /// 
         /// Init Form
@@ -2008,9 +2009,13 @@ namespace TCP_LISTENER_Delta
             return canSet;
         }
         // Occurs when the single frame acquisition button is clicked.
-        private void toolStripButtonOneShot_Click(object sender, EventArgs e)
+        private void toolStripButtonOneShot_Click(object sender, EventArgs e, DataGridViewRowEventArgs ea)
         {
+            ina++;
             OneShot(); // Start the grabbing of one image.
+            
+                DataGridViewRow row = this.tableDataGridView.Rows[ina];
+            
         }
 
 

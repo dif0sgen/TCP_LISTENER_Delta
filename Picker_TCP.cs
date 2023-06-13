@@ -28,9 +28,15 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using static System.Resources.ResXFileRef;
 using System.Runtime.InteropServices.ComTypes;
 
+//using MySql.Data.MySqlClient;
+
 namespace TCP_LISTENER_Delta
 {
-
+    //class DB
+    //{
+    //    MySqlConnection connection = new MySqlConnection("server =");
+    //
+    //}
     public partial class Form_Listener : Form
     {
 
@@ -2152,6 +2158,13 @@ namespace TCP_LISTENER_Delta
         private void toolStripButtonStop_Click_1(object sender, EventArgs e)
         {
             Stop(); // Stop the grabbing of images.
+        }
+
+        private void Form_Listener_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'dataSetDB.Table' table. You can move, or remove it, as needed.
+            this.tableTableAdapter.Fill(this.dataSetDB.Table);
+
         }
     }
 

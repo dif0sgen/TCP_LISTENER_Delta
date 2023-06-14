@@ -27,6 +27,8 @@ using Emgu.CV.Util;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 using static System.Resources.ResXFileRef;
 using System.Runtime.InteropServices.ComTypes;
+using System.Data.SqlClient;
+using System.Data;
 
 //using MySql.Data.MySqlClient;
 
@@ -178,6 +180,10 @@ namespace TCP_LISTENER_Delta
         int c;
         int d;
         int ina;
+        string cama;
+
+        DateTime currentDateTime = DateTime.Now;
+        SqlConnection sqlConn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True;Connect Timeout=30");
 
         /// 
         /// Init Form
@@ -247,6 +253,8 @@ namespace TCP_LISTENER_Delta
             //gainSliderControl.DefaultName = "Gain";
             //exposureTimeSliderControl.DefaultName = "Exposure Time";
 
+           
+
             // Update the list of available camera devices in the upper left area.
             UpdateDeviceList();
 
@@ -283,6 +291,62 @@ namespace TCP_LISTENER_Delta
             // Set the sensor shutter mode to Rolling
             //camera.Parameters[PLCamera.SensorShutterMode].SetValue(PLCamera.SensorShutterMode.Rolling);
 
+        }
+
+    private void btn_save_Click()
+        {
+            string Id = Convert.ToString(ina);
+            ina++;
+            string cam = "0";
+            string time = currentDateTime.ToString("dddd, dd MMMM yyyy HH:mm:ss:fff");
+            try
+            {
+                sqlConn.Open();
+                SqlCommand sqlComm = new SqlCommand("insert into [Table] value ['" + Id + "','" + cam + "','" + time + "'])", sqlConn);
+                sqlComm.ExecuteNonQuery();
+                MessageBox.Show("Data Inserted Successfully.");
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+                //using (SqlCommand sqlComm = new SqlCommand("insert into Table values ('" + Id + "','" + cam + "','" + time + "')",sqlConn))//
+                //{
+
+                //    if (sqlComm.Connection.State == ConnectionState.Closed)
+                //        sqlComm.Connection.Open();
+//
+//
+                 //   sqlComm.Parameters.AddWithValue("@Id", Id);
+                //    sqlComm.Parameters.AddWithValue("@Camera", cam);
+                 //   sqlComm.Parameters.AddWithValue("@Time", time);
+                 //   sqlComm.ExecuteNonQuery();
+                //    MessageBox.Show("Transition Updatet Sucessfully");
+                //}
+            
+        }
+        private void button8_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                sqlConn.Open();
+                SqlCommand cmd = new SqlCommand("select * from [Table] where Id = ['" + textBox10.Text + "']", sqlConn);
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    textBox6.Text = reader[0].ToString();
+                    textBox7.Text = reader[1].ToString();
+                    textBox8.Text = reader[2].ToString();
+                }
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         /// 
         /// Bitmap from camera to picture box
@@ -2042,7 +2106,8 @@ namespace TCP_LISTENER_Delta
         {
             try
             {
-                OneShot(); // Start the grabbing of one image.
+                OneShot();
+                btn_save_Click();// Start the grabbing of one image.
 
                 //myBasler.GrabStart();
 

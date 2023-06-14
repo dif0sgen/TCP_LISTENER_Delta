@@ -4,6 +4,9 @@
 
     partial class DataSetDB
     {
+        partial class TableDataTable
+        {
+        }
     }
 }
 

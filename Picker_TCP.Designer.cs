@@ -35,6 +35,10 @@
             this.deviceListView = new System.Windows.Forms.ListView();
             this.imageListForDeviceList = new System.Windows.Forms.ImageList(this.components);
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.heightSliderControl = new TCP_LISTENER_Delta.FloatSliderUserControl();
+            this.widthSliderControl = new TCP_LISTENER_Delta.FloatSliderUserControl();
+            this.pixelFormatControl = new TCP_LISTENER_Delta.EnumerationComboBoxUserControl();
+            this.testImageControl = new TCP_LISTENER_Delta.EnumerationComboBoxUserControl();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonOneShot = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonContinuousShot = new System.Windows.Forms.ToolStripButton();
@@ -136,20 +140,21 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.updateDeviceListTimer = new System.Windows.Forms.Timer(this.components);
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.tableBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSetDB = new TCP_LISTENER_Delta.DataSetDB();
-            this.tableTableAdapter = new TCP_LISTENER_Delta.DataSetDBTableAdapters.TableTableAdapter();
-            this.tableAdapterManager = new TCP_LISTENER_Delta.DataSetDBTableAdapters.TableAdapterManager();
-            this.heightSliderControl = new TCP_LISTENER_Delta.FloatSliderUserControl();
-            this.widthSliderControl = new TCP_LISTENER_Delta.FloatSliderUserControl();
-            this.pixelFormatControl = new TCP_LISTENER_Delta.EnumerationComboBoxUserControl();
-            this.testImageControl = new TCP_LISTENER_Delta.EnumerationComboBoxUserControl();
             this.tableDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSetDB = new TCP_LISTENER_Delta.DataSetDB();
+            this.updateDeviceListTimer = new System.Windows.Forms.Timer(this.components);
+            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.tableTableAdapter = new TCP_LISTENER_Delta.DataSetDBTableAdapters.TableTableAdapter();
+            this.tableAdapterManager = new TCP_LISTENER_Delta.DataSetDBTableAdapters.TableAdapterManager();
+            this.button8 = new System.Windows.Forms.Button();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.textBox10 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerImageView)).BeginInit();
             this.splitContainerImageView.Panel1.SuspendLayout();
             this.splitContainerImageView.Panel2.SuspendLayout();
@@ -177,10 +182,10 @@
             this.groupBox5.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetDB)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tableDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainerImageView
@@ -240,6 +245,30 @@
             resources.ApplyResources(this.checkBox1, "checkBox1");
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // heightSliderControl
+            // 
+            this.heightSliderControl.DefaultName = "N/A";
+            resources.ApplyResources(this.heightSliderControl, "heightSliderControl");
+            this.heightSliderControl.Name = "heightSliderControl";
+            // 
+            // widthSliderControl
+            // 
+            this.widthSliderControl.DefaultName = "N/A";
+            resources.ApplyResources(this.widthSliderControl, "widthSliderControl");
+            this.widthSliderControl.Name = "widthSliderControl";
+            // 
+            // pixelFormatControl
+            // 
+            this.pixelFormatControl.DefaultName = "N/A";
+            resources.ApplyResources(this.pixelFormatControl, "pixelFormatControl");
+            this.pixelFormatControl.Name = "pixelFormatControl";
+            // 
+            // testImageControl
+            // 
+            this.testImageControl.DefaultName = "N/A";
+            resources.ApplyResources(this.testImageControl, "testImageControl");
+            this.testImageControl.Name = "testImageControl";
             // 
             // toolStrip
             // 
@@ -988,59 +1017,15 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.textBox10);
+            this.tabPage5.Controls.Add(this.textBox8);
+            this.tabPage5.Controls.Add(this.textBox7);
+            this.tabPage5.Controls.Add(this.textBox6);
+            this.tabPage5.Controls.Add(this.button8);
             this.tabPage5.Controls.Add(this.tableDataGridView);
             resources.ApplyResources(this.tabPage5, "tabPage5");
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // updateDeviceListTimer
-            // 
-            this.updateDeviceListTimer.Enabled = true;
-            this.updateDeviceListTimer.Interval = 5000;
-            // 
-            // tableBindingSource
-            // 
-            this.tableBindingSource.DataMember = "Table";
-            this.tableBindingSource.DataSource = this.dataSetDB;
-            // 
-            // dataSetDB
-            // 
-            this.dataSetDB.DataSetName = "DataSetDB";
-            this.dataSetDB.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tableTableAdapter
-            // 
-            this.tableTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.TableTableAdapter = this.tableTableAdapter;
-            this.tableAdapterManager.UpdateOrder = TCP_LISTENER_Delta.DataSetDBTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // heightSliderControl
-            // 
-            this.heightSliderControl.DefaultName = "N/A";
-            resources.ApplyResources(this.heightSliderControl, "heightSliderControl");
-            this.heightSliderControl.Name = "heightSliderControl";
-            // 
-            // widthSliderControl
-            // 
-            this.widthSliderControl.DefaultName = "N/A";
-            resources.ApplyResources(this.widthSliderControl, "widthSliderControl");
-            this.widthSliderControl.Name = "widthSliderControl";
-            // 
-            // pixelFormatControl
-            // 
-            this.pixelFormatControl.DefaultName = "N/A";
-            resources.ApplyResources(this.pixelFormatControl, "pixelFormatControl");
-            this.pixelFormatControl.Name = "pixelFormatControl";
-            // 
-            // testImageControl
-            // 
-            this.testImageControl.DefaultName = "N/A";
-            resources.ApplyResources(this.testImageControl, "testImageControl");
-            this.testImageControl.Name = "testImageControl";
             // 
             // tableDataGridView
             // 
@@ -1073,6 +1058,58 @@
             this.dataGridViewTextBoxColumn3.DataPropertyName = "Time";
             resources.ApplyResources(this.dataGridViewTextBoxColumn3, "dataGridViewTextBoxColumn3");
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // tableBindingSource
+            // 
+            this.tableBindingSource.DataMember = "Table";
+            this.tableBindingSource.DataSource = this.dataSetDB;
+            // 
+            // dataSetDB
+            // 
+            this.dataSetDB.DataSetName = "DataSetDB";
+            this.dataSetDB.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // updateDeviceListTimer
+            // 
+            this.updateDeviceListTimer.Enabled = true;
+            this.updateDeviceListTimer.Interval = 5000;
+            // 
+            // tableTableAdapter
+            // 
+            this.tableTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.TableTableAdapter = this.tableTableAdapter;
+            this.tableAdapterManager.UpdateOrder = TCP_LISTENER_Delta.DataSetDBTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // button8
+            // 
+            resources.ApplyResources(this.button8, "button8");
+            this.button8.Name = "button8";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // textBox6
+            // 
+            resources.ApplyResources(this.textBox6, "textBox6");
+            this.textBox6.Name = "textBox6";
+            // 
+            // textBox7
+            // 
+            resources.ApplyResources(this.textBox7, "textBox7");
+            this.textBox7.Name = "textBox7";
+            // 
+            // textBox8
+            // 
+            resources.ApplyResources(this.textBox8, "textBox8");
+            this.textBox8.Name = "textBox8";
+            // 
+            // textBox10
+            // 
+            resources.ApplyResources(this.textBox10, "textBox10");
+            this.textBox10.Name = "textBox10";
             // 
             // Form_Listener
             // 
@@ -1126,10 +1163,11 @@
             this.groupBox5.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
+            this.tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tableDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetDB)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tableDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1256,6 +1294,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.TextBox textBox10;
     }
 }
 

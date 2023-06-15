@@ -29,6 +29,7 @@ using static System.Resources.ResXFileRef;
 using System.Runtime.InteropServices.ComTypes;
 using System.Data.SqlClient;
 using System.Data;
+using System.Threading.Tasks;
 
 //using MySql.Data.MySqlClient;
 
@@ -183,7 +184,7 @@ namespace TCP_LISTENER_Delta
         string cama;
 
         DateTime currentDateTime = DateTime.Now;
-        SqlConnection sqlConn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database1.mdf;Integrated Security=True;Connect Timeout=30");
+        SqlConnection sqlConn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\HOPE.mdf;Integrated Security=True;Connect Timeout=30");
 
         /// 
         /// Init Form
@@ -292,50 +293,77 @@ namespace TCP_LISTENER_Delta
             //camera.Parameters[PLCamera.SensorShutterMode].SetValue(PLCamera.SensorShutterMode.Rolling);
 
         }
+        //private void tableBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        //{
+        //   this.Validate();
+        //   this.tableBindingSource.EndEdit();
+        //   this.tableAdapterManager.UpdateAll(this.database1DataSet);
+        //
+        //  }
 
-    private void btn_save_Click()
+        // private void Form1_Load(object sender, EventArgs e)
+        // {
+        // TODO: This line of code loads data into the 'database1DataSet.Table' table. You can move, or remove it, as needed.
+        //     this.tableTableAdapter.Fill(this.database1DataSet.Table);
+
+        // }
+
+        private void btn_save_Click()
         {
-            string Id = Convert.ToString(ina);
+            sqlConn.Open();
+            string param1 = Convert.ToString(ina);
             ina++;
-            string cam = "0";
-            string time = currentDateTime.ToString("dddd, dd MMMM yyyy HH:mm:ss:fff");
-            try
+            string param2 = "0";
+            string param3 = currentDateTime.ToString("dd.MM.yyyy HH:mm:ss:fff");
+            string sql = "INSERT INTO HOPETable(Id,Camera,Time) VALUES(@param1,@param2,@param3)";
+            using (SqlCommand cmd = new SqlCommand(sql, sqlConn))
             {
-                sqlConn.Open();
-                SqlCommand sqlComm = new SqlCommand("insert into [Table] value ['" + Id + "','" + cam + "','" + time + "'])", sqlConn);
-                sqlComm.ExecuteNonQuery();
-                MessageBox.Show("Data Inserted Successfully.");
+                cmd.Parameters.Add("@param1", SqlDbType.Int).Value = param1;
+                cmd.Parameters.Add("@param2", SqlDbType.Text).Value = param2;
+                cmd.Parameters.Add("@param3", SqlDbType.Text).Value = param3;
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+
+            }
+            MessageBox.Show("Data Inserted Successfully.");
                 sqlConn.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //try
+            //{
+            //    sqlConn.Open();
+            //    SqlCommand sqlComm = new SqlCommand("INSERT INTO HOPETable(Id, Camera, Time)   VALUES(@param1,@param2,@param3", sqlConn);
+            //    sqlComm.ExecuteNonQuery();
+            //    MessageBox.Show("Data Inserted Successfully.");
+            //    sqlConn.Close();
+            //}
+            //catch (Exception ex)
+            //{
+            //   MessageBox.Show(ex.Message);
+            //}
 
 
-                //using (SqlCommand sqlComm = new SqlCommand("insert into Table values ('" + Id + "','" + cam + "','" + time + "')",sqlConn))//
-                //{
+            //using (SqlCommand sqlComm = new SqlCommand("insert into Table values ('" + Id + "','" + cam + "','" + time + "')",sqlConn))//
+            //{
 
-                //    if (sqlComm.Connection.State == ConnectionState.Closed)
-                //        sqlComm.Connection.Open();
-//
-//
-                 //   sqlComm.Parameters.AddWithValue("@Id", Id);
-                //    sqlComm.Parameters.AddWithValue("@Camera", cam);
-                 //   sqlComm.Parameters.AddWithValue("@Time", time);
-                 //   sqlComm.ExecuteNonQuery();
-                //    MessageBox.Show("Transition Updatet Sucessfully");
-                //}
-            
+            //    if (sqlComm.Connection.State == ConnectionState.Closed)
+            //        sqlComm.Connection.Open();
+            //
+            //
+            //   sqlComm.Parameters.AddWithValue("@Id", Id);
+            //    sqlComm.Parameters.AddWithValue("@Camera", cam);
+            //   sqlComm.Parameters.AddWithValue("@Time", time);
+            //   sqlComm.ExecuteNonQuery();
+            //    MessageBox.Show("Transition Updatet Sucessfully");
+            //}
+
         }
         private void button8_Click(object sender, EventArgs e)
         {
             try
             {
                 sqlConn.Open();
-                SqlCommand cmd = new SqlCommand("select * from [Table] where Id = ['" + textBox10.Text + "']", sqlConn);
+                SqlCommand cmd = new SqlCommand("select [Id],[Camera],[Time] from HOPETable", sqlConn);
                 SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
+                while (reader.Read())
                 {
                     textBox6.Text = reader[0].ToString();
                     textBox7.Text = reader[1].ToString();
@@ -2078,7 +2106,7 @@ namespace TCP_LISTENER_Delta
             ina++;
             OneShot(); // Start the grabbing of one image.
             
-                DataGridViewRow row = this.tableDataGridView.Rows[ina];
+                //DataGridViewRow row = this.tableDataGridView.Rows[ina];
             
         }
 
@@ -2224,18 +2252,27 @@ namespace TCP_LISTENER_Delta
         {
             ContinuousShot(); // Start the grabbing of images until grabbing is stopped.
         }
-        // Occurs when the stop frame acquisition button is clicked.
+
         private void toolStripButtonStop_Click_1(object sender, EventArgs e)
         {
-            Stop(); // Stop the grabbing of images.
+            Stop();
         }
 
-        private void Form_Listener_Load(object sender, EventArgs e)
+        private void hOPETableBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'dataSetDB.Table' table. You can move, or remove it, as needed.
-            this.tableTableAdapter.Fill(this.dataSetDB.Table);
 
         }
+
+        // Occurs when the stop frame acquisition button is clicked.
+
+        //private void Form_Listener_Load(object sender, EventArgs e)
+        // {
+        // TODO: This line of code loads data into the 'database1DataSet.Table' table. You can move, or remove it, as needed.
+        // this.tableTableAdapter.Fill(this.database1DataSet.Table);
+        // TODO: This line of code loads data into the 'dataSetDB.Table' table. You can move, or remove it, as needed.
+        // this.tableTableAdapter.Fill(this.dataSetDB.Table);
+
+        // }
     }
 
     }

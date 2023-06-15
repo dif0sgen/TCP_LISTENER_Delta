@@ -32,6 +32,7 @@ namespace TCP_LISTENER_Delta
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new Form_Listener());
+
             }
             catch (Exception ex)
             {

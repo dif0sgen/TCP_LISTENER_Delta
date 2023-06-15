@@ -171,14 +171,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataSetDB.cs">
-      <DependentUpon>DataSetDB.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="DataSetDB.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataSetDB.xsd</DependentUpon>
-    </Compile>
     <Compile Include="EnumerationComboBoxUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -191,9 +183,23 @@
     <Compile Include="FloatSliderUserControl.Designer.cs">
       <DependentUpon>FloatSliderUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form_Listener - Copy.cs" />
     <Compile Include="Form_Listener - Copy.Designer.cs">
       <DependentUpon>Form_Listener - Copy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HOPEDataSet.cs">
+      <DependentUpon>HOPEDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="HOPEDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HOPEDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="IntSliderUserControl.cs">
       <SubType>UserControl</SubType>
@@ -241,6 +247,9 @@
     <EmbeddedResource Include="FloatSliderUserControl.resx">
       <DependentUpon>FloatSliderUserControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form_Listener - Copy.resx">
       <DependentUpon>Form_Listener - Copy.cs</DependentUpon>
     </EmbeddedResource>
@@ -264,16 +273,16 @@
     <EmbeddedResource Include="UserControl1.resx">
       <DependentUpon>UserControl1.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="DataSetDB.xsc">
-      <DependentUpon>DataSetDB.xsd</DependentUpon>
+    <None Include="HOPEDataSet.xsc">
+      <DependentUpon>HOPEDataSet.xsd</DependentUpon>
     </None>
-    <None Include="DataSetDB.xsd">
-      <SubType>Designer</SubType>
+    <None Include="HOPEDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DataSetDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>HOPEDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
-    <None Include="DataSetDB.xss">
-      <DependentUpon>DataSetDB.xsd</DependentUpon>
+    <None Include="HOPEDataSet.xss">
+      <DependentUpon>HOPEDataSet.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -314,12 +323,12 @@
     <None Include="Resources\Group 12.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Database1.mdf">
+    <Content Include="HOPE.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Database1_log.ldf">
-      <DependentUpon>Database1.mdf</DependentUpon>
+    <Content Include="HOPE_log.ldf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>HOPE.mdf</DependentUpon>
     </Content>
     <Content Include="License-LGPL.txt" />
     <None Include="Resources\Group 33.png" />

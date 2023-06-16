@@ -29,71 +29,71 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             System.Windows.Forms.Label idLabel;
             System.Windows.Forms.Label cameraLabel;
             System.Windows.Forms.Label timeLabel;
-            this.hOPEDataSet = new TCP_LISTENER_Delta.HOPEDataSet();
-            this.hOPETableBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.hOPETableTableAdapter = new TCP_LISTENER_Delta.HOPEDataSetTableAdapters.HOPETableTableAdapter();
-            this.tableAdapterManager = new TCP_LISTENER_Delta.HOPEDataSetTableAdapters.TableAdapterManager();
-            this.hOPETableBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.database1DataSet = new TCP_LISTENER_Delta.Database1DataSet();
+            this.tableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tableTableAdapter = new TCP_LISTENER_Delta.Database1DataSetTableAdapters.TableTableAdapter();
+            this.tableAdapterManager = new TCP_LISTENER_Delta.Database1DataSetTableAdapters.TableAdapterManager();
+            this.tableBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.hOPETableBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.hOPETableDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idTextBox = new System.Windows.Forms.TextBox();
             this.cameraTextBox = new System.Windows.Forms.TextBox();
             this.timeTextBox = new System.Windows.Forms.TextBox();
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
+            this.tableBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.tableDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             idLabel = new System.Windows.Forms.Label();
             cameraLabel = new System.Windows.Forms.Label();
             timeLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.hOPEDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hOPETableBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hOPETableBindingNavigator)).BeginInit();
-            this.hOPETableBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.hOPETableDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableBindingNavigator)).BeginInit();
+            this.tableBindingNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tableDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
-            // hOPEDataSet
+            // database1DataSet
             // 
-            this.hOPEDataSet.DataSetName = "HOPEDataSet";
-            this.hOPEDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.database1DataSet.DataSetName = "Database1DataSet";
+            this.database1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // hOPETableBindingSource
+            // tableBindingSource
             // 
-            this.hOPETableBindingSource.DataMember = "HOPETable";
-            this.hOPETableBindingSource.DataSource = this.hOPEDataSet;
+            this.tableBindingSource.DataMember = "Table";
+            this.tableBindingSource.DataSource = this.database1DataSet;
             // 
-            // hOPETableTableAdapter
+            // tableTableAdapter
             // 
-            this.hOPETableTableAdapter.ClearBeforeFill = true;
+            this.tableTableAdapter.ClearBeforeFill = true;
             // 
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.HOPETableTableAdapter = this.hOPETableTableAdapter;
-            this.tableAdapterManager.UpdateOrder = TCP_LISTENER_Delta.HOPEDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.TableTableAdapter = this.tableTableAdapter;
+            this.tableAdapterManager.UpdateOrder = TCP_LISTENER_Delta.Database1DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // hOPETableBindingNavigator
+            // tableBindingNavigator
             // 
-            this.hOPETableBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
-            this.hOPETableBindingNavigator.BindingSource = this.hOPETableBindingSource;
-            this.hOPETableBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.hOPETableBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
-            this.hOPETableBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tableBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.tableBindingNavigator.BindingSource = this.tableBindingSource;
+            this.tableBindingNavigator.CountItem = this.bindingNavigatorCountItem;
+            this.tableBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
+            this.tableBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
             this.bindingNavigatorMovePreviousItem,
             this.bindingNavigatorSeparator,
@@ -105,17 +105,100 @@
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
-            this.hOPETableBindingNavigatorSaveItem});
-            this.hOPETableBindingNavigator.Location = new System.Drawing.Point(0, 0);
-            this.hOPETableBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
-            this.hOPETableBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
-            this.hOPETableBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
-            this.hOPETableBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
-            this.hOPETableBindingNavigator.Name = "hOPETableBindingNavigator";
-            this.hOPETableBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.hOPETableBindingNavigator.Size = new System.Drawing.Size(800, 25);
-            this.hOPETableBindingNavigator.TabIndex = 0;
-            this.hOPETableBindingNavigator.Text = "bindingNavigator1";
+            this.tableBindingNavigatorSaveItem});
+            this.tableBindingNavigator.Location = new System.Drawing.Point(0, 0);
+            this.tableBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
+            this.tableBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
+            this.tableBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
+            this.tableBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
+            this.tableBindingNavigator.Name = "tableBindingNavigator";
+            this.tableBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
+            this.tableBindingNavigator.Size = new System.Drawing.Size(800, 25);
+            this.tableBindingNavigator.TabIndex = 0;
+            this.tableBindingNavigator.Text = "bindingNavigator1";
+            // 
+            // bindingNavigatorSeparator
+            // 
+            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
+            // 
+            // bindingNavigatorPositionItem
+            // 
+            this.bindingNavigatorPositionItem.AccessibleName = "Position";
+            this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
+            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
+            this.bindingNavigatorPositionItem.Text = "0";
+            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
+            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // bindingNavigatorSeparator1
+            // 
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // bindingNavigatorSeparator2
+            // 
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // idLabel
+            // 
+            idLabel.AutoSize = true;
+            idLabel.Location = new System.Drawing.Point(19, 66);
+            idLabel.Name = "idLabel";
+            idLabel.Size = new System.Drawing.Size(19, 13);
+            idLabel.TabIndex = 1;
+            idLabel.Text = "Id:";
+            // 
+            // idTextBox
+            // 
+            this.idTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tableBindingSource, "Id", true));
+            this.idTextBox.Location = new System.Drawing.Point(71, 63);
+            this.idTextBox.Name = "idTextBox";
+            this.idTextBox.Size = new System.Drawing.Size(100, 20);
+            this.idTextBox.TabIndex = 2;
+            // 
+            // cameraLabel
+            // 
+            cameraLabel.AutoSize = true;
+            cameraLabel.Location = new System.Drawing.Point(19, 92);
+            cameraLabel.Name = "cameraLabel";
+            cameraLabel.Size = new System.Drawing.Size(46, 13);
+            cameraLabel.TabIndex = 3;
+            cameraLabel.Text = "Camera:";
+            // 
+            // cameraTextBox
+            // 
+            this.cameraTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tableBindingSource, "Camera", true));
+            this.cameraTextBox.Location = new System.Drawing.Point(71, 89);
+            this.cameraTextBox.Name = "cameraTextBox";
+            this.cameraTextBox.Size = new System.Drawing.Size(100, 20);
+            this.cameraTextBox.TabIndex = 4;
+            // 
+            // timeLabel
+            // 
+            timeLabel.AutoSize = true;
+            timeLabel.Location = new System.Drawing.Point(19, 118);
+            timeLabel.Name = "timeLabel";
+            timeLabel.Size = new System.Drawing.Size(33, 13);
+            timeLabel.TabIndex = 5;
+            timeLabel.Text = "Time:";
+            // 
+            // timeTextBox
+            // 
+            this.timeTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tableBindingSource, "Time", true));
+            this.timeTextBox.Location = new System.Drawing.Point(71, 115);
+            this.timeTextBox.Name = "timeTextBox";
+            this.timeTextBox.Size = new System.Drawing.Size(100, 20);
+            this.timeTextBox.TabIndex = 6;
             // 
             // bindingNavigatorAddNewItem
             // 
@@ -125,13 +208,6 @@
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorAddNewItem.Text = "Add new";
-            // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
             // bindingNavigatorDeleteItem
             // 
@@ -160,26 +236,6 @@
             this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMovePreviousItem.Text = "Move previous";
             // 
-            // bindingNavigatorSeparator
-            // 
-            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorPositionItem
-            // 
-            this.bindingNavigatorPositionItem.AccessibleName = "Position";
-            this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 23);
-            this.bindingNavigatorPositionItem.Text = "0";
-            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
-            // 
-            // bindingNavigatorSeparator1
-            // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
             // bindingNavigatorMoveNextItem
             // 
             this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -198,33 +254,28 @@
             this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMoveLastItem.Text = "Move last";
             // 
-            // bindingNavigatorSeparator2
+            // tableBindingNavigatorSaveItem
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.tableBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tableBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("tableBindingNavigatorSaveItem.Image")));
+            this.tableBindingNavigatorSaveItem.Name = "tableBindingNavigatorSaveItem";
+            this.tableBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
+            this.tableBindingNavigatorSaveItem.Text = "Save Data";
+            this.tableBindingNavigatorSaveItem.Click += new System.EventHandler(this.tableBindingNavigatorSaveItem_Click);
             // 
-            // hOPETableBindingNavigatorSaveItem
+            // tableDataGridView
             // 
-            this.hOPETableBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.hOPETableBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("hOPETableBindingNavigatorSaveItem.Image")));
-            this.hOPETableBindingNavigatorSaveItem.Name = "hOPETableBindingNavigatorSaveItem";
-            this.hOPETableBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
-            this.hOPETableBindingNavigatorSaveItem.Text = "Save Data";
-            this.hOPETableBindingNavigatorSaveItem.Click += new System.EventHandler(this.hOPETableBindingNavigatorSaveItem_Click);
-            // 
-            // hOPETableDataGridView
-            // 
-            this.hOPETableDataGridView.AutoGenerateColumns = false;
-            this.hOPETableDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.hOPETableDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.tableDataGridView.AutoGenerateColumns = false;
+            this.tableDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tableDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3});
-            this.hOPETableDataGridView.DataSource = this.hOPETableBindingSource;
-            this.hOPETableDataGridView.Location = new System.Drawing.Point(76, 81);
-            this.hOPETableDataGridView.Name = "hOPETableDataGridView";
-            this.hOPETableDataGridView.Size = new System.Drawing.Size(300, 220);
-            this.hOPETableDataGridView.TabIndex = 1;
+            this.tableDataGridView.DataSource = this.tableBindingSource;
+            this.tableDataGridView.Location = new System.Drawing.Point(22, 199);
+            this.tableDataGridView.Name = "tableDataGridView";
+            this.tableDataGridView.Size = new System.Drawing.Size(300, 220);
+            this.tableDataGridView.TabIndex = 7;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -244,79 +295,28 @@
             this.dataGridViewTextBoxColumn3.HeaderText = "Time";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             // 
-            // idLabel
-            // 
-            idLabel.AutoSize = true;
-            idLabel.Location = new System.Drawing.Point(456, 102);
-            idLabel.Name = "idLabel";
-            idLabel.Size = new System.Drawing.Size(19, 13);
-            idLabel.TabIndex = 2;
-            idLabel.Text = "Id:";
-            // 
-            // idTextBox
-            // 
-            this.idTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.hOPETableBindingSource, "Id", true));
-            this.idTextBox.Location = new System.Drawing.Point(508, 99);
-            this.idTextBox.Name = "idTextBox";
-            this.idTextBox.Size = new System.Drawing.Size(100, 20);
-            this.idTextBox.TabIndex = 3;
-            // 
-            // cameraLabel
-            // 
-            cameraLabel.AutoSize = true;
-            cameraLabel.Location = new System.Drawing.Point(456, 128);
-            cameraLabel.Name = "cameraLabel";
-            cameraLabel.Size = new System.Drawing.Size(46, 13);
-            cameraLabel.TabIndex = 4;
-            cameraLabel.Text = "Camera:";
-            // 
-            // cameraTextBox
-            // 
-            this.cameraTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.hOPETableBindingSource, "Camera", true));
-            this.cameraTextBox.Location = new System.Drawing.Point(508, 125);
-            this.cameraTextBox.Name = "cameraTextBox";
-            this.cameraTextBox.Size = new System.Drawing.Size(100, 20);
-            this.cameraTextBox.TabIndex = 5;
-            // 
-            // timeLabel
-            // 
-            timeLabel.AutoSize = true;
-            timeLabel.Location = new System.Drawing.Point(456, 154);
-            timeLabel.Name = "timeLabel";
-            timeLabel.Size = new System.Drawing.Size(33, 13);
-            timeLabel.TabIndex = 6;
-            timeLabel.Text = "Time:";
-            // 
-            // timeTextBox
-            // 
-            this.timeTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.hOPETableBindingSource, "Time", true));
-            this.timeTextBox.Location = new System.Drawing.Point(508, 151);
-            this.timeTextBox.Name = "timeTextBox";
-            this.timeTextBox.Size = new System.Drawing.Size(100, 20);
-            this.timeTextBox.TabIndex = 7;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.tableDataGridView);
             this.Controls.Add(idLabel);
             this.Controls.Add(this.idTextBox);
             this.Controls.Add(cameraLabel);
             this.Controls.Add(this.cameraTextBox);
             this.Controls.Add(timeLabel);
             this.Controls.Add(this.timeTextBox);
-            this.Controls.Add(this.hOPETableDataGridView);
-            this.Controls.Add(this.hOPETableBindingNavigator);
+            this.Controls.Add(this.tableBindingNavigator);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.hOPEDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hOPETableBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hOPETableBindingNavigator)).EndInit();
-            this.hOPETableBindingNavigator.ResumeLayout(false);
-            this.hOPETableBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.hOPETableDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.database1DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableBindingNavigator)).EndInit();
+            this.tableBindingNavigator.ResumeLayout(false);
+            this.tableBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tableDataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -324,11 +324,11 @@
 
         #endregion
 
-        private HOPEDataSet hOPEDataSet;
-        private System.Windows.Forms.BindingSource hOPETableBindingSource;
-        private HOPEDataSetTableAdapters.HOPETableTableAdapter hOPETableTableAdapter;
-        private HOPEDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private System.Windows.Forms.BindingNavigator hOPETableBindingNavigator;
+        private Database1DataSet database1DataSet;
+        private System.Windows.Forms.BindingSource tableBindingSource;
+        private Database1DataSetTableAdapters.TableTableAdapter tableTableAdapter;
+        private Database1DataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.BindingNavigator tableBindingNavigator;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
@@ -340,13 +340,13 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.ToolStripButton hOPETableBindingNavigatorSaveItem;
-        private System.Windows.Forms.DataGridView hOPETableDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.ToolStripButton tableBindingNavigatorSaveItem;
         private System.Windows.Forms.TextBox idTextBox;
         private System.Windows.Forms.TextBox cameraTextBox;
         private System.Windows.Forms.TextBox timeTextBox;
+        private System.Windows.Forms.DataGridView tableDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
     }
 }

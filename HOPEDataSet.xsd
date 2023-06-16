@@ -9,7 +9,7 @@
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="HOPETableTableAdapter" GeneratorDataComponentClassName="HOPETableTableAdapter" Name="HOPETable" UserDataComponentName="HOPETableTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="HOPEConnectionString (Settings)" DbObjectName="dbo.HOPETable" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="HOPEConnectionString (Settings)" DbObjectName="dbo.HOPETable" DbObjectType="Table" FillMethodModifier="Private" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM [dbo].[HOPETable] WHERE (([Id] = @Original_Id) AND ((@IsNull_Camera = 1 AND [Camera] IS NULL) OR ([Camera] = @Original_Camera)) AND ((@IsNull_Time = 1 AND [Time] IS NULL) OR ([Time] = @Original_Time)))</CommandText>
@@ -75,7 +75,7 @@ SELECT Id, Camera, Time FROM HOPETable WHERE (Id = @Id)</CommandText>
         <xs:element name="HOPETable" msprop:Generator_RowEvHandlerName="HOPETableRowChangeEventHandler" msprop:Generator_RowDeletedName="HOPETableRowDeleted" msprop:Generator_RowDeletingName="HOPETableRowDeleting" msprop:Generator_RowEvArgName="HOPETableRowChangeEvent" msprop:Generator_TablePropName="HOPETable" msprop:Generator_RowChangedName="HOPETableRowChanged" msprop:Generator_UserTableName="HOPETable" msprop:Generator_RowChangingName="HOPETableRowChanging" msprop:Generator_RowClassName="HOPETableRow" msprop:Generator_TableClassName="HOPETableDataTable" msprop:Generator_TableVarName="tableHOPETable">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnVarNameInTable="columnId" type="xs:int" minOccurs="0" />
+              <xs:element name="Id" msdata:AutoIncrementSeed="1" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnVarNameInTable="columnId" type="xs:int" />
               <xs:element name="Camera" msprop:Generator_ColumnPropNameInTable="CameraColumn" msprop:Generator_ColumnPropNameInRow="Camera" msprop:Generator_UserColumnName="Camera" msprop:Generator_ColumnVarNameInTable="columnCamera" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -90,6 +90,7 @@ SELECT Id, Camera, Time FROM HOPETable WHERE (Id = @Id)</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="UserID" msprop:Generator_ColumnPropNameInRow="UserID" msprop:Generator_ColumnPropNameInTable="UserIDColumn" msprop:Generator_ColumnVarNameInTable="columnUserID" msprop:Generator_UserColumnName="UserID" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

@@ -29,10 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.Label idLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Listener));
-            System.Windows.Forms.Label cameraLabel;
-            System.Windows.Forms.Label timeLabel;
             this.imageListForDeviceList = new System.Windows.Forms.ImageList(this.components);
             this.pictureBox = new System.Windows.Forms.PictureBox();
             this.btnStart = new System.Windows.Forms.Button();
@@ -44,15 +41,9 @@
             this.updateDeviceListTimer = new System.Windows.Forms.Timer(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.idTextBox = new System.Windows.Forms.TextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.hOPETableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.hOPEDataSet = new TCP_LISTENER_Delta.HOPEDataSet();
-            this.cameraTextBox = new System.Windows.Forms.TextBox();
-            this.timeTextBox = new System.Windows.Forms.TextBox();
-            this.hOPETableDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
@@ -161,29 +152,16 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.hOPETableTableAdapter = new TCP_LISTENER_Delta.HOPEDataSetTableAdapters.HOPETableTableAdapter();
             this.tableAdapterManager = new TCP_LISTENER_Delta.HOPEDataSetTableAdapters.TableAdapterManager();
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.hOPETableBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.hOPETableBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            idLabel = new System.Windows.Forms.Label();
-            cameraLabel = new System.Windows.Forms.Label();
-            timeLabel = new System.Windows.Forms.Label();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cameraDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.timeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hOPETableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hOPEDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hOPETableDataGridView)).BeginInit();
             this.tabPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerImageView)).BeginInit();
             this.splitContainerImageView.Panel1.SuspendLayout();
@@ -208,24 +186,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.MotorSpeedSliderControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.hOPETableBindingNavigator)).BeginInit();
-            this.hOPETableBindingNavigator.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // idLabel
-            // 
-            resources.ApplyResources(idLabel, "idLabel");
-            idLabel.Name = "idLabel";
-            // 
-            // cameraLabel
-            // 
-            resources.ApplyResources(cameraLabel, "cameraLabel");
-            cameraLabel.Name = "cameraLabel";
-            // 
-            // timeLabel
-            // 
-            resources.ApplyResources(timeLabel, "timeLabel");
-            timeLabel.Name = "timeLabel";
             // 
             // imageListForDeviceList
             // 
@@ -245,7 +206,6 @@
             this.btnStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(11)))), ((int)(((byte)(103)))), ((int)(((byte)(210)))));
             this.btnStart.FlatAppearance.BorderSize = 0;
             this.btnStart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(11)))), ((int)(((byte)(103)))), ((int)(((byte)(210)))));
-            this.btnStart.Image = global::TCP_LISTENER_Delta.Properties.Resources.Group_9;
             this.btnStart.Name = "btnStart";
             this.btnStart.UseVisualStyleBackColor = false;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
@@ -282,14 +242,7 @@
             // 
             // tabPage5
             // 
-            this.tabPage5.Controls.Add(idLabel);
-            this.tabPage5.Controls.Add(this.idTextBox);
-            this.tabPage5.Controls.Add(cameraLabel);
-            this.tabPage5.Controls.Add(this.cameraTextBox);
-            this.tabPage5.Controls.Add(timeLabel);
-            this.tabPage5.Controls.Add(this.timeTextBox);
-            this.tabPage5.Controls.Add(this.hOPETableDataGridView);
-            this.tabPage5.Controls.Add(this.hOPETableBindingNavigator);
+            this.tabPage5.Controls.Add(this.dataGridView1);
             this.tabPage5.Controls.Add(this.textBox10);
             this.tabPage5.Controls.Add(this.textBox8);
             this.tabPage5.Controls.Add(this.textBox7);
@@ -299,11 +252,22 @@
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // idTextBox
+            // dataGridView1
             // 
-            this.idTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.hOPETableBindingSource, "Id", true));
-            resources.ApplyResources(this.idTextBox, "idTextBox");
-            this.idTextBox.Name = "idTextBox";
+            this.dataGridView1.AllowUserToOrderColumns = true;
+            this.dataGridView1.AllowUserToResizeColumns = false;
+            this.dataGridView1.AllowUserToResizeRows = false;
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
+            this.cameraDataGridViewTextBoxColumn,
+            this.timeDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.hOPETableBindingSource;
+            resources.ApplyResources(this.dataGridView1, "dataGridView1");
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             // 
             // hOPETableBindingSource
             // 
@@ -314,48 +278,6 @@
             // 
             this.hOPEDataSet.DataSetName = "HOPEDataSet";
             this.hOPEDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // cameraTextBox
-            // 
-            this.cameraTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.hOPETableBindingSource, "Camera", true));
-            resources.ApplyResources(this.cameraTextBox, "cameraTextBox");
-            this.cameraTextBox.Name = "cameraTextBox";
-            // 
-            // timeTextBox
-            // 
-            this.timeTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.hOPETableBindingSource, "Time", true));
-            resources.ApplyResources(this.timeTextBox, "timeTextBox");
-            this.timeTextBox.Name = "timeTextBox";
-            // 
-            // hOPETableDataGridView
-            // 
-            this.hOPETableDataGridView.AutoGenerateColumns = false;
-            this.hOPETableDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.hOPETableDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3});
-            this.hOPETableDataGridView.DataSource = this.hOPETableBindingSource;
-            resources.ApplyResources(this.hOPETableDataGridView, "hOPETableDataGridView");
-            this.hOPETableDataGridView.Name = "hOPETableDataGridView";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            resources.ApplyResources(this.dataGridViewTextBoxColumn1, "dataGridViewTextBoxColumn1");
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Camera";
-            resources.ApplyResources(this.dataGridViewTextBoxColumn2, "dataGridViewTextBoxColumn2");
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Time";
-            resources.ApplyResources(this.dataGridViewTextBoxColumn3, "dataGridViewTextBoxColumn3");
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             // 
             // textBox10
             // 
@@ -826,7 +748,6 @@
             this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(11)))), ((int)(((byte)(103)))), ((int)(((byte)(210)))));
             this.button5.FlatAppearance.BorderSize = 0;
             this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(11)))), ((int)(((byte)(103)))), ((int)(((byte)(210)))));
-            this.button5.Image = global::TCP_LISTENER_Delta.Properties.Resources.Group_31;
             this.button5.Name = "button5";
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
@@ -922,7 +843,6 @@
             this.btnDWN.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(11)))), ((int)(((byte)(103)))), ((int)(((byte)(210)))));
             this.btnDWN.FlatAppearance.BorderSize = 0;
             this.btnDWN.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(11)))), ((int)(((byte)(103)))), ((int)(((byte)(210)))));
-            this.btnDWN.Image = global::TCP_LISTENER_Delta.Properties.Resources.Group_13;
             this.btnDWN.Name = "btnDWN";
             this.btnDWN.UseVisualStyleBackColor = false;
             // 
@@ -932,7 +852,6 @@
             this.btnUP.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(11)))), ((int)(((byte)(103)))), ((int)(((byte)(210)))));
             this.btnUP.FlatAppearance.BorderSize = 0;
             this.btnUP.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(11)))), ((int)(((byte)(103)))), ((int)(((byte)(210)))));
-            this.btnUP.Image = global::TCP_LISTENER_Delta.Properties.Resources.Group_16;
             this.btnUP.Name = "btnUP";
             this.btnUP.UseVisualStyleBackColor = false;
             // 
@@ -1037,7 +956,6 @@
             this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(11)))), ((int)(((byte)(103)))), ((int)(((byte)(210)))));
             this.button3.FlatAppearance.BorderSize = 0;
             this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(11)))), ((int)(((byte)(103)))), ((int)(((byte)(210)))));
-            this.button3.Image = global::TCP_LISTENER_Delta.Properties.Resources.Group_32;
             this.button3.Name = "button3";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click_1);
@@ -1048,7 +966,6 @@
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(11)))), ((int)(((byte)(103)))), ((int)(((byte)(210)))));
             this.button2.FlatAppearance.BorderSize = 0;
             this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(11)))), ((int)(((byte)(103)))), ((int)(((byte)(210)))));
-            this.button2.Image = global::TCP_LISTENER_Delta.Properties.Resources.Group_24;
             this.button2.Name = "button2";
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -1059,7 +976,6 @@
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(11)))), ((int)(((byte)(103)))), ((int)(((byte)(210)))));
             this.button1.FlatAppearance.BorderSize = 0;
             this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(11)))), ((int)(((byte)(103)))), ((int)(((byte)(210)))));
-            this.button1.Image = global::TCP_LISTENER_Delta.Properties.Resources.Group_21;
             this.button1.Name = "button1";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -1173,99 +1089,23 @@
             this.tableAdapterManager.HOPETableTableAdapter = this.hOPETableTableAdapter;
             this.tableAdapterManager.UpdateOrder = TCP_LISTENER_Delta.HOPEDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // bindingNavigatorMoveFirstItem
+            // idDataGridViewTextBoxColumn
             // 
-            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.bindingNavigatorMoveFirstItem, "bindingNavigatorMoveFirstItem");
-            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "UserID";
+            resources.ApplyResources(this.idDataGridViewTextBoxColumn, "idDataGridViewTextBoxColumn");
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             // 
-            // bindingNavigatorMovePreviousItem
+            // cameraDataGridViewTextBoxColumn
             // 
-            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.bindingNavigatorMovePreviousItem, "bindingNavigatorMovePreviousItem");
-            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
+            this.cameraDataGridViewTextBoxColumn.DataPropertyName = "Camera";
+            resources.ApplyResources(this.cameraDataGridViewTextBoxColumn, "cameraDataGridViewTextBoxColumn");
+            this.cameraDataGridViewTextBoxColumn.Name = "cameraDataGridViewTextBoxColumn";
             // 
-            // bindingNavigatorSeparator
+            // timeDataGridViewTextBoxColumn
             // 
-            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            resources.ApplyResources(this.bindingNavigatorSeparator, "bindingNavigatorSeparator");
-            // 
-            // bindingNavigatorPositionItem
-            // 
-            resources.ApplyResources(this.bindingNavigatorPositionItem, "bindingNavigatorPositionItem");
-            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            resources.ApplyResources(this.bindingNavigatorCountItem, "bindingNavigatorCountItem");
-            // 
-            // bindingNavigatorSeparator1
-            // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            resources.ApplyResources(this.bindingNavigatorSeparator1, "bindingNavigatorSeparator1");
-            // 
-            // bindingNavigatorMoveNextItem
-            // 
-            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.bindingNavigatorMoveNextItem, "bindingNavigatorMoveNextItem");
-            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
-            // 
-            // bindingNavigatorMoveLastItem
-            // 
-            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.bindingNavigatorMoveLastItem, "bindingNavigatorMoveLastItem");
-            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
-            // 
-            // bindingNavigatorSeparator2
-            // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            resources.ApplyResources(this.bindingNavigatorSeparator2, "bindingNavigatorSeparator2");
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.bindingNavigatorDeleteItem, "bindingNavigatorDeleteItem");
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            // 
-            // hOPETableBindingNavigatorSaveItem
-            // 
-            this.hOPETableBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.hOPETableBindingNavigatorSaveItem, "hOPETableBindingNavigatorSaveItem");
-            this.hOPETableBindingNavigatorSaveItem.Name = "hOPETableBindingNavigatorSaveItem";
-            // 
-            // hOPETableBindingNavigator
-            // 
-            this.hOPETableBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
-            this.hOPETableBindingNavigator.BindingSource = this.hOPETableBindingSource;
-            this.hOPETableBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.hOPETableBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
-            this.hOPETableBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bindingNavigatorMoveFirstItem,
-            this.bindingNavigatorMovePreviousItem,
-            this.bindingNavigatorSeparator,
-            this.bindingNavigatorPositionItem,
-            this.bindingNavigatorCountItem,
-            this.bindingNavigatorSeparator1,
-            this.bindingNavigatorMoveNextItem,
-            this.bindingNavigatorMoveLastItem,
-            this.bindingNavigatorSeparator2,
-            this.bindingNavigatorAddNewItem,
-            this.bindingNavigatorDeleteItem,
-            this.hOPETableBindingNavigatorSaveItem});
-            resources.ApplyResources(this.hOPETableBindingNavigator, "hOPETableBindingNavigator");
-            this.hOPETableBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
-            this.hOPETableBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
-            this.hOPETableBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
-            this.hOPETableBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
-            this.hOPETableBindingNavigator.Name = "hOPETableBindingNavigator";
-            this.hOPETableBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            resources.ApplyResources(this.bindingNavigatorAddNewItem, "bindingNavigatorAddNewItem");
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.timeDataGridViewTextBoxColumn.DataPropertyName = "Time";
+            resources.ApplyResources(this.timeDataGridViewTextBoxColumn, "timeDataGridViewTextBoxColumn");
+            this.timeDataGridViewTextBoxColumn.Name = "timeDataGridViewTextBoxColumn";
             // 
             // Form_Listener
             // 
@@ -1286,9 +1126,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hOPETableBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hOPEDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hOPETableDataGridView)).EndInit();
             this.tabPage4.ResumeLayout(false);
             this.splitContainerImageView.Panel1.ResumeLayout(false);
             this.splitContainerImageView.Panel1.PerformLayout();
@@ -1323,9 +1163,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.MotorSpeedSliderControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.hOPETableBindingNavigator)).EndInit();
-            this.hOPETableBindingNavigator.ResumeLayout(false);
-            this.hOPETableBindingNavigator.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1454,26 +1291,10 @@
         private System.Windows.Forms.BindingSource hOPETableBindingSource;
         private HOPEDataSetTableAdapters.HOPETableTableAdapter hOPETableTableAdapter;
         private HOPEDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private System.Windows.Forms.DataGridView hOPETableDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.TextBox idTextBox;
-        private System.Windows.Forms.TextBox cameraTextBox;
-        private System.Windows.Forms.TextBox timeTextBox;
-        private System.Windows.Forms.BindingNavigator hOPETableBindingNavigator;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
-        private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
-        private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
-        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.ToolStripButton hOPETableBindingNavigatorSaveItem;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cameraDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn timeDataGridViewTextBoxColumn;
     }
 }
 

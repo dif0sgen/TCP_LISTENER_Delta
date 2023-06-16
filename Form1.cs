@@ -17,18 +17,18 @@ namespace TCP_LISTENER_Delta
             InitializeComponent();
         }
 
-        private void hOPETableBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        private void tableBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
             this.Validate();
-            this.hOPETableBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.hOPEDataSet);
+            this.tableBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.database1DataSet);
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'hOPEDataSet.HOPETable' table. You can move, or remove it, as needed.
-            this.hOPETableTableAdapter.Fill(this.hOPEDataSet.HOPETable);
+            // TODO: This line of code loads data into the 'database1DataSet.Table' table. You can move, or remove it, as needed.
+            this.tableTableAdapter.Fill(this.database1DataSet.Table);
 
         }
     }

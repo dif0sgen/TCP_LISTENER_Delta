@@ -183,9 +183,14 @@ namespace TCP_LISTENER_Delta
         int ina;
         string cama;
 
-        DateTime currentDateTime = DateTime.Now;
-        SqlConnection sqlConn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\HOPE.mdf;Integrated Security=True;Connect Timeout=30");
+        DataSet ds;
+        SqlDataAdapter adapter;
+        SqlCommandBuilder commandBuilder;
 
+
+        SqlConnection sqlConn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\HOPE.mdf;Integrated Security=True;Connect Timeout=30");
+        string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\HOPE.mdf;Integrated Security=True;";
+        string sql = "SELECT * FROM HOPETable";
         /// 
         /// Init Form
         /// 
@@ -259,6 +264,20 @@ namespace TCP_LISTENER_Delta
             // Update the list of available camera devices in the upper left area.
             UpdateDeviceList();
 
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.AllowUserToAddRows = false;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                adapter = new SqlDataAdapter(sql, connection);
+
+                ds = new DataSet();
+                adapter.Fill(ds);
+                dataGridView1.DataSource = ds.Tables[0];
+                // делаем недоступным столбец id для изменения
+                //dataGridView1.Columns["Id"].ReadOnly = true;
+            }
             // Disable all buttons.
             //EnableButtons(false, false);
 
@@ -308,23 +327,72 @@ namespace TCP_LISTENER_Delta
 
         // }
 
+        // кнопка добавления
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            DataRow row = ds.Tables[0].NewRow(); // добавляем новую строку в DataTable
+            ds.Tables[0].Rows.Add(row);
+        }
+        // кнопка удаления
+        private void deleteButton_Click(object sender, EventArgs e)
+        {
+            // удаляем выделенные строки из dataGridView1
+            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            {
+                dataGridView1.Rows.Remove(row);
+            }
+        }
+        // кнопка сохранения
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                adapter = new SqlDataAdapter(sql, connection);
+                commandBuilder = new SqlCommandBuilder(adapter);
+                adapter.InsertCommand = new SqlCommand("sp_CreateUser", connection);
+                adapter.InsertCommand.CommandType = CommandType.StoredProcedure;
+                adapter.InsertCommand.Parameters.Add(new SqlParameter("@name", SqlDbType.NVarChar, 50, "Name"));
+                adapter.InsertCommand.Parameters.Add(new SqlParameter("@age", SqlDbType.Int, 0, "Age"));
+
+                SqlParameter parameter = adapter.InsertCommand.Parameters.Add("@Id", SqlDbType.Int, 0, "Id");
+                parameter.Direction = ParameterDirection.Output;
+
+                adapter.Update(ds);
+            }
+        }
         private void btn_save_Click()
         {
+            DateTime currentDateTime = DateTime.Now;
             sqlConn.Open();
-            string param1 = Convert.ToString(ina);
+            DataRow row = ds.Tables[0].NewRow(); // добавляем новую строку в DataTable
+            ds.Tables[0].Rows.Add(row);
+            string Id = Convert.ToString(ina);
             ina++;
-            string param2 = "0";
-            string param3 = currentDateTime.ToString("dd.MM.yyyy HH:mm:ss:fff");
-            string sql = "INSERT INTO HOPETable(Id,Camera,Time) VALUES(@param1,@param2,@param3)";
-            using (SqlCommand cmd = new SqlCommand(sql, sqlConn))
+            string Camera = "Cameraaaaa";
+            string Time = currentDateTime.ToString("dd.MM.yyyy HH:mm:ss:fff");
+            string sql = "INSERT INTO HOPETable (Id, Camera,Time) VALUES(@Id, @Camera,@Time)";
+            row["Id"] = ina;
+            row["UserID"] = ina;
+            row["Camera"] = "Kris";
+            row["Time"] = Time;
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                cmd.Parameters.Add("@param1", SqlDbType.Int).Value = param1;
-                cmd.Parameters.Add("@param2", SqlDbType.Text).Value = param2;
-                cmd.Parameters.Add("@param3", SqlDbType.Text).Value = param3;
-                cmd.CommandType = CommandType.Text;
-                cmd.ExecuteNonQuery();
+                //connection.Open();
+                adapter = new SqlDataAdapter(sql, connection);
+                commandBuilder = new SqlCommandBuilder(adapter);
+                adapter.InsertCommand = new SqlCommand("sp_HOPE", connection);
+                adapter.InsertCommand.CommandType = CommandType.StoredProcedure;
+                adapter.InsertCommand.Parameters.Add(new SqlParameter("@UserID", SqlDbType.Int, 0, "UserID"));
+                adapter.InsertCommand.Parameters.Add(new SqlParameter("@Camera", SqlDbType.Text, 0, "Camera"));
+                adapter.InsertCommand.Parameters.Add(new SqlParameter("@Time", SqlDbType.Text, 0, "Time"));
 
+                SqlParameter parameter = adapter.InsertCommand.Parameters.Add("@Id", SqlDbType.Int, 0, "Id");
+                parameter.Direction = ParameterDirection.Output;
+
+                adapter.Update(ds);
             }
+
             MessageBox.Show("Data Inserted Successfully.");
                 sqlConn.Close();
             //try
@@ -358,16 +426,17 @@ namespace TCP_LISTENER_Delta
         }
         private void button8_Click(object sender, EventArgs e)
         {
-            try
+            string no = textBox10.Text;
+          try
             {
                 sqlConn.Open();
-                SqlCommand cmd = new SqlCommand("select [Id],[Camera],[Time] from HOPETable", sqlConn);
+                SqlCommand cmd = new SqlCommand("select UserID,Camera,Time from HOPETable WHERE UserID = '3'", sqlConn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    textBox6.Text = reader[0].ToString();
-                    textBox7.Text = reader[1].ToString();
-                    textBox8.Text = reader[2].ToString();
+                    textBox6.Text = reader[1].ToString();
+                   textBox7.Text = reader[2].ToString();
+                    textBox8.Text = reader[3].ToString();
                 }
                 sqlConn.Close();
             }

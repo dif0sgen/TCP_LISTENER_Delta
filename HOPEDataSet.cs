@@ -9,3 +9,10 @@
         }
     }
 }
+
+namespace TCP_LISTENER_Delta.HOPEDataSetTableAdapters {
+    
+    
+    public partial class HOPETableTableAdapter {
+    }
+}

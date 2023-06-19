@@ -30,6 +30,8 @@ using System.Runtime.InteropServices.ComTypes;
 using System.Data.SqlClient;
 using System.Data;
 using System.Threading.Tasks;
+using MySqlX.XDevAPI.Relational;
+using Org.BouncyCastle.Utilities;
 
 //using MySql.Data.MySqlClient;
 
@@ -328,13 +330,13 @@ namespace TCP_LISTENER_Delta
         // }
 
         // кнопка добавления
-        private void addButton_Click(object sender, EventArgs e)
+        private void Add_Click(object sender, EventArgs e)
         {
             DataRow row = ds.Tables[0].NewRow(); // добавляем новую строку в DataTable
             ds.Tables[0].Rows.Add(row);
         }
         // кнопка удаления
-        private void deleteButton_Click(object sender, EventArgs e)
+        private void Del_Click(object sender, EventArgs e)
         {
             // удаляем выделенные строки из dataGridView1
             foreach (DataGridViewRow row in dataGridView1.SelectedRows)
@@ -343,23 +345,27 @@ namespace TCP_LISTENER_Delta
             }
         }
         // кнопка сохранения
-        private void saveButton_Click(object sender, EventArgs e)
+        private void Save_Click(object sender, EventArgs e)
         {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                adapter = new SqlDataAdapter(sql, connection);
-                commandBuilder = new SqlCommandBuilder(adapter);
-                adapter.InsertCommand = new SqlCommand("sp_CreateUser", connection);
-                adapter.InsertCommand.CommandType = CommandType.StoredProcedure;
-                adapter.InsertCommand.Parameters.Add(new SqlParameter("@name", SqlDbType.NVarChar, 50, "Name"));
-                adapter.InsertCommand.Parameters.Add(new SqlParameter("@age", SqlDbType.Int, 0, "Age"));
+            //using (sqlconnection connection = new sqlconnection(connectionstring))
+            //{
+            //    string id = convert.tostring(ina);
+            //    ina++;
+            //    sqlconn.open();
+            //    adapter = new sqldataadapter (sql, connection);
+            //    commandbuilder = new sqlcommandbuilder(adapter);
+            //    adapter.insertcommand = new sqlcommand("sp_hope", connection);
+            //    adapter.insertcommand.commandtype = commandtype.storedprocedure;
+            //    adapter.insertcommand.parameters.add(new sqlparameter("@userid", sqldbtype.int, 0, "userid"));
+            //    adapter.insertcommand.parameters.add(new sqlparameter("@camera", sqldbtype.text, 0, "camera"));
+            //    adapter.insertcommand.parameters.add(new sqlparameter("@time", sqldbtype.text, 0, "time"));
 
-                SqlParameter parameter = adapter.InsertCommand.Parameters.Add("@Id", SqlDbType.Int, 0, "Id");
-                parameter.Direction = ParameterDirection.Output;
+            //    sqlparameter parameter = adapter.insertcommand.parameters.add("@id", sqldbtype.int, 0, "id");
+            //    parameter.direction = parameterdirection.output;
 
-                adapter.Update(ds);
-            }
+            //    adapter.update(ds);
+            //}
+            //sqlconn.close();
         }
         private void btn_save_Click()
         {
@@ -394,7 +400,7 @@ namespace TCP_LISTENER_Delta
             }
 
             MessageBox.Show("Data Inserted Successfully.");
-                sqlConn.Close();
+            sqlConn.Close();
             //try
             //{
             //    sqlConn.Open();
@@ -426,17 +432,73 @@ namespace TCP_LISTENER_Delta
         }
         private void button8_Click(object sender, EventArgs e)
         {
-            string no = textBox10.Text;
           try
             {
                 sqlConn.Open();
-                SqlCommand cmd = new SqlCommand("select UserID,Camera,Time from HOPETable WHERE UserID = '3'", sqlConn);
+                SqlCommand cmd = new SqlCommand("select UserID,Camera,Time from HOPETable WHERE UserID = " + textBox10.Text, sqlConn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    textBox6.Text = reader[1].ToString();
-                   textBox7.Text = reader[2].ToString();
-                    textBox8.Text = reader[3].ToString();
+                    textBox6.Text = reader[0].ToString();
+                   textBox7.Text = reader[1].ToString();
+                    textBox8.Text = reader[2].ToString();
+                }
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+                textBox12.Text = "Row count: " + Convert.ToString(dataGridView2.RowCount);
+                sqlConn.Open();
+                SqlCommand cmd = new SqlCommand("select UserID,Camera,Time from HOPETable WHERE UserID = " + textBox11.Text, sqlConn);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                // Set the column header names.
+                dataGridView2.Columns[0].Name = "UserID";
+                dataGridView2.Columns[1].Name = "Camera";
+                dataGridView2.Columns[2].Name = "Time";
+
+
+                while (reader.Read())
+                {
+                    dataGridView2.Rows.Add(reader[0], reader[1], reader[2]);
+                }
+                sqlConn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void button11_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                foreach (DataGridViewRow row in dataGridView2.Rows)
+                {
+                    dataGridView2.Rows.Remove(row);
+                }
+                sqlConn.Open();
+                SqlCommand cmd = new SqlCommand("select UserID,Camera,Time from HOPETable WHERE UserID = " + textBox11.Text, sqlConn);
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                // Set the column header names.
+                dataGridView2.Columns[0].Name = "UserID";
+                dataGridView2.Columns[1].Name = "Camera";
+                dataGridView2.Columns[2].Name = "Time";
+
+
+                while (reader.Read())
+                {
+                    dataGridView2.Rows.Add(reader[0], reader[1], reader[2]);
                 }
                 sqlConn.Close();
             }
@@ -2331,6 +2393,26 @@ namespace TCP_LISTENER_Delta
         {
 
         }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            sqlConn.Close();
+        }
+
+        private void Form_Listener_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'hOPEDataSet11.HOPETable' table. You can move, or remove it, as needed.
+            this.hOPETableTableAdapter2.Fill(this.hOPEDataSet11.HOPETable);
+
+        }
+
+
+
+
+
+
+
+
 
         // Occurs when the stop frame acquisition button is clicked.
 

@@ -187,13 +187,15 @@
     <Compile Include="Form_Listener - Copy.Designer.cs">
       <DependentUpon>Form_Listener - Copy.cs</DependentUpon>
     </Compile>
-    <Compile Include="HOPEDataSet.cs">
-      <DependentUpon>HOPEDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="HOPEDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>HOPEDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="HOPEDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HOPEDataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="IntSliderUserControl.cs">
       <SubType>UserControl</SubType>
@@ -274,6 +276,17 @@
     </None>
     <None Include="HOPEDataSet.xss">
       <DependentUpon>HOPEDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="HOPEDataSet1.xsc">
+      <DependentUpon>HOPEDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="HOPEDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>HOPEDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="HOPEDataSet1.xss">
+      <DependentUpon>HOPEDataSet1.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

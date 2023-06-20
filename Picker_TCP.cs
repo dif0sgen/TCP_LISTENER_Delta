@@ -193,6 +193,8 @@ namespace TCP_LISTENER_Delta
         SqlConnection sqlConn = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\HOPE.mdf;Integrated Security=True;Connect Timeout=30");
         string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\HOPE.mdf;Integrated Security=True;";
         string sql = "SELECT * FROM HOPETable";
+        int irow;
+        SqlCommand cmd;
         /// 
         /// Init Form
         /// 
@@ -280,6 +282,8 @@ namespace TCP_LISTENER_Delta
                 // делаем недоступным столбец id для изменения
                 //dataGridView1.Columns["Id"].ReadOnly = true;
             }
+
+            textBox12.Text = "Row count: 0";
             // Disable all buttons.
             //EnableButtons(false, false);
 
@@ -334,38 +338,89 @@ namespace TCP_LISTENER_Delta
         {
             DataRow row = ds.Tables[0].NewRow(); // добавляем новую строку в DataTable
             ds.Tables[0].Rows.Add(row);
+            ina++;
+            row["Id"] = ina;
+            row["UserID"] = DBNull.Value;
+            row["Camera"] = DBNull.Value;
+            row["Time"] = DBNull.Value;
+
         }
         // кнопка удаления
         private void Del_Click(object sender, EventArgs e)
         {
+            sqlConn.Open();
             // удаляем выделенные строки из dataGridView1
-            foreach (DataGridViewRow row in dataGridView1.SelectedRows)
+            foreach (DataGridViewRow rowa in dataGridView1.SelectedRows)
             {
-                dataGridView1.Rows.Remove(row);
+                dataGridView1.Rows.Remove(rowa);
             }
+            DataRow row = ds.Tables[0].NewRow();
+            string sql = "INSERT INTO HOPETable (Id, Camera,Time) VALUES(@Id, @Camera,@Time)";
+            row["Id"] = null;
+            row["UserID"] = null;
+            row["Camera"] = null;
+            row["Time"] = null;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //connection.Open();
+                adapter = new SqlDataAdapter(sql, connection);
+                commandBuilder = new SqlCommandBuilder(adapter);
+                adapter.InsertCommand = new SqlCommand("sp_HOPE", connection);
+                adapter.InsertCommand.CommandType = CommandType.StoredProcedure;
+                adapter.InsertCommand.Parameters.Add(new SqlParameter("@UserID", SqlDbType.Int, 0, "UserID"));
+                adapter.InsertCommand.Parameters.Add(new SqlParameter("@Camera", SqlDbType.Text, 0, "Camera"));
+                adapter.InsertCommand.Parameters.Add(new SqlParameter("@Time", SqlDbType.Text, 0, "Time"));
+
+                SqlParameter parameter = adapter.InsertCommand.Parameters.Add("@Id", SqlDbType.Int, 0, "Id");
+                parameter.Direction = ParameterDirection.Output;
+
+                adapter.Update(ds);
+                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM HOPETable", sqlConn);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    textBox14.Text = "Row count: " + reader[0].ToString();
+                }
+            }
+
+            MessageBox.Show("Data Inserted Successfully.");
+            sqlConn.Close();
         }
-        // кнопка сохранения
         private void Save_Click(object sender, EventArgs e)
         {
-            //using (sqlconnection connection = new sqlconnection(connectionstring))
-            //{
-            //    string id = convert.tostring(ina);
-            //    ina++;
-            //    sqlconn.open();
-            //    adapter = new sqldataadapter (sql, connection);
-            //    commandbuilder = new sqlcommandbuilder(adapter);
-            //    adapter.insertcommand = new sqlcommand("sp_hope", connection);
-            //    adapter.insertcommand.commandtype = commandtype.storedprocedure;
-            //    adapter.insertcommand.parameters.add(new sqlparameter("@userid", sqldbtype.int, 0, "userid"));
-            //    adapter.insertcommand.parameters.add(new sqlparameter("@camera", sqldbtype.text, 0, "camera"));
-            //    adapter.insertcommand.parameters.add(new sqlparameter("@time", sqldbtype.text, 0, "time"));
+            sqlConn.Open();
 
-            //    sqlparameter parameter = adapter.insertcommand.parameters.add("@id", sqldbtype.int, 0, "id");
-            //    parameter.direction = parameterdirection.output;
+            DataRow row = ds.Tables[0].NewRow();
+            string sql = "INSERT INTO HOPETable (Id, Camera,Time) VALUES(@Id, @Camera,@Time)";
+            row["Id"] = null;
+            row["UserID"] = null;
+            row["Camera"] = null;
+            row["Time"] = null;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                //connection.Open();
+                adapter = new SqlDataAdapter(sql, connection);
+                commandBuilder = new SqlCommandBuilder(adapter);
+                adapter.InsertCommand = new SqlCommand("sp_HOPE", connection);
+                adapter.InsertCommand.CommandType = CommandType.StoredProcedure;
+                adapter.InsertCommand.Parameters.Add(new SqlParameter("@UserID", SqlDbType.Int, 0, "UserID"));
+                adapter.InsertCommand.Parameters.Add(new SqlParameter("@Camera", SqlDbType.Text, 0, "Camera"));
+                adapter.InsertCommand.Parameters.Add(new SqlParameter("@Time", SqlDbType.Text, 0, "Time"));
 
-            //    adapter.update(ds);
-            //}
-            //sqlconn.close();
+                SqlParameter parameter = adapter.InsertCommand.Parameters.Add("@Id", SqlDbType.Int, 0, "Id");
+                parameter.Direction = ParameterDirection.Output;
+
+                adapter.Update(ds);
+                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM HOPETable", sqlConn);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    textBox14.Text = "Row count: " + reader[0].ToString();
+                }
+            }
+
+            MessageBox.Show("Data Inserted Successfully.");
+            sqlConn.Close();
         }
         private void btn_save_Click()
         {
@@ -397,6 +452,12 @@ namespace TCP_LISTENER_Delta
                 parameter.Direction = ParameterDirection.Output;
 
                 adapter.Update(ds);
+                SqlCommand cmd = new SqlCommand("SELECT COUNT(*) FROM HOPETable", sqlConn);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    textBox14.Text = "Row count: " + reader[0].ToString();
+                }
             }
 
             MessageBox.Show("Data Inserted Successfully.");
@@ -456,9 +517,20 @@ namespace TCP_LISTENER_Delta
             try
             {
 
-                textBox12.Text = "Row count: " + Convert.ToString(dataGridView2.RowCount);
+                
                 sqlConn.Open();
-                SqlCommand cmd = new SqlCommand("select UserID,Camera,Time from HOPETable WHERE UserID = " + textBox11.Text, sqlConn);
+                if (comboBox1.Text == "UserID")
+                {
+                    cmd = new SqlCommand("select UserID,Camera,Time from HOPETable WHERE UserID = " + textBox11.Text, sqlConn);
+                }
+                if (comboBox1.Text == "Camera")
+                {
+                    cmd = new SqlCommand("select UserID,Camera,Time from HOPETable WHERE [Camera] = " + "[" + textBox11.Text + "]", sqlConn);
+                }
+                if (comboBox1.Text == "Time")
+                {
+                    cmd = new SqlCommand("select UserID,Camera,Time from HOPETable WHERE [Time] = " + "[" +textBox11.Text + "]", sqlConn);
+                }
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 // Set the column header names.
@@ -471,23 +543,30 @@ namespace TCP_LISTENER_Delta
                 {
                     dataGridView2.Rows.Add(reader[0], reader[1], reader[2]);
                 }
+                textBox12.Text = "Row count: " + Convert.ToString(dataGridView2.RowCount);
                 sqlConn.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                sqlConn.Close();
             }
         }
         private void button11_Click(object sender, EventArgs e)
         {
             try
             {
-                foreach (DataGridViewRow row in dataGridView2.Rows)
-                {
-                    dataGridView2.Rows.Remove(row);
-                }
+                
+                dataGridView2.RowCount = 0;
                 sqlConn.Open();
-                SqlCommand cmd = new SqlCommand("select UserID,Camera,Time from HOPETable WHERE UserID = " + textBox11.Text, sqlConn);
+                if (comboBox1.Text == "UserID")
+                { 
+                cmd = new SqlCommand("select UserID,Camera,Time from HOPETable WHERE " + comboBox1.Text + " = " + textBox11.Text, sqlConn);
+                }
+                if (comboBox1.Text == "Camera" | comboBox1.Text == "Time")
+                {
+                    cmd = new SqlCommand("select UserID,Camera,Time from HOPETable WHERE " + comboBox1.Text + " = " + textBox11.Text, sqlConn);
+                }
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 // Set the column header names.
@@ -500,12 +579,19 @@ namespace TCP_LISTENER_Delta
                 {
                     dataGridView2.Rows.Add(reader[0], reader[1], reader[2]);
                 }
+                textBox12.Text = "Row count: " + Convert.ToString(dataGridView2.RowCount);
                 sqlConn.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                sqlConn.Close();
             }
+        }
+        private void button12_Click(object sender, EventArgs e)
+        {
+            dataGridView2.RowCount = 0;
+            textBox12.Text = "Row count: " + Convert.ToString(dataGridView2.RowCount);
         }
         /// 
         /// Bitmap from camera to picture box
@@ -2405,6 +2491,22 @@ namespace TCP_LISTENER_Delta
             this.hOPETableTableAdapter2.Fill(this.hOPEDataSet11.HOPETable);
 
         }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridView2.SelectedRows)
+            {
+                dataGridView2.Rows.Remove(row);
+                textBox12.Text = "Row count: " + Convert.ToString(dataGridView2.RowCount);
+            }
+        }
+
+
 
 
 

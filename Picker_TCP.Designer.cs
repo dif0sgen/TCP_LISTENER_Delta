@@ -41,6 +41,10 @@
             this.updateDeviceListTimer = new System.Windows.Forms.Timer(this.components);
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.UserIDtext = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cameratext = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Timetext = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.button11 = new System.Windows.Forms.Button();
             this.Save = new System.Windows.Forms.Button();
@@ -50,12 +54,18 @@
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.button9 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.hOPETableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.userIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hOPETableBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
+            this.hOPEDataSet11BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.hOPEDataSet11 = new TCP_LISTENER_Delta.HOPEDataSet1();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.button8 = new System.Windows.Forms.Button();
+            this.hOPETableBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.hOPETableBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.hOPEDataSet1 = new TCP_LISTENER_Delta.HOPEDataSet();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -163,22 +173,20 @@
             this.hOPEDataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.hOPEDataSet1BindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.hOPETableBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.userIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.hOPEDataSet11 = new TCP_LISTENER_Delta.HOPEDataSet1();
-            this.hOPEDataSet11BindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.hOPETableBindingSource3 = new System.Windows.Forms.BindingSource(this.components);
             this.hOPETableTableAdapter2 = new TCP_LISTENER_Delta.HOPEDataSet1TableAdapters.HOPETableTableAdapter();
-            this.UserIDtext = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cameratext = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Timetext = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.button12 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
+            this.textBox14 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.tabPage5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hOPETableBindingSource3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hOPEDataSet11BindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hOPEDataSet11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hOPETableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hOPETableBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hOPEDataSet1)).BeginInit();
@@ -209,10 +217,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.hOPEDataSet1BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hOPEDataSet1BindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hOPETableBindingSource2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hOPEDataSet11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hOPEDataSet11BindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hOPETableBindingSource3)).BeginInit();
             this.SuspendLayout();
             // 
             // imageListForDeviceList
@@ -269,6 +273,10 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.textBox14);
+            this.tabPage5.Controls.Add(this.button13);
+            this.tabPage5.Controls.Add(this.button12);
+            this.tabPage5.Controls.Add(this.comboBox1);
             this.tabPage5.Controls.Add(this.dataGridView2);
             this.tabPage5.Controls.Add(this.textBox12);
             this.tabPage5.Controls.Add(this.button11);
@@ -287,6 +295,39 @@
             resources.ApplyResources(this.tabPage5, "tabPage5");
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToOrderColumns = true;
+            this.dataGridView2.AllowUserToResizeColumns = false;
+            this.dataGridView2.AllowUserToResizeRows = false;
+            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.UserIDtext,
+            this.Cameratext,
+            this.Timetext});
+            this.dataGridView2.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
+            resources.ApplyResources(this.dataGridView2, "dataGridView2");
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridView2.RowTemplate.DefaultCellStyle.NullValue = "0";
+            // 
+            // UserIDtext
+            // 
+            resources.ApplyResources(this.UserIDtext, "UserIDtext");
+            this.UserIDtext.Name = "UserIDtext";
+            // 
+            // Cameratext
+            // 
+            resources.ApplyResources(this.Cameratext, "Cameratext");
+            this.Cameratext.Name = "Cameratext";
+            // 
+            // Timetext
+            // 
+            resources.ApplyResources(this.Timetext, "Timetext");
+            this.Timetext.Name = "Timetext";
             // 
             // textBox12
             // 
@@ -358,9 +399,38 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             // 
-            // hOPETableBindingSource
+            // userIDDataGridViewTextBoxColumn
             // 
-            this.hOPETableBindingSource.DataMember = "HOPETable";
+            this.userIDDataGridViewTextBoxColumn.DataPropertyName = "UserID";
+            resources.ApplyResources(this.userIDDataGridViewTextBoxColumn, "userIDDataGridViewTextBoxColumn");
+            this.userIDDataGridViewTextBoxColumn.Name = "userIDDataGridViewTextBoxColumn";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Time";
+            resources.ApplyResources(this.dataGridViewTextBoxColumn2, "dataGridViewTextBoxColumn2");
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Camera";
+            resources.ApplyResources(this.dataGridViewTextBoxColumn3, "dataGridViewTextBoxColumn3");
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // hOPETableBindingSource3
+            // 
+            this.hOPETableBindingSource3.DataMember = "HOPETable";
+            this.hOPETableBindingSource3.DataSource = this.hOPEDataSet11BindingSource;
+            // 
+            // hOPEDataSet11BindingSource
+            // 
+            this.hOPEDataSet11BindingSource.DataSource = this.hOPEDataSet11;
+            this.hOPEDataSet11BindingSource.Position = 0;
+            // 
+            // hOPEDataSet11
+            // 
+            this.hOPEDataSet11.DataSetName = "HOPEDataSet1";
+            this.hOPEDataSet11.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // textBox10
             // 
@@ -388,6 +458,10 @@
             this.button8.Name = "button8";
             this.button8.UseVisualStyleBackColor = true;
             this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // hOPETableBindingSource
+            // 
+            this.hOPETableBindingSource.DataMember = "HOPETable";
             // 
             // hOPETableBindingSource1
             // 
@@ -1191,75 +1265,43 @@
             this.hOPETableBindingSource2.DataMember = "HOPETable";
             this.hOPETableBindingSource2.DataSource = this.hOPEDataSet1BindingSource;
             // 
-            // userIDDataGridViewTextBoxColumn
-            // 
-            this.userIDDataGridViewTextBoxColumn.DataPropertyName = "UserID";
-            resources.ApplyResources(this.userIDDataGridViewTextBoxColumn, "userIDDataGridViewTextBoxColumn");
-            this.userIDDataGridViewTextBoxColumn.Name = "userIDDataGridViewTextBoxColumn";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Time";
-            resources.ApplyResources(this.dataGridViewTextBoxColumn2, "dataGridViewTextBoxColumn2");
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Camera";
-            resources.ApplyResources(this.dataGridViewTextBoxColumn3, "dataGridViewTextBoxColumn3");
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToOrderColumns = true;
-            this.dataGridView2.AllowUserToResizeColumns = false;
-            this.dataGridView2.AllowUserToResizeRows = false;
-            this.dataGridView2.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.UserIDtext,
-            this.Cameratext,
-            this.Timetext});
-            this.dataGridView2.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
-            resources.ApplyResources(this.dataGridView2, "dataGridView2");
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridView2.RowTemplate.DefaultCellStyle.NullValue = "0";
-            // 
-            // hOPEDataSet11
-            // 
-            this.hOPEDataSet11.DataSetName = "HOPEDataSet1";
-            this.hOPEDataSet11.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // hOPEDataSet11BindingSource
-            // 
-            this.hOPEDataSet11BindingSource.DataSource = this.hOPEDataSet11;
-            this.hOPEDataSet11BindingSource.Position = 0;
-            // 
-            // hOPETableBindingSource3
-            // 
-            this.hOPETableBindingSource3.DataMember = "HOPETable";
-            this.hOPETableBindingSource3.DataSource = this.hOPEDataSet11BindingSource;
-            // 
             // hOPETableTableAdapter2
             // 
             this.hOPETableTableAdapter2.ClearBeforeFill = true;
             // 
-            // UserIDtext
+            // comboBox1
             // 
-            resources.ApplyResources(this.UserIDtext, "UserIDtext");
-            this.UserIDtext.Name = "UserIDtext";
+            this.comboBox1.AutoCompleteCustomSource.AddRange(new string[] {
+            resources.GetString("comboBox1.AutoCompleteCustomSource"),
+            resources.GetString("comboBox1.AutoCompleteCustomSource1"),
+            resources.GetString("comboBox1.AutoCompleteCustomSource2")});
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            resources.GetString("comboBox1.Items"),
+            resources.GetString("comboBox1.Items1"),
+            resources.GetString("comboBox1.Items2")});
+            resources.ApplyResources(this.comboBox1, "comboBox1");
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // Cameratext
+            // button12
             // 
-            resources.ApplyResources(this.Cameratext, "Cameratext");
-            this.Cameratext.Name = "Cameratext";
+            resources.ApplyResources(this.button12, "button12");
+            this.button12.Name = "button12";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
-            // Timetext
+            // button13
             // 
-            resources.ApplyResources(this.Timetext, "Timetext");
-            this.Timetext.Name = "Timetext";
+            resources.ApplyResources(this.button13, "button13");
+            this.button13.Name = "button13";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
+            // textBox14
+            // 
+            resources.ApplyResources(this.textBox14, "textBox14");
+            this.textBox14.Name = "textBox14";
             // 
             // Form_Listener
             // 
@@ -1281,7 +1323,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hOPETableBindingSource3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hOPEDataSet11BindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.hOPEDataSet11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hOPETableBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hOPETableBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hOPEDataSet1)).EndInit();
@@ -1322,10 +1368,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.hOPEDataSet1BindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hOPEDataSet1BindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.hOPETableBindingSource2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hOPEDataSet11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hOPEDataSet11BindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.hOPETableBindingSource3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1482,6 +1524,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cameratext;
         private System.Windows.Forms.DataGridViewTextBoxColumn Timetext;
         private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.TextBox textBox14;
     }
 }
 

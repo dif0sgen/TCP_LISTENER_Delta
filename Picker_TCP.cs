@@ -16,8 +16,9 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Net.NetworkInformation;
 
-
-using Basler.Pylon;
+using System.Collections.Generic;
+using EOSDigital.API;
+using EOSDigital.SDK;
 using System.Drawing.Imaging;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -32,6 +33,7 @@ using System.Data;
 using System.Threading.Tasks;
 using MySqlX.XDevAPI.Relational;
 using Org.BouncyCastle.Utilities;
+using System.Collections;
 
 //using MySql.Data.MySqlClient;
 
@@ -44,6 +46,24 @@ namespace TCP_LISTENER_Delta
     //}
     public partial class Form_Listener : Form
     {
+        #region Variables
+
+        CanonAPI APIHandler;
+        Camera MainCamera;
+        CameraValue[] AvList;
+        CameraValue[] TvList;
+        CameraValue[] ISOList;
+        List<Camera> CamList;
+        bool IsInit = false;
+        Bitmap Evf_Bmp;
+        int LVBw, LVBh, w, h;
+        float LVBratio, LVration;
+
+        int ErrCount;
+        object ErrLock = new object();
+        object LvLock = new object();
+
+        #endregion
 
         ModbusClient modbus = new ModbusClient();
         System.Timers.Timer aTimer = new System.Timers.Timer();
@@ -65,7 +85,6 @@ namespace TCP_LISTENER_Delta
         static string picture_path;
         static string filename;
 
-        private PixelDataConverter converter = new PixelDataConverter();
         private Stopwatch stopWatch = new Stopwatch();
 
 
@@ -170,13 +189,7 @@ namespace TCP_LISTENER_Delta
         int Armax;
         int size;
 
-        public MyBasler myBasler = new MyBasler();
-
         public Camera camera = new Camera();
-
-
-        public IGrabResult grabResult;
-        PixelDataConverter pxConvert = new PixelDataConverter();
 
         int a;
         int b;
@@ -201,7 +214,6 @@ namespace TCP_LISTENER_Delta
         public Form_Listener()
         {
             InitializeComponent();
-            myBasler.CameraImageEvent += Camera_CameraImageEvent;
 
             thread1 = new Thread(() => ReadMDBS("MDBS"));
             thread2 = new Thread(() => WriteMDBS("WRITE"));
@@ -209,6 +221,23 @@ namespace TCP_LISTENER_Delta
             thread1.Start();
             thread2.Start();
 
+            try
+            {
+                InitializeComponent();
+                APIHandler = new CanonAPI();
+                APIHandler.CameraAdded += APIHandler_CameraAdded;
+                ErrorHandler.SevereErrorHappened += ErrorHandler_SevereErrorHappened;
+                ErrorHandler.NonSevereErrorHappened += ErrorHandler_NonSevereErrorHappened;
+                SavePathTextBox.Text = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures), "RemotePhoto");
+                SaveFolderBrowser.Description = "Save Images To...";
+                LiveViewPicBox.Paint += LiveViewPicBox_Paint;
+                LVBw = LiveViewPicBox.Width;
+                LVBh = LiveViewPicBox.Height;
+                RefreshCamera();
+                IsInit = true;
+            }
+            catch (DllNotFoundException) { ReportError("Canon DLLs not found!", true); }
+            catch (Exception ex) { ReportError(ex.Message, true); }
 
             imageIndex = 0;
             //aTimer.Elapsed += ReadMDBS; //CYCLE VOID
@@ -249,24 +278,7 @@ namespace TCP_LISTENER_Delta
             textBox28.Text = Properties.Settings.Default.ReleaseTMR;
             textBox5.Text = Properties.Settings.Default.tesPath;
             textBox2.Text = Properties.Settings.Default.Height;
-
-            /// 
-            /// Camera settings name
-            /// 
-
-            WhiteBalanceControl.Name = "Test Image Selector";
-            // Set the default names for the controls.
-            testImageControl.DefaultName = "Test Image Selector";
-            pixelFormatControl.DefaultName = "Pixel Format";
-            widthSliderControl.DefaultName = "Width";
-            heightSliderControl.DefaultName = "Height";
-            //gainSliderControl.DefaultName = "Gain";
-            //exposureTimeSliderControl.DefaultName = "Exposure Time";
-
-           
-
-            // Update the list of available camera devices in the upper left area.
-            UpdateDeviceList();
+         
 
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.AllowUserToAddRows = false;
@@ -594,19 +606,6 @@ namespace TCP_LISTENER_Delta
             textBox12.Text = "Row count: " + Convert.ToString(dataGridView2.RowCount);
         }
         /// 
-        /// Bitmap from camera to picture box
-        /// 
-        private void Camera_CameraImageEvent(Bitmap bmp)
-        {
-            pictureBox4.Invoke(new MethodInvoker(delegate
-            {
-                Bitmap old = pictureBox4.Image as Bitmap;
-                pictureBox4.Image = bmp;
-                if (old != null)
-                    old.Dispose();
-            }));
-        }
-        /// 
         /// Grab on button click
         /// 
 
@@ -695,21 +694,6 @@ namespace TCP_LISTENER_Delta
         //
         // }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                OneShot(); // Start the grabbing of one image.
-
-                //myBasler.GrabStart();
-
-            }
-            catch (Exception exception)
-            {
-                myBasler.ShowException(exception);
-            }
-        }
-
         // Occurs when a device with an opened connection is removed.
         private void OnConnectionLost(Object sender, EventArgs e)
         {
@@ -766,68 +750,7 @@ namespace TCP_LISTENER_Delta
 
         }
 
-        // Occurs when an image has been acquired and is ready to be processed.
-        private void OnImageGrabbed(Object sender, ImageGrabbedEventArgs e)
-        {
-            if (InvokeRequired)
-            {
-                // If called from a different thread, we must use the Invoke method to marshal the call to the proper GUI thread.
-                // The grab result will be disposed after the event call. Clone the event arguments for marshaling to the GUI thread.
-                BeginInvoke(new EventHandler<ImageGrabbedEventArgs>(OnImageGrabbed), sender, e.Clone());
-                return;
-            }
-
-            try
-            {
-                // Acquire the image from the camera. Only show the latest image. The camera may acquire images faster than the images can be displayed.
-
-                // Get the grab result.
-                IGrabResult grabResult = e.GrabResult;
-
-                // Check if the image can be displayed.
-                if (grabResult.IsValid)
-                {
-                    // Reduce the number of displayed images to a reasonable amount if the camera is acquiring images very fast.
-                    if (!stopWatch.IsRunning || stopWatch.ElapsedMilliseconds > 33)
-                    {
-                        stopWatch.Restart();
-
-                        Bitmap bitmap = new Bitmap(grabResult.Width, grabResult.Height, PixelFormat.Format32bppRgb);
-                        // Lock the bits of the bitmap.
-                        BitmapData bmpData = bitmap.LockBits(new Rectangle(0, 0, bitmap.Width, bitmap.Height), ImageLockMode.ReadWrite, bitmap.PixelFormat);
-                        // Place the pointer to the buffer of the bitmap.
-                        converter.OutputPixelFormat = PixelType.BGRA8packed;
-                        IntPtr ptrBmp = bmpData.Scan0;
-                        converter.Convert(ptrBmp, bmpData.Stride * bitmap.Height, grabResult);
-                        bitmap.UnlockBits(bmpData);
-
-                        // Assign a temporary variable to dispose the bitmap after assigning the new bitmap to the display control.
-                        Bitmap bitmapOld = pictureBox4.Image as Bitmap;
-                        // Provide the display control with the new bitmap. This action automatically updates the display.
-                        pictureBox4.Image = bitmap;
-
-                        SaveImageCapture(bitmap);
-
-
-                        if (bitmapOld != null)
-                        {
-                            // Dispose the bitmap.
-                            bitmapOld.Dispose();
-                        }
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                myBasler.ShowException(exception);
-            }
-            finally
-            {
-                // Dispose the grab result if needed for returning it to the grab loop.
-                e.DisposeGrabResultIfClone();
-            }
-        }
-
+   
         public static void SaveImageCapture(System.Drawing.Image image)
         {
 
@@ -859,26 +782,7 @@ namespace TCP_LISTENER_Delta
 
 
 
-        // Occurs when a camera has stopped grabbing.
-        private void OnGrabStopped(Object sender, GrabStopEventArgs e)
-        {
-            if (InvokeRequired)
-            {
-                // If called from a different thread, we must use the Invoke method to marshal the call to the proper thread.
-                BeginInvoke(new EventHandler<GrabStopEventArgs>(OnGrabStopped), sender, e);
-                return;
-            }
-
-            // Reset the stopwatch.
-            stopWatch.Reset();
-
-
-            // If the grabbed stop due to an error, display the error message.
-            if (e.Reason != GrabStopReason.UserRequest)
-            {
-                MessageBox.Show("A grab error occured:\n" + e.ErrorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        
 
         /// 
         /// array to bitmap
@@ -901,190 +805,8 @@ namespace TCP_LISTENER_Delta
             output.UnlockBits(bmpData);
             return output;
         }
-        /// 
-        /// 
-        /// 
-        private void CameraSettings_Load(object sender, EventArgs e)
-        {
-
-            // if (camera == null)
-            // {
-            //     // Get the first selected item.
-            //     ListViewItem item = deviceListView.SelectedItems[0];
-            //     // Get the attached device data.
-            //     ICameraInfo selectedCamera = item.Tag as ICameraInfo;
-            //
-            //     myBasler.CameraInit(selectedCamera);
-            //
-            //     // Create a new camera object.
-            //     camera = new Camera(selectedCamera);
-            // }
 
 
-
-
-
-
-        }
-
-        /// 
-        /// Height settings
-        /// 
-        private void heightSliderControl_Scroll(object sender, EventArgs e)
-        {
-            try
-            {
-                //long a1 = camera.Parameters[PLCamera.Height].GetMinimum();
-                //long b1 = camera.Parameters[PLCamera.Height].GetMaximum();
-                //camera.Parameters[PLCamera.Height].SetValue(heightSliderControl.Value);
-                //labelCameraHeight.Text = Convert.ToString(heightSliderControl.Value);
-                //a = Convert.ToInt32(heightSliderControl.Value);
-            }
-            catch (Exception exception)
-            {
-                myBasler.ShowException(exception);
-            }
-        }
-        /// 
-        /// Width settings
-        /// 
-        private void widthSliderControl_Scroll(object sender, EventArgs e)
-        {
-            try
-            {
-                //long a1 = camera.Parameters[PLCamera.Width].GetMinimum();
-                //long b1 = camera.Parameters[PLCamera.Width].GetMaximum();
-                //camera.Parameters[PLCamera.Width].SetValue(widthSliderControl.Value);
-                //labelWidthValue.Text = Convert.ToString(widthSliderControl.Value);
-                //b = Convert.ToInt32(widthSliderControl.Value);
-            }
-            catch (Exception exception)
-            {
-                myBasler.ShowException(exception);
-            }
-
-        }
-        /// 
-        /// Exposure settings
-        /// 
-        private void exposureTimeSliderControl_Scroll(object sender, EventArgs e)
-        {
-            try
-            {
-                //double a = camera.Parameters[PLCamera.ExposureTime].GetMinimum();
-                //double b = camera.Parameters[PLCamera.ExposureTime].GetMaximum();
-                //camera.Parameters[PLCamera.ExposureTime].SetValue(exposureTimeSliderControl.Value);
-                //labelExposureValue.Text = Convert.ToString(exposureTimeSliderControl.Value);
-            }
-            catch (Exception exception)
-            {
-                myBasler.ShowException(exception);
-            }
-
-
-        }
-        /// 
-        /// Gain settings
-        /// 
-        private void gainSliderControl_Scroll(object sender, EventArgs e)
-        {
-            try
-            {
-                // double a = camera.Parameters[PLCamera.Gain].GetMinimum();
-                // double b = camera.Parameters[PLCamera.Gain].GetMaximum();
-                // camera.Parameters[PLCamera.Gain].SetValue(gainSliderControl.Value);
-                // labelGainValue.Text = Convert.ToString(gainSliderControl.Value);
-            }
-            catch (Exception exception)
-            {
-                myBasler.ShowException(exception);
-            }
-
-        }
-        /// 
-        /// White balance settings
-        /// 
-        private void WhiteBalanceControl_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                camera.Parameters[PLCamera.BslLightSourcePreset].SetValue(WhiteBalanceControl.SelectedItem.ToString());
-
-            }
-            catch (Exception exception)
-            {
-                myBasler.ShowException(exception);
-            }
-        }
-        /// 
-        /// Basler action
-        /// 
-        // Starts the continuous grabbing of images and handles exceptions.
-        /// 
-        /// Basler action
-        /// 
-        // public void OneShot()
-        // {
-        //     try
-        //     {
-        //         if (camera != null)
-        //         {
-        //             // Configure single frame acquisition on the camera
-        //             camera.Parameters[PLCamera.AcquisitionMode].SetValue(PLCamera.AcquisitionMode.SingleFrame);
-        //             // Switch on image acquisition
-        //             camera.Parameters[PLCamera.AcquisitionStart].Execute();
-        //             // The camera waits for a trigger signal.
-        //             // When a Frame Start trigger signal has been received,
-        //             // the camera executes an Acquisition Stop command internally.
-        //             // Configure continuous image acquisition on the camera
-        //             camera.Parameters[PLCamera.AcquisitionMode].SetValue(PLCamera.AcquisitionMode.Continuous);
-        //             // Switch on image acquisition
-        //             camera.Parameters[PLCamera.AcquisitionStart].Execute();
-        //             // The camera waits for trigger signals.
-        //             // (...)
-        //             // Switch off image acquisition
-        //             camera.Parameters[PLCamera.AcquisitionStop].Execute();
-        //
-        //         }
-        //     }
-        //     catch (Exception exception)
-        //     {
-        //         myBasler.ShowException(exception);
-        //     }
-        // }
-
-
-
-
-        // Starts the grabbing of a single image and handles exceptions.
-        private void OneShot()
-        {
-            try
-            {
-                // Starts the grabbing of one image.
-                Configuration.AcquireSingleFrame(camera, null);
-                camera.StreamGrabber.Start(1, GrabStrategy.OneByOne, GrabLoop.ProvidedByStreamGrabber);
-            }
-            catch (Exception exception)
-            {
-                myBasler.ShowException(exception);
-            }
-        }
-        /// 
-        /// Shot button
-        /// 
-        private void button6_Click(object sender, EventArgs e)
-        {
-            OneShot();
-        }
-
-        private void trackBar3_Scroll(object sender, EventArgs e)
-        {
-            double a = camera.Parameters[PLCamera.ReadoutTimeAbs].GetMinimum();
-            double b = camera.Parameters[PLCamera.ReadoutTimeAbs].GetMaximum();
-            camera.Parameters[PLCamera.ReadoutTimeAbs].SetValue(trackBar3.Value);
-            label50.Text = Convert.ToString(trackBar3.Value);
-        }
         /// 
         /// STOP
         /// 
@@ -2160,320 +1882,6 @@ namespace TCP_LISTENER_Delta
             }
         }
 
-        // Closes the camera object and handles exceptions.
-        private void DestroyCamera()
-        {
-            // Disable all parameter controls.
-            try
-            {
-                if (camera != null)
-                {
-
-                    testImageControl.Parameter = null;
-                    pixelFormatControl.Parameter = null;
-                    widthSliderControl.Parameter = null;
-                    heightSliderControl.Parameter = null;
-                    //gainSliderControl.Parameter = null;
-                    //exposureTimeSliderControl.Parameter = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-
-            // Destroy the camera object.
-            try
-            {
-                if (camera != null)
-                {
-                    camera.Close();
-                    camera.Dispose();
-                    camera = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-        // Updates the list of available camera devices.
-        private void UpdateDeviceList()
-        {
-            try
-            {
-                // Ask the camera finder for a list of camera devices.
-                List<ICameraInfo> allCameras = CameraFinder.Enumerate();
-
-                ListView.ListViewItemCollection items = deviceListView.Items;
-
-                // Loop over all cameras found.
-                foreach (ICameraInfo cameraInfo in allCameras)
-                {
-                    // Loop over all cameras in the list of cameras.
-                    bool newitem = true;
-                    foreach (ListViewItem item in items)
-                    {
-                        ICameraInfo tag = item.Tag as ICameraInfo;
-
-                        // Is the camera found already in the list of cameras?
-                        if (tag[CameraInfoKey.FullName] == cameraInfo[CameraInfoKey.FullName])
-                        {
-                            tag = cameraInfo;
-                            newitem = false;
-                            break;
-                        }
-                    }
-
-                    // If the camera is not in the list, add it to the list.
-                    if (newitem)
-                    {
-                        // Create the item to display.
-                        ListViewItem item = new ListViewItem(cameraInfo[CameraInfoKey.FriendlyName]);
-
-                        // Create the tool tip text.
-                        string toolTipText = "";
-                        foreach (KeyValuePair<string, string> kvp in cameraInfo)
-                        {
-                            toolTipText += kvp.Key + ": " + kvp.Value + "\n";
-                        }
-                        item.ToolTipText = toolTipText;
-
-                        // Store the camera info in the displayed item.
-                        item.Tag = cameraInfo;
-
-                        // Attach the device data.
-                        deviceListView.Items.Add(item);
-                    }
-                }
-
-
-
-                // Remove old camera devices that have been disconnected.
-                foreach (ListViewItem item in items)
-                {
-                    bool exists = false;
-
-                    // For each camera in the list, check whether it can be found by enumeration.
-                    foreach (ICameraInfo cameraInfo in allCameras)
-                    {
-                        if (((ICameraInfo)item.Tag)[CameraInfoKey.FullName] == cameraInfo[CameraInfoKey.FullName])
-                        {
-                            exists = true;
-                            break;
-                        }
-                    }
-                    // If the camera has not been found, remove it from the list view.
-                    if (!exists)
-                    {
-                        deviceListView.Items.Remove(item);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-        // If the F5 key has been pressed, update the list of devices.
-        private void deviceListView_KeyDown(object sender, KeyEventArgs ev)
-        {
-            if (ev.KeyCode == Keys.F5)
-            {
-                ev.Handled = true;
-                // Update the list of available camera devices.
-                UpdateDeviceList();
-            }
-        }
-
-
-        // Timer callback used to periodically check whether displayed camera devices are still attached to the PC.
-        private void updateDeviceListTimer_Tick(object sender, EventArgs e)
-        {
-            UpdateDeviceList();
-        }
-        // Helps to set the states of all buttons.
-        private void EnableButtons(bool canGrab, bool canStop)
-        {
-            toolStripButtonContinuousShot.Enabled = canGrab;
-            toolStripButtonOneShot.Enabled = canGrab && IsSingleShotSupported();
-            toolStripButtonStop.Enabled = canStop;
-        }
-        // Checks if single shot is supported by the camera.
-        public bool IsSingleShotSupported()
-        {
-            // Camera can be null if not yet opened
-            if (camera == null)
-            {
-                return false;
-            }
-
-            // Camera can be closed
-            if (!camera.IsOpen)
-            {
-                return false;
-            }
-
-            bool canSet = camera.Parameters[PLCamera.AcquisitionMode].CanSetValue("SingleFrame");
-            return canSet;
-        }
-        // Occurs when the single frame acquisition button is clicked.
-        private void toolStripButtonOneShot_Click(object sender, EventArgs e, DataGridViewRowEventArgs ea)
-        {
-            ina++;
-            OneShot(); // Start the grabbing of one image.
-            
-                //DataGridViewRow row = this.tableDataGridView.Rows[ina];
-            
-        }
-
-
-        // Occurs when the stop frame acquisition button is clicked.
-        private void toolStripButtonStop_Click(object sender, EventArgs e)
-        {
-            Stop(); // Stop the grabbing of images.
-        }
-        // Stops the grabbing of images and handles exceptions.
-        private void Stop()
-        {
-            // Stop the grabbing.
-            try
-            {
-                camera.StreamGrabber.Stop();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void toolStripButtonOneShot_Click_1(object sender, EventArgs e)
-        {
-            try
-            {
-                OneShot();
-                btn_save_Click();// Start the grabbing of one image.
-
-                //myBasler.GrabStart();
-
-            }
-            catch (Exception exception)
-            {
-                myBasler.ShowException(exception);
-            }
-        }
-
-        private void deviceListView_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            // Destroy the old camera object.
-            if (camera != null)
-            {
-                DestroyCamera();
-            }
-
-
-            // Open the connection to the selected camera device.
-            if (deviceListView.SelectedItems.Count > 0)
-            {
-                // Get the first selected item.
-                ListViewItem item = deviceListView.SelectedItems[0];
-                // Get the attached device data.
-                ICameraInfo selectedCamera = item.Tag as ICameraInfo;
-                try
-                {
-                    // Create a new camera object.
-                    camera = new Camera(selectedCamera);
-
-                    camera.CameraOpened += Configuration.AcquireContinuous;
-
-                    // Register for the events of the image provider needed for proper operation.
-                    camera.ConnectionLost += OnConnectionLost;
-                    camera.CameraOpened += OnCameraOpened;
-                    camera.CameraClosed += OnCameraClosed;
-                    camera.StreamGrabber.GrabStarted += OnGrabStarted;
-                    camera.StreamGrabber.ImageGrabbed += OnImageGrabbed;
-                    camera.StreamGrabber.GrabStopped += OnGrabStopped;
-
-                    // Open the connection to the camera device.
-                    camera.Open();
-
-                    // Set the parameter for the controls.
-                    if (camera.Parameters[PLCamera.TestImageSelector].IsWritable)
-                    {
-                        if (checkBox1.Checked == false)
-                        {
-                            testImageControl.Parameter = camera.Parameters[PLCamera.TestImageSelector];
-                            // Enable custom test images
-                            camera.Parameters[PLCamera.ImageFileMode].SetValue(PLCamera.ImageFileMode.Off);
-                        }
-                        if (checkBox1.Checked == true)
-                        {
-                            // ** Custom Test Images **
-                            // Disable standard test images
-                            camera.Parameters[PLCamera.TestImageSelector].SetValue(PLCamera.TestImageSelector.Off);
-                            // Enable custom test images
-                            camera.Parameters[PLCamera.ImageFileMode].SetValue(PLCamera.ImageFileMode.On);
-                            // Load custom test image from disk
-                            camera.Parameters[PLCamera.ImageFilename].SetValue("D:\\Serhii\\Cherry_Samples");
-                        }
-
-                    }
-                    else
-                    {
-                        testImageControl.Parameter = camera.Parameters[PLCamera.TestPattern];
-                    }
-                    pixelFormatControl.Parameter = camera.Parameters[PLCamera.PixelFormat];
-                    //widthSliderControl.Parameter = camera.Parameters[PLCamera.Width];
-                    //heightSliderControl.Parameter = camera.Parameters[PLCamera.Height];
-                    if (camera.Parameters.Contains(PLCamera.GainAbs))
-                    {
-                        //gainSliderControl.Parameter = camera.Parameters[PLCamera.GainAbs];
-                    }
-                    else
-                    {
-                        //gainSliderControl.Parameter = camera.Parameters[PLCamera.Gain];
-                    }
-                    if (camera.Parameters.Contains(PLCamera.ExposureTimeAbs))
-                    {
-                        //exposureTimeSliderControl.Parameter = camera.Parameters[PLCamera.ExposureTimeAbs];
-                    }
-                    else
-                    {
-                        //exposureTimeSliderControl.Parameter = camera.Parameters[PLCamera.ExposureTime];
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-            
-        }
-
-        // Starts the continuous grabbing of images and handles exceptions.
-        private void ContinuousShot()
-        {
-            try
-            {
-                // Start the grabbing of images until grabbing is stopped.
-                Configuration.AcquireContinuous(camera, null);
-                camera.StreamGrabber.Start(GrabStrategy.OneByOne, GrabLoop.ProvidedByStreamGrabber);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-        // Occurs when the continuous frame acquisition button is clicked.
-        private void toolStripButtonContinuousShot_Click_1(object sender, EventArgs e)
-        {
-            ContinuousShot(); // Start the grabbing of images until grabbing is stopped.
-        }
-
-        private void toolStripButtonStop_Click_1(object sender, EventArgs e)
-        {
-            Stop();
-        }
 
         private void hOPETableBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
@@ -2506,28 +1914,445 @@ namespace TCP_LISTENER_Delta
             }
         }
 
+        private void BrowseButton_Click(object sender, EventArgs e)
+        {
 
+        }
 
+        private void SaveToRdButton_CheckedChanged(object sender, EventArgs e)
+        {
 
+        }
 
+        private void RecordVideoButton_Click(object sender, EventArgs e)
+        {
 
+        }
 
+        private void TakePhotoButton_Click(object sender, EventArgs e)
+        {
 
+        }
 
+        private void ISOCoBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
+        }
 
-        // Occurs when the stop frame acquisition button is clicked.
+        private void TvCoBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
-        //private void Form_Listener_Load(object sender, EventArgs e)
-        // {
-        // TODO: This line of code loads data into the 'database1DataSet.Table' table. You can move, or remove it, as needed.
-        // this.tableTableAdapter.Fill(this.database1DataSet.Table);
-        // TODO: This line of code loads data into the 'dataSetDB.Table' table. You can move, or remove it, as needed.
-        // this.tableTableAdapter.Fill(this.dataSetDB.Table);
+        }
 
-        // }
+        private void AvCoBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FocusFar3Button_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FocusFar2Button_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FocusFar1Button_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FocusNear1Button_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FocusNear2Button_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void FocusNear3Button_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LiveViewPicBox_SizeChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LiveViewButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RefreshButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SessionButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            try
+            {
+                IsInit = false;
+            }
+            catch (Exception ex) { ReportError(ex.Message, false); }
+        }
+
+        #region API Events
+
+        private void APIHandler_CameraAdded(CanonAPI sender)
+        {
+            try { Invoke((Action)delegate { RefreshCamera(); }); }
+            catch (Exception ex) { ReportError(ex.Message, false); }
+        }
+
+        private void MainCamera_StateChanged(Camera sender, StateEventID eventID, int parameter)
+        {
+            try { if (eventID == StateEventID.Shutdown && IsInit) { Invoke((Action)delegate { CloseSession(); }); } }
+            catch (Exception ex) { ReportError(ex.Message, false); }
+        }
+
+        private void MainCamera_ProgressChanged(object sender, int progress)
+        {
+            try { Invoke((Action)delegate { MainProgressBar.Value = progress; }); }
+            catch (Exception ex) { ReportError(ex.Message, false); }
+        }
+
+        private void MainCamera_LiveViewUpdated(Camera sender, Stream img)
+        {
+            try
+            {
+                lock (LvLock)
+                {
+                    Evf_Bmp?.Dispose();
+                    Evf_Bmp = new Bitmap(img);
+                }
+                LiveViewPicBox.Invalidate();
+            }
+            catch (Exception ex) { ReportError(ex.Message, false); }
+        }
+
+        private void MainCamera_DownloadReady(Camera sender, DownloadInfo Info)
+        {
+            try
+            {
+                string dir = null;
+                Invoke((Action)delegate { dir = SavePathTextBox.Text; });
+                sender.DownloadFile(Info, dir);
+                Invoke((Action)delegate { MainProgressBar.Value = 0; });
+            }
+            catch (Exception ex) { ReportError(ex.Message, false); }
+        }
+
+        private void ErrorHandler_NonSevereErrorHappened(object sender, ErrorCode ex)
+        {
+            ReportError($"SDK Error code: {ex} ({((int)ex).ToString("X")})", false);
+        }
+
+        private void ErrorHandler_SevereErrorHappened(object sender, Exception ex)
+        {
+            ReportError(ex.Message, true);
+        }
+
+        #endregion
+
+        #region Session
+
+        private void SessionButton_Click_1(object sender, EventArgs e)
+        {
+            if (MainCamera?.SessionOpen == true) CloseSession();
+            else OpenSession();
+        }
+
+        private void RefreshButton_Click_1(object sender, EventArgs e)
+        {
+            try { RefreshCamera(); }
+            catch (Exception ex) { ReportError(ex.Message, false); }
+        }
+
+        #endregion
+
+        #region Settings
+
+        private void TakePhotoButton_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if ((string)TvCoBox.SelectedItem == "Bulb") MainCamera.TakePhotoBulbAsync((int)BulbUpDo.Value);
+                else MainCamera.TakePhotoShutterAsync();
+            }
+            catch (Exception ex) { ReportError(ex.Message, false); }
+        }
+
+        private void RecordVideoButton_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                Recording state = (Recording)MainCamera.GetInt32Setting(PropertyID.Record);
+                if (state != Recording.On)
+                {
+                    MainCamera.StartFilming(true);
+                    RecordVideoButton.Text = "Stop Video";
+                }
+                else
+                {
+                    bool save = STComputerRdButton.Checked || STBothRdButton.Checked;
+                    MainCamera.StopFilming(save);
+                    RecordVideoButton.Text = "Record Video";
+                }
+            }
+            catch (Exception ex) { ReportError(ex.Message, false); }
+        }
+
+        private void BrowseButton_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (Directory.Exists(SavePathTextBox.Text)) SaveFolderBrowser.SelectedPath = SavePathTextBox.Text;
+                if (SaveFolderBrowser.ShowDialog() == DialogResult.OK)
+                {
+                    SavePathTextBox.Text = SaveFolderBrowser.SelectedPath;
+                }
+            }
+            catch (Exception ex) { ReportError(ex.Message, false); }
+        }
+
+        private void AvCoBox_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (AvCoBox.SelectedIndex < 0) return;
+                MainCamera.SetSetting(PropertyID.Av, AvValues.GetValue((string)AvCoBox.SelectedItem).IntValue);
+            }
+            catch (Exception ex) { ReportError(ex.Message, false); }
+        }
+
+        private void TvCoBox_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (TvCoBox.SelectedIndex < 0) return;
+
+                MainCamera.SetSetting(PropertyID.Tv, TvValues.GetValue((string)TvCoBox.SelectedItem).IntValue);
+                BulbUpDo.Enabled = (string)TvCoBox.SelectedItem == "Bulb";
+            }
+            catch (Exception ex) { ReportError(ex.Message, false); }
+        }
+
+        private void ISOCoBox_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (ISOCoBox.SelectedIndex < 0) return;
+                MainCamera.SetSetting(PropertyID.ISO, ISOValues.GetValue((string)ISOCoBox.SelectedItem).IntValue);
+            }
+            catch (Exception ex) { ReportError(ex.Message, false); }
+        }
+
+        private void SaveToRdButton_CheckedChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (IsInit)
+                {
+                    if (STCameraRdButton.Checked)
+                    {
+                        MainCamera.SetSetting(PropertyID.SaveTo, (int)SaveTo.Camera);
+                        BrowseButton.Enabled = false;
+                        SavePathTextBox.Enabled = false;
+                    }
+                    else
+                    {
+                        if (STComputerRdButton.Checked) MainCamera.SetSetting(PropertyID.SaveTo, (int)SaveTo.Host);
+                        else if (STBothRdButton.Checked) MainCamera.SetSetting(PropertyID.SaveTo, (int)SaveTo.Both);
+
+                        MainCamera.SetCapacity(4096, int.MaxValue);
+                        BrowseButton.Enabled = true;
+                        SavePathTextBox.Enabled = true;
+                    }
+                }
+            }
+            catch (Exception ex) { ReportError(ex.Message, false); }
+        }
+
+        #endregion
+
+        #region Live view
+
+        private void LiveViewButton_Click_1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!MainCamera.IsLiveViewOn) { MainCamera.StartLiveView(); LiveViewButton.Text = "Stop LV"; }
+                else { MainCamera.StopLiveView(); LiveViewButton.Text = "Start LV"; }
+            }
+            catch (Exception ex) { ReportError(ex.Message, false); }
+        }
+
+        private void LiveViewPicBox_SizeChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                LVBw = LiveViewPicBox.Width;
+                LVBh = LiveViewPicBox.Height;
+                LiveViewPicBox.Invalidate();
+            }
+            catch (Exception ex) { ReportError(ex.Message, false); }
+        }
+
+        private void LiveViewPicBox_Paint(object sender, PaintEventArgs e)
+        {
+            if (MainCamera == null || !MainCamera.SessionOpen) return;
+
+            if (!MainCamera.IsLiveViewOn) e.Graphics.Clear(BackColor);
+            else
+            {
+                lock (LvLock)
+                {
+                    if (Evf_Bmp != null)
+                    {
+                        LVBratio = LVBw / (float)LVBh;
+                        LVration = Evf_Bmp.Width / (float)Evf_Bmp.Height;
+                        if (LVBratio < LVration)
+                        {
+                            w = LVBw;
+                            h = (int)(LVBw / LVration);
+                        }
+                        else
+                        {
+                            w = (int)(LVBh * LVration);
+                            h = LVBh;
+                        }
+                        e.Graphics.DrawImage(Evf_Bmp, 0, 0, w, h);
+                    }
+                }
+            }
+        }
+
+        private void FocusNear3Button_Click(object sender, EventArgs e)
+        {
+            try { MainCamera.SendCommand(CameraCommand.DriveLensEvf, (int)DriveLens.Near3); }
+            catch (Exception ex) { ReportError(ex.Message, false); }
+        }
+
+        private void FocusNear2Button_Click(object sender, EventArgs e)
+        {
+            try { MainCamera.SendCommand(CameraCommand.DriveLensEvf, (int)DriveLens.Near2); }
+            catch (Exception ex) { ReportError(ex.Message, false); }
+        }
+
+        private void FocusNear1Button_Click(object sender, EventArgs e)
+        {
+            try { MainCamera.SendCommand(CameraCommand.DriveLensEvf, (int)DriveLens.Near1); }
+            catch (Exception ex) { ReportError(ex.Message, false); }
+        }
+
+        private void FocusFar1Button_Click(object sender, EventArgs e)
+        {
+            try { MainCamera.SendCommand(CameraCommand.DriveLensEvf, (int)DriveLens.Far1); }
+            catch (Exception ex) { ReportError(ex.Message, false); }
+        }
+
+        private void FocusFar2Button_Click(object sender, EventArgs e)
+        {
+            try { MainCamera.SendCommand(CameraCommand.DriveLensEvf, (int)DriveLens.Far2); }
+            catch (Exception ex) { ReportError(ex.Message, false); }
+        }
+
+        private void FocusFar3Button_Click(object sender, EventArgs e)
+        {
+            try { MainCamera.SendCommand(CameraCommand.DriveLensEvf, (int)DriveLens.Far3); }
+            catch (Exception ex) { ReportError(ex.Message, false); }
+        }
+
+        #endregion
+
+        #region Subroutines
+
+        private void CloseSession()
+        {
+            MainCamera.CloseSession();
+            AvCoBox.Items.Clear();
+            TvCoBox.Items.Clear();
+            ISOCoBox.Items.Clear();
+            SettingsGroupBox.Enabled = false;
+            LiveViewGroupBox.Enabled = false;
+            SessionButton.Text = "Open Session";
+            SessionLabel.Text = "No open session";
+            LiveViewButton.Text = "Start LV";
+        }
+
+        private void RefreshCamera()
+        {
+            CameraListBox.Items.Clear();
+            CamList = APIHandler.GetCameraList();
+            foreach (Camera cam in CamList) CameraListBox.Items.Add(cam.DeviceName);
+            if (MainCamera?.SessionOpen == true) CameraListBox.SelectedIndex = CamList.FindIndex(t => t.ID == MainCamera.ID);
+            else if (CamList.Count > 0) CameraListBox.SelectedIndex = 0;
+        }
+
+        private void OpenSession()
+        {
+            if (CameraListBox.SelectedIndex >= 0)
+            {
+                MainCamera = CamList[CameraListBox.SelectedIndex];
+                MainCamera.OpenSession();
+                MainCamera.LiveViewUpdated += MainCamera_LiveViewUpdated;
+                MainCamera.ProgressChanged += MainCamera_ProgressChanged;
+                MainCamera.StateChanged += MainCamera_StateChanged;
+                MainCamera.DownloadReady += MainCamera_DownloadReady;
+
+                SessionButton.Text = "Close Session";
+                SessionLabel.Text = MainCamera.DeviceName;
+                AvList = MainCamera.GetSettingsList(PropertyID.Av);
+                TvList = MainCamera.GetSettingsList(PropertyID.Tv);
+                ISOList = MainCamera.GetSettingsList(PropertyID.ISO);
+                foreach (var Av in AvList) AvCoBox.Items.Add(Av.StringValue);
+                foreach (var Tv in TvList) TvCoBox.Items.Add(Tv.StringValue);
+                foreach (var ISO in ISOList) ISOCoBox.Items.Add(ISO.StringValue);
+                AvCoBox.SelectedIndex = AvCoBox.Items.IndexOf(AvValues.GetValue(MainCamera.GetInt32Setting(PropertyID.Av)).StringValue);
+                TvCoBox.SelectedIndex = TvCoBox.Items.IndexOf(TvValues.GetValue(MainCamera.GetInt32Setting(PropertyID.Tv)).StringValue);
+                ISOCoBox.SelectedIndex = ISOCoBox.Items.IndexOf(ISOValues.GetValue(MainCamera.GetInt32Setting(PropertyID.ISO)).StringValue);
+                SettingsGroupBox.Enabled = true;
+                LiveViewGroupBox.Enabled = true;
+            }
+        }
+
+        private void ReportError(string message, bool lockdown)
+        {
+            int errc;
+            lock (ErrLock) { errc = ++ErrCount; }
+
+            if (lockdown) EnableUI(false);
+
+            if (errc < 4) MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else if (errc == 4) MessageBox.Show("Many errors happened!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            lock (ErrLock) { ErrCount--; }
+        }
+
+        private void EnableUI(bool enable)
+        {
+            if (InvokeRequired) Invoke((Action)delegate { EnableUI(enable); });
+            else
+            {
+                SettingsGroupBox.Enabled = enable;
+                InitGroupBox.Enabled = enable;
+                LiveViewGroupBox.Enabled = enable;
+            }
+        }
+        #endregion
     }
+}
 
-    }
-//}
     

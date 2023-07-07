@@ -203,7 +203,6 @@
     <Compile Include="IntSliderUserControl.designer.cs">
       <DependentUpon>IntSliderUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MyBasler.cs" />
     <Compile Include="Picker_TCP.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -357,6 +356,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="EDSDKLib\EDSDKLib.csproj">
+      <Project>{15e99248-6161-46a4-9183-609ca62406a6}</Project>
+      <Name>EDSDKLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\EMGU.CV.4.1.1.3497\build\EMGU.CV.targets" Condition="Exists('packages\EMGU.CV.4.1.1.3497\build\EMGU.CV.targets')" />

@@ -1257,14 +1257,12 @@
             resources.ApplyResources(this.STBothRdButton, "STBothRdButton");
             this.STBothRdButton.Name = "STBothRdButton";
             this.STBothRdButton.UseVisualStyleBackColor = true;
-            this.STBothRdButton.CheckedChanged += new System.EventHandler(this.SaveToRdButton_CheckedChanged);
             // 
             // STComputerRdButton
             // 
             resources.ApplyResources(this.STComputerRdButton, "STComputerRdButton");
             this.STComputerRdButton.Name = "STComputerRdButton";
             this.STComputerRdButton.UseVisualStyleBackColor = true;
-            this.STComputerRdButton.CheckedChanged += new System.EventHandler(this.SaveToRdButton_CheckedChanged);
             // 
             // STCameraRdButton
             // 
@@ -1273,7 +1271,6 @@
             this.STCameraRdButton.Name = "STCameraRdButton";
             this.STCameraRdButton.TabStop = true;
             this.STCameraRdButton.UseVisualStyleBackColor = true;
-            this.STCameraRdButton.CheckedChanged += new System.EventHandler(this.SaveToRdButton_CheckedChanged);
             // 
             // label9
             // 
